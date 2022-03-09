@@ -1,40 +1,49 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneManager : Singleton<SceneManager>
 {
+    [HideInInspector]
+    public Slider m_loadSlider;
+    [HideInInspector]
+    public TextMeshProUGUI m_loadText;
 
-    [SerializeField, Tooltip("Slider de loading")]
-    private GameObject m_canvasLoader;
+    public int m_sceneToLoad = 2;
 
-    private void Start()
+    public void ChangeScene(int p_sceneId)
     {
-        ChangeScene("Game");
-    }
-
-    void ChangeScene(string p_sceneName)
-    {
+        m_sceneToLoad = p_sceneId;
+        
         // fait une animation en fade out
         // met en pause la scene courante
-        LoadScene(p_sceneName);
+        
+        // Lance la scene de load
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Loader");
     }
 
-    void LoadScene(string p_sceneName)
+    public void LoadScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Loader");
-        StartCoroutine(LoadAsync(p_sceneName));
+        StartCoroutine(LoadAsync(m_sceneToLoad));
     }
 
-    IEnumerator LoadAsync(string p_sceneName)
+    IEnumerator LoadAsync(int p_sceneId)
     {
-        AsyncOperation asynOp = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(p_sceneName);
+        AsyncOperation asynOp = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(p_sceneId);
 
         while (!asynOp.isDone)
         {
             Debug.Log(asynOp.progress);
+            if (m_loadSlider)
+            {
+                float prct = asynOp.progress * 100;
+                m_loadText.text = $"{prct} %";
+                m_loadSlider.value = asynOp.progress;
+            }
             yield return null;
         }
     }
