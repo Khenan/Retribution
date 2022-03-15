@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        m_cameraTransform.rotation = Quaternion.identity;
     }
 
     private void Update()
