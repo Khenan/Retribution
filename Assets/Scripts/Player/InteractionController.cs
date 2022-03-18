@@ -18,7 +18,7 @@ public class InteractionController : MonoBehaviour
         {
             if ((m_layerInteract.value & 1<< hit.collider.gameObject.layer) > 0)
             {
-                hit.collider.gameObject.GetComponent<Interactible>().Shine();
+                hit.collider.gameObject.GetComponent<IInteractible>().Shine();
             }
             
             // Si clique droit, on affiche le nom de l'objet
@@ -27,6 +27,7 @@ public class InteractionController : MonoBehaviour
                 if ((m_layerInteract.value & 1<< hit.collider.gameObject.layer) > 0)
                 {
                     print(hit.collider.name);
+                    hit.collider.gameObject.GetComponent<IInteractible>().Interact();
                 }
             }
         }
