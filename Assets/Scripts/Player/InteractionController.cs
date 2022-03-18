@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class InteractionController : MonoBehaviour
 {
-    public Transform m_rootTransform;
-    public float m_range = 2;
-    public LayerMask m_layerInteract;
+    [SerializeField, Tooltip("Départ du rayon d'intéraction")]
+    private Transform m_rootTransform;
+    [SerializeField, Tooltip("Portée du joueur en mètre")]
+    private float m_range = 2;
+    [SerializeField, Tooltip("Layer des objets interactifs")]
+    private LayerMask m_layerInteract;
 
     public void UpdateInteraction()
     {
