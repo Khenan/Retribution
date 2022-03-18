@@ -477,11 +477,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &752269952 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1267192414810054835, guid: 8efb22353666184498503f5caef56f35, type: 3}
-  m_PrefabInstance: {fileID: 1445151338188972950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &933294764
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,16 +570,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 38.334, y: -35.038, z: 8.104}
---- !u!23 &1061962613 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7619273335273180191, guid: 8efb22353666184498503f5caef56f35, type: 3}
-  m_PrefabInstance: {fileID: 1445151338188972950}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1085586633 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7628769226058451497, guid: 8efb22353666184498503f5caef56f35, type: 3}
-  m_PrefabInstance: {fileID: 1445151338188972950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1740437053
 Mesh:
   m_ObjectHideFlags: 0
@@ -1237,42 +1222,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 617853761306683947, guid: 8efb22353666184498503f5caef56f35, type: 3}
-      propertyPath: m_myDoor
-      value: 
-      objectReference: {fileID: 1445151338188972951}
     - target: {fileID: 3473773401569441640, guid: 8efb22353666184498503f5caef56f35, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 18357201}
-    - target: {fileID: 4744291601975428842, guid: 8efb22353666184498503f5caef56f35, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612112365291836490, guid: 8efb22353666184498503f5caef56f35, type: 3}
-      propertyPath: m_animator
-      value: 
-      objectReference: {fileID: 1085586633}
-    - target: {fileID: 5612112365291836490, guid: 8efb22353666184498503f5caef56f35, type: 3}
-      propertyPath: m_objectRendererToShine.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612112365291836490, guid: 8efb22353666184498503f5caef56f35, type: 3}
-      propertyPath: m_objectRendererToShine.Array.data[0]
-      value: 
-      objectReference: {fileID: 752269952}
-    - target: {fileID: 5612112365291836490, guid: 8efb22353666184498503f5caef56f35, type: 3}
-      propertyPath: m_objectRendererToShine.Array.data[1]
-      value: 
-      objectReference: {fileID: 1061962613}
     - target: {fileID: 6408416990666325849, guid: 8efb22353666184498503f5caef56f35, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 18357201}
-    - target: {fileID: 6994250922945595452, guid: 8efb22353666184498503f5caef56f35, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 7619273335273180184, guid: 8efb22353666184498503f5caef56f35, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1329,20 +1286,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8714765099035650244, guid: 8efb22353666184498503f5caef56f35, type: 3}
-      propertyPath: m_myDoor
-      value: 
-      objectReference: {fileID: 1445151338188972951}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8efb22353666184498503f5caef56f35, type: 3}
---- !u!114 &1445151338188972951 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5612112365291836490, guid: 8efb22353666184498503f5caef56f35, type: 3}
-  m_PrefabInstance: {fileID: 1445151338188972950}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9167d43a7b5928042a3b67a22594a667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
