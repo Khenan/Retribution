@@ -20,12 +20,22 @@ public class CharaController : MonoBehaviour
 
     private bool m_isGrounded;
 
+    [SerializeField, Tooltip("Animator Component du personnage")]
+    private Animator m_animator;
+
+    private int m_speedXAnimator = Animator.StringToHash("speedX");
+    private int m_speedYAnimator = Animator.StringToHash("speedY");
+    private int m_crouchAnimator = Animator.StringToHash("crouch");
+    private int m_standAnimator = Animator.StringToHash("stand");
+
+    public bool m_isCrouching = false;
+
     private void Awake()
     {
         m_characterController = GetComponent<CharacterController>();
     }
 
-    private void Update()
+    public void UpdateMove()
     {
         m_isGrounded = Physics.CheckSphere(m_groundCheck.position, m_groundDistance, m_groundLayer);
         if (m_isGrounded && velocity.y < 0)
@@ -36,10 +46,22 @@ public class CharaController : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        m_characterController.Move(move * m_speed * Time.deltaTime);
+        // Peut bouger si n'est pas accroupi
+        if(!m_isCrouching)
+            m_characterController.Move(move * m_speed * Time.deltaTime);
 
         velocity.y += m_gravity * Time.deltaTime;
 
         m_characterController.Move(velocity * Time.deltaTime);
+        
+        // On met à jour les float dans l'animator
+        m_animator.SetFloat(m_speedXAnimator, x);
+        m_animator.SetFloat(m_speedYAnimator, z);
+    }
+
+    public void Crouch()
+    {
+        m_isCrouching = !m_isCrouching;
+        m_animator.SetTrigger(m_isCrouching ? m_crouchAnimator : m_standAnimator);
     }
 }
