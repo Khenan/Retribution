@@ -24,12 +24,12 @@ public class Pupitre : MonoBehaviour, IInteractible
 
     public void Interact()
     {
-        
+        Open();
     }
 
     public void Shine()
     {
-        if (m_shinning) return;
+        if (m_shinning || m_isOpen) return;
         
         m_shinning = true;
         foreach (Renderer rnd in m_objectRendererToShine)
@@ -46,14 +46,15 @@ public class Pupitre : MonoBehaviour, IInteractible
             rnd.material.SetFloat(m_idShinning, 0);
     }
     
-    public void Open()
+    private void Open()
     {
         if (m_isOpen) return;
+        m_isOpen = true;
         m_animator.SetTrigger(m_openAnimator);
     }
     public void Close()
     {
-        if (m_isOpen) return;
+        m_isOpen = false;
         m_animator.SetTrigger(m_closeAnimator);
     }
 }
