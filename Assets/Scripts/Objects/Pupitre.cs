@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IInteractible
+public class Pupitre : MonoBehaviour, IInteractible
 {
     public float m_cooldown = 0.5f;
     public List<Renderer> m_objectRendererToShine;
     private bool m_shinning = false;
     private int m_idShinning = Shader.PropertyToID("_shinning");
 
-    public float Cooldown { get => m_cooldown; set => m_cooldown = value; }
     public List<Renderer> ObjectRendererToShine => m_objectRendererToShine;
+    public float Cooldown { get => m_cooldown; set => m_cooldown = value; }
     public bool Shinning { get => m_shinning; set => m_shinning = value; }
     public int IdShinning { get => m_idShinning; set => m_idShinning = value; }
 
@@ -20,8 +20,7 @@ public class Door : MonoBehaviour, IInteractible
     private Animator m_animator;
 
     private readonly int m_closeAnimator = Animator.StringToHash("close");
-    private readonly int m_openRightAnimator = Animator.StringToHash("openRight");
-    private readonly int m_openLeftAnimator = Animator.StringToHash("openLeft");
+    private readonly int m_openAnimator = Animator.StringToHash("open");
 
     public void Interact()
     {
@@ -46,25 +45,15 @@ public class Door : MonoBehaviour, IInteractible
         foreach (Renderer rnd in m_objectRendererToShine)
             rnd.material.SetFloat(m_idShinning, 0);
     }
-
-    /// <summary>
-    /// Ouverture/Fermueture de la porte, s'ouvre par défaut du côté gauche
-    /// </summary>
-    /// <param name="m_left">Booléen qui défini si la porte s'ouvre à gauche ou à droite, ouverture à gauche par défaut</param>
-    public void Toggle(bool m_left = true)
+    
+    public void Open()
     {
-        if (m_isOpen)
-        {
-            m_isOpen = false;
-            m_animator.SetTrigger(m_closeAnimator);
-            return;
-        }
-        m_isOpen = true;
-        if (m_left)
-        {
-            m_animator.SetTrigger(m_openLeftAnimator);
-            return;
-        }
-        m_animator.SetTrigger(m_openRightAnimator);
+        if (m_isOpen) return;
+        m_animator.SetTrigger(m_openAnimator);
+    }
+    public void Close()
+    {
+        if (m_isOpen) return;
+        m_animator.SetTrigger(m_closeAnimator);
     }
 }
