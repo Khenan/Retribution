@@ -12,6 +12,7 @@ public class BlendLUT : MonoBehaviour
     {
         m_GlobalVolume = FindObjectOfType<GlobalVolumeBlendLUT>();
         Debug.Log(m_GlobalVolume);
+        GetComponent<BoxCollider>().isTrigger = true;
     }
 
     private void OnTriggerEnter(Collider other)
