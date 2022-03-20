@@ -10,9 +10,13 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     public delegate void MyDelegate();
     public MyDelegate m_close;
 
+    [SerializeField, Tooltip("Cube Test de déclenchement")]
+    private GameObject m_myCubeTrigger;
+
     public void StartEnigme()
     {
         Debug.Log("L'énigme des pupitres commence !!!");
+        m_myCubeTrigger.GetComponent<Rigidbody>().isKinematic = false;
     }
     
     public bool CheckPupitre(int p_numPupitre)

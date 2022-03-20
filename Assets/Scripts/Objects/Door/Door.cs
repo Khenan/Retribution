@@ -33,7 +33,7 @@ public class Door : MonoBehaviour, IInteractible
         if (m_shining) return;
         
         m_shining = true;
-        // Déclanchement du shining
+        // Déclenchement du shining
         foreach (Renderer rnd in m_objectRendererToShine)
         {
             foreach (Material mat in rnd.materials)
@@ -41,7 +41,7 @@ public class Door : MonoBehaviour, IInteractible
                 mat.SetFloat(m_idShining, 1);
             }
         }
-        // Déclanchement du cooldown
+        // Déclenchement du cooldown
         StartCoroutine(CooldownCoroutine());
     }
 
