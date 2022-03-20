@@ -7,13 +7,13 @@ public class Door : MonoBehaviour, IInteractible
 {
     public float m_cooldown = 0.5f;
     public List<Renderer> m_objectRendererToShine;
-    private bool m_shinning = false;
-    private int m_idShinning = Shader.PropertyToID("_shinning");
+    private bool m_shining = false;
+    private int m_idShining = Shader.PropertyToID("_shining");
 
     public float Cooldown { get => m_cooldown; set => m_cooldown = value; }
     public List<Renderer> ObjectRendererToShine => m_objectRendererToShine;
-    public bool Shinning { get => m_shinning; set => m_shinning = value; }
-    public int IdShinning { get => m_idShinning; set => m_idShinning = value; }
+    public bool Shinning { get => m_shining; set => m_shining = value; }
+    public int IdShinning { get => m_idShining; set => m_idShining = value; }
 
     private bool m_isOpen = false;
     [SerializeField, Tooltip("Animator du Mesh")]
@@ -30,29 +30,31 @@ public class Door : MonoBehaviour, IInteractible
 
     public void Shine()
     {
-        if (m_shinning) return;
+        if (m_shining) return;
         
-        m_shinning = true;
+        m_shining = true;
+        // Déclanchement du shining
         foreach (Renderer rnd in m_objectRendererToShine)
         {
             foreach (Material mat in rnd.materials)
             {
-                mat.SetFloat(m_idShinning, 1);
+                mat.SetFloat(m_idShining, 1);
             }
         }
-        
+        // Déclanchement du cooldown
         StartCoroutine(CooldownCoroutine());
     }
 
     public IEnumerator CooldownCoroutine()
     {
         yield return new WaitForSeconds(m_cooldown);
-        m_shinning = false;
+        m_shining = false;
+        // Arrêt du shining
         foreach (Renderer rnd in m_objectRendererToShine)
         {
             foreach (Material mat in rnd.materials)
             {
-                mat.SetFloat(m_idShinning, 0);
+                mat.SetFloat(m_idShining, 0);
             }
         }
     }
@@ -78,6 +80,9 @@ public class Door : MonoBehaviour, IInteractible
         m_animator.SetTrigger(m_openRightAnimator);
     }
 
+    /// <summary>
+    /// Fermeture de la porte, lance l'animation de fermeture
+    /// </summary>
     public void Close()
     {
         m_isOpen = false;

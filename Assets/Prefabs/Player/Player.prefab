@@ -118,7 +118,7 @@ MonoBehaviour:
   m_groundDistance: 0.2
   m_groundLayer:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 183
   m_animator: {fileID: 907520841}
   m_isCrouching: 0
 --- !u!114 &875586874871653108
@@ -172,7 +172,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rootTransform: {fileID: 2413784371072856571}
   m_range: 1.2
-  m_layerInteract:
+  m_noPlayerLayer:
+    serializedVersion: 2
+    m_Bits: 183
+  m_interactLayer:
     serializedVersion: 2
     m_Bits: 128
 --- !u!114 &2560776973125352297
@@ -1291,6 +1294,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -13.860193
       objectReference: {fileID: 0}
+    - target: {fileID: 3853268898807207900, guid: 98100ef1eaa561d40a041b3136dd81c0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1fdbeeb3920903a41bfcd631a698dd15, type: 2}
     - target: {fileID: 3882815353823017779, guid: 98100ef1eaa561d40a041b3136dd81c0, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1415,6 +1422,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -39.08884
       objectReference: {fileID: 0}
+    - target: {fileID: 6148737315974723067, guid: 98100ef1eaa561d40a041b3136dd81c0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1fdbeeb3920903a41bfcd631a698dd15, type: 2}
     - target: {fileID: 6240733294840144465, guid: 98100ef1eaa561d40a041b3136dd81c0, type: 3}
       propertyPath: m_Layer
       value: 6
