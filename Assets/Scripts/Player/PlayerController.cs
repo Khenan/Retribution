@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     private CameraController m_cameraController;
     private CharaController m_charaController;
     private InteractionController m_interactionController;
+    private PlayerSound m_playerSound;
     private void Awake()
     {
         m_cameraController = GetComponent<CameraController>();
         m_charaController = GetComponent<CharaController>();
         m_interactionController = GetComponent<InteractionController>();
+        m_playerSound = GetComponent<PlayerSound>();
     }
     private void Update()
     {
@@ -25,5 +27,6 @@ public class PlayerController : MonoBehaviour
         m_charaController.UpdateMove();
         m_cameraController.UpdateCamera();
         m_interactionController.UpdateInteraction();
+        m_playerSound.UpdateSound();
     }
 }

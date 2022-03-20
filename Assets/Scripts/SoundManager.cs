@@ -6,21 +6,44 @@ using FMODUnity;
 
 public class SoundManager : Singleton<SoundManager>
 {
-    [SerializeField, Tooltip("Audio Walk")]
-    private StudioEventEmitter m_audioWalk;
+    // PLAYER
+    [Header("PLAYER'S SOUNDS")]
+    [Tooltip("Son de la marche du joueur avec le bois qui grince")]
+    public SoundEvent m_PlayerWalkTop;
+    [Tooltip("Son de la marche du joueur au sol en bas")]
+    public SoundEvent m_PlayerWalkBottom;
+    
+    // DOOR
+    [Header("DOOR'S SOUNDS")]
+    [Tooltip("Son de la porte qui s'ouvre")]
+    public SoundEvent m_DoorOpenning;
+    [Tooltip("Son de la porte qui se ferme")]
+    public SoundEvent m_DoorClosing;
 
-    private void Start()
+    public void Play(StudioEventEmitter m_sound)
     {
-        m_audioWalk.Play();
+        if (!m_sound)
+        {
+            Debug.Log("Le son n'est pas enregistré dans le SoundManager");
+            return;
+        }
+        m_sound.Play();
+    }
+
+    public void Stop(StudioEventEmitter m_sound)
+    {
+        m_sound.Stop();
     }
 
     protected override string GetSingletonName()
     {
         return "SoundManager";
     }
-
-    public void Play(StudioEventEmitter p_event)
+    [System.Serializable]
+    public struct SoundEvent
     {
-        p_event.Play();
+        public StudioEventEmitter sound;
+        // [HideInInspector]
+        public bool isPlaying;
     }
 }
