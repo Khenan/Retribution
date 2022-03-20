@@ -4,23 +4,16 @@ using UnityEngine;
 
 public class PlayerSound : MonoBehaviour
 {
-    private CharacterController m_characterController;
-    private void Awake()
-    {
-        m_characterController = GetComponent<CharacterController>();
-    }
-
     public void UpdateSound()
     {
-        Vector3 move = m_characterController.velocity;
-        if (move != Vector3.zero)
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        if (x != 0 || z != 0)
         {
-            if (!SoundManager.Instance.m_PlayerWalkTop.isPlaying)
-                SoundManager.Instance.Play(SoundManager.Instance.m_PlayerWalkTop.sound);
+            SoundManager.Instance.Play(SoundManager.Instance.m_PlayerWalkTop);
             return;
         }
 
-        if (SoundManager.Instance.m_PlayerWalkTop.isPlaying) return;
-        SoundManager.Instance.Stop(SoundManager.Instance.m_PlayerWalkTop.sound);
+        SoundManager.Instance.Stop(SoundManager.Instance.m_PlayerWalkTop);
     }
 }

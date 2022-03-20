@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity;
 
 public class SoundManager : Singleton<SoundManager>
 {
@@ -20,30 +19,23 @@ public class SoundManager : Singleton<SoundManager>
     [Tooltip("Son de la porte qui se ferme")]
     public SoundEvent m_DoorClosing;
 
-    public void Play(StudioEventEmitter m_sound)
+    public void Play(SoundEvent m_soundEvent)
     {
-        if (!m_sound)
+        if (!m_soundEvent)
         {
             Debug.Log("Le son n'est pas enregistré dans le SoundManager");
             return;
         }
-        m_sound.Play();
+        m_soundEvent.Play();
     }
 
-    public void Stop(StudioEventEmitter m_sound)
+    public void Stop(SoundEvent m_soundEvent)
     {
-        m_sound.Stop();
+        m_soundEvent.Stop();
     }
 
     protected override string GetSingletonName()
     {
         return "SoundManager";
-    }
-    [System.Serializable]
-    public struct SoundEvent
-    {
-        public StudioEventEmitter sound;
-        // [HideInInspector]
-        public bool isPlaying;
     }
 }
