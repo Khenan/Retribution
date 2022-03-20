@@ -15,16 +15,38 @@ public class Pupitre : MonoBehaviour, IInteractible
     public bool Shinning { get => m_shinning; set => m_shinning = value; }
     public int IdShinning { get => m_idShinning; set => m_idShinning = value; }
 
-    private bool m_isOpen = false;
+    public bool m_isOpen = false;
     [SerializeField, Tooltip("Animator du Mesh")]
     private Animator m_animator;
 
     private readonly int m_closeAnimator = Animator.StringToHash("close");
     private readonly int m_openAnimator = Animator.StringToHash("open");
 
+    private EnigmePupitre m_enigmePupitre;
+    [SerializeField, Tooltip("Numéro du pupitre"), Range(0, 10)]
+    private int m_numPupitre = 0;
+
+    private void Awake()
+    {
+        m_enigmePupitre = FindObjectOfType<EnigmePupitre>();
+    }
+
+    private void OnEnable()
+    {
+        EnigmePupitre.Instance.m_close += Close;
+    }
+    private void OnDisable()
+    {
+        EnigmePupitre.Instance.m_close -= Close;
+    }
+
     public void Interact()
     {
-        Open();
+        if (m_isOpen) return;
+        if (m_enigmePupitre.CheckPupitre(m_numPupitre))
+        {
+            Open();
+        }
     }
 
     public void Shine()
@@ -48,13 +70,15 @@ public class Pupitre : MonoBehaviour, IInteractible
     
     private void Open()
     {
-        if (m_isOpen) return;
         m_isOpen = true;
+        print("Open !");
         m_animator.SetTrigger(m_openAnimator);
     }
-    public void Close()
+    private void Close()
     {
+        if (!m_isOpen) return;
         m_isOpen = false;
+        print("Close !");
         m_animator.SetTrigger(m_closeAnimator);
     }
 }

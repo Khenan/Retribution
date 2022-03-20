@@ -34,7 +34,12 @@ public class Door : MonoBehaviour, IInteractible
         
         m_shinning = true;
         foreach (Renderer rnd in m_objectRendererToShine)
-            rnd.material.SetFloat(m_idShinning, 1);
+        {
+            foreach (Material mat in rnd.materials)
+            {
+                mat.SetFloat(m_idShinning, 1);
+            }
+        }
         
         StartCoroutine(CooldownCoroutine());
     }
@@ -44,7 +49,12 @@ public class Door : MonoBehaviour, IInteractible
         yield return new WaitForSeconds(m_cooldown);
         m_shinning = false;
         foreach (Renderer rnd in m_objectRendererToShine)
-            rnd.material.SetFloat(m_idShinning, 0);
+        {
+            foreach (Material mat in rnd.materials)
+            {
+                mat.SetFloat(m_idShinning, 0);
+            }
+        }
     }
 
     /// <summary>
@@ -66,5 +76,11 @@ public class Door : MonoBehaviour, IInteractible
             return;
         }
         m_animator.SetTrigger(m_openRightAnimator);
+    }
+
+    public void Close()
+    {
+        m_isOpen = false;
+        m_animator.SetTrigger(m_closeAnimator);
     }
 }
