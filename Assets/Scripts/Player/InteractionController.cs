@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class InteractionController : MonoBehaviour
 {
     [SerializeField, Tooltip("Départ du rayon d'intéraction")]
@@ -13,6 +17,13 @@ public class InteractionController : MonoBehaviour
     private LayerMask m_noPlayerLayer;
     [SerializeField, Tooltip("Layer des objets interactifs")]
     private LayerMask m_interactLayer;
+    
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(m_rootTransform.position, m_range);
+    }
+#endif
 
     public void UpdateInteraction()
     {
