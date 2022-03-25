@@ -50,13 +50,16 @@ public class CharaController : MonoBehaviour
         if(!m_isCrouching)
             m_characterController.Move(move * m_speed * Time.deltaTime);
 
-        velocity.y += m_gravity * Time.deltaTime;
-
-        m_characterController.Move(velocity * Time.deltaTime);
-        
         // On met à jour les float dans l'animator
         m_animator.SetFloat(m_speedXAnimator, x);
         m_animator.SetFloat(m_speedYAnimator, z);
+    }
+
+    public void UpdateGravity()
+    {
+        velocity.y += m_gravity * Time.deltaTime;
+
+        m_characterController.Move(velocity * Time.deltaTime);
     }
 
     public void Crouch()
