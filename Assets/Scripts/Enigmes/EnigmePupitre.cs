@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
 {
@@ -23,6 +24,9 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     [SerializeField, Tooltip("Le prefab des pupitres")]
     private GameObject m_pupitresPrefab;
 
+    [SerializeField, Tooltip("Fumée de l'énigme")]
+    private SmokeBehaviour m_smoke;
+
     private void Start()
     {
         Instantiate(m_pupitresPrefab, transform);
@@ -31,6 +35,16 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     public void StartEnigme()
     {
         Debug.Log("L'énigme des pupitres commence !!!");
+        
+        if (m_smoke)
+        {
+            m_smoke.m_smoke.GetComponent<VisualEffect>().playRate = 1;
+            m_smoke.Begin();
+        }
+        else
+        {
+            Debug.LogWarning("Attention, aucune fumée n'a été attribué à l'énigme, elle ne peut donc pas apparaître", this);
+        }
     }
 
     public void RestartEnigme()
@@ -42,6 +56,9 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         m_isCompleted = false;
         m_triggerStart.SetActive(true);
         Instantiate(m_pupitresPrefab, transform);
+        
+        if (!m_smoke) return;
+        m_smoke.Restart();
     }
 
     public void CompleteEnigme()
