@@ -8,7 +8,9 @@ using UnityEngine.VFX;
 
 public class SmokeBehaviour : MonoBehaviour
 {
-    [SerializeField, Tooltip("Plafond de la fumée, placez la fumée à la hauteur maximal qu'elle pourrait aller et inscrivez la valeur dans le champs"), Range(0, 10)]
+    [SerializeField, Tooltip("Position en Y de départ de la fumée, placez la fumée à la position de départ désirée et inscrivez la valeur dans le champs")]
+    private float m_minPosY = 0;
+    [SerializeField, Tooltip("Plafond de la fumée, placez la fumée à la hauteur maximal qu'elle pourrait aller et inscrivez la valeur dans le champs")]
     private float m_maxPosY = 4;
     [SerializeField, Tooltip("Vitesse de la fumée en Y en m/s"), Range(0, 1)]
     private float m_speedY = 0.01f;
@@ -18,8 +20,6 @@ public class SmokeBehaviour : MonoBehaviour
 
     [HideInInspector]
     public bool m_start = false;
-    
-    private Vector3 m_initPos = Vector3.zero;
 
     private float m_currentTime = 0;
 
@@ -27,7 +27,7 @@ public class SmokeBehaviour : MonoBehaviour
     {
         m_smoke = transform.GetChild(0);
         m_smoke.GetComponent<VisualEffect>().playRate = 0;
-        m_initPos = transform.localPosition;
+        transform.localPosition = new Vector3(transform.localPosition.x, m_minPosY, transform.localPosition.z);
     }
 
     private void FixedUpdate()
@@ -37,8 +37,7 @@ public class SmokeBehaviour : MonoBehaviour
         transform.Translate(0, 1f * m_speedY * Time.deltaTime, 0);
         if (transform.localPosition.y < m_maxPosY) return;
         m_start = false;
-        transform.localPosition = new Vector3(transform.localPosition.x, m_maxPosY, transform.localPosition.z);
-        Debug.Log("finish ! " + m_currentTime);
+        Debug.Log("Fumée arrivée en " + m_currentTime + "s.");
     }
 
     public void Begin()
@@ -49,17 +48,20 @@ public class SmokeBehaviour : MonoBehaviour
     public void Restart()
     {
         m_start = false;
+        m_smoke.GetComponent<VisualEffect>().Reinit();
         m_smoke.GetComponent<VisualEffect>().playRate = 0;
-        transform.localPosition = m_initPos;
+        transform.localPosition = new Vector3(transform.localPosition.x, m_minPosY, transform.localPosition.z);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         print("Dedans");
+        other.transform.parent.parent.GetComponent<Suffox>().TakeDamage();
     }
 
     private void OnTriggerExit(Collider other)
     {
         print("Dehors");
+        other.transform.parent.parent.GetComponent<Suffox>().RecoverOxygen();
     }
 }

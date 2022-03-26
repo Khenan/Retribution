@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void Death()
+    public void Death()
     {
         m_isDead = true;
         StopCoroutine(RespawnCooldownCoroutine());
@@ -52,7 +52,14 @@ public class PlayerController : MonoBehaviour
     private void Respawn()
     {
         GetComponent<CharacterController>().enabled = false;
-        transform.position = m_lastCheckpoint.transform.position;
+        if (m_lastCheckpoint)
+        {
+            transform.position = m_lastCheckpoint.transform.position;
+        }
+        else
+        {
+            transform.position = Vector3.zero;
+        }
         GetComponent<CharacterController>().enabled = true;
         StartCoroutine(ResetDeathCoroutine(1));
     }
