@@ -7,13 +7,13 @@ public class Pupitre : MonoBehaviour, IInteractible
 {
     public float m_cooldown = 0.5f;
     public List<Renderer> m_objectRendererToShine;
-    private bool m_shinning = false;
-    private int m_idShinning = Shader.PropertyToID("_shinning");
+    private bool m_shining = false;
+    private int m_idShining = Shader.PropertyToID("_shining");
 
     public List<Renderer> ObjectRendererToShine => m_objectRendererToShine;
     public float Cooldown { get => m_cooldown; set => m_cooldown = value; }
-    public bool Shinning { get => m_shinning; set => m_shinning = value; }
-    public int IdShinning { get => m_idShinning; set => m_idShinning = value; }
+    public bool Shining { get => m_shining; set => m_shining = value; }
+    public int IdShining { get => m_idShining; set => m_idShining = value; }
 
     public bool m_isOpen = false;
     [SerializeField, Tooltip("Animator du Mesh")]
@@ -51,11 +51,11 @@ public class Pupitre : MonoBehaviour, IInteractible
 
     public void Shine()
     {
-        if (m_shinning || m_isOpen) return;
+        if (m_shining || m_isOpen) return;
         
-        m_shinning = true;
+        m_shining = true;
         foreach (Renderer rnd in m_objectRendererToShine)
-            rnd.material.SetFloat(m_idShinning, 1);
+            rnd.material.SetFloat(m_idShining, 1);
         
         StartCoroutine(CooldownCoroutine());
     }
@@ -63,9 +63,9 @@ public class Pupitre : MonoBehaviour, IInteractible
     public IEnumerator CooldownCoroutine()
     {
         yield return new WaitForSeconds(m_cooldown);
-        m_shinning = false;
+        m_shining = false;
         foreach (Renderer rnd in m_objectRendererToShine)
-            rnd.material.SetFloat(m_idShinning, 0);
+            rnd.material.SetFloat(m_idShining, 0);
     }
     
     private void Open()
