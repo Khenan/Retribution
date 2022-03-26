@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private CameraController m_cameraController;
     private CharaController m_charaController;
     private InteractionController m_interactionController;
+    private Suffox m_suffox;
 
     public Checkpoint m_lastCheckpoint;
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
         m_cameraController = GetComponent<CameraController>();
         m_charaController = GetComponent<CharaController>();
         m_interactionController = GetComponent<InteractionController>();
+        m_suffox = GetComponent<Suffox>();
     }
     private void Update()
     {
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
     
     private void Respawn()
     {
+        m_suffox.RecoverAllOxygen();
         GetComponent<CharacterController>().enabled = false;
         if (m_lastCheckpoint)
         {

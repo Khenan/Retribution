@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Suffox : MonoBehaviour
 {
@@ -17,11 +18,15 @@ public class Suffox : MonoBehaviour
 
     public float m_oxygen;
     
-
+    // UI
+    [SerializeField, Tooltip("Slider UI d'oxygène")]
+    private Slider m_oxygenSlider;
+    
     private void Awake()
     {
         m_oxygen = m_oxygenMax;
         m_playerCtrl = GetComponent<PlayerController>();
+        UpdateSlider();
     }
 
     public void TakeDamage()
@@ -34,10 +39,17 @@ public class Suffox : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(RecoverOxygenCoroutine(m_cooldownRecoverOxygen));
     }
+    public void RecoverAllOxygen()
+    {
+        StopAllCoroutines();
+        m_oxygen = m_oxygenMax;
+        UpdateSlider();
+    }
 
     IEnumerator TakeDamageCoroutine(float p_second)
     {
         yield return new WaitForSeconds(p_second);
+        UpdateSlider();
         if (m_oxygen > 0)
         {
             m_oxygen--;
@@ -56,7 +68,7 @@ public class Suffox : MonoBehaviour
     IEnumerator RecoverOxygenCoroutine(float p_second)
     {
         yield return new WaitForSeconds(p_second);
-        
+        UpdateSlider();
         if (m_oxygen < m_oxygenMax)
         {
             m_oxygen++;
@@ -66,6 +78,16 @@ public class Suffox : MonoBehaviour
             }
             StartCoroutine(RecoverOxygenCoroutine(p_second));
         }
+    }
 
+    private void UpdateSlider()
+    {
+        if (!m_oxygenSlider)
+        {
+            Debug.LogWarning("Le slider d'oxygène n'est pas attribué");
+            return;
+        }
+
+        m_oxygenSlider.value = m_oxygen;
     }
 }
