@@ -15,7 +15,8 @@ public class Door : MonoBehaviour, IInteractible
     public bool Shinning { get => m_shining; set => m_shining = value; }
     public int IdShinning { get => m_idShining; set => m_idShining = value; }
 
-    private bool m_isOpen = false;
+    public bool m_isOpen = false;
+    public bool m_isLock = false;
     [SerializeField, Tooltip("Animator du Mesh")]
     private Animator m_animator;
 
@@ -72,6 +73,11 @@ public class Door : MonoBehaviour, IInteractible
             return;
         }
         m_isOpen = true;
+        if (m_isLock)
+        {
+            // Lancer une animation de porte fermée
+            return;
+        }
         if (m_left)
         {
             m_animator.SetTrigger(m_openLeftAnimator);

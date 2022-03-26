@@ -18,6 +18,7 @@ public class DoorCollider : MonoBehaviour, IInteractible
     private bool m_leftTrigger = true;
     public void Interact()
     {
+        if (m_myDoor.m_isOpen) return;
         if (m_leftTrigger)
         {
             m_myDoor.Toggle();
