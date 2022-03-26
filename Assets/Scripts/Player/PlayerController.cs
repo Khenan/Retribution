@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private CameraController m_cameraController;
     private CharaController m_charaController;
     private InteractionController m_interactionController;
+    private Suffox m_suffox;
 
     public Checkpoint m_lastCheckpoint;
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
         m_cameraController = GetComponent<CameraController>();
         m_charaController = GetComponent<CharaController>();
         m_interactionController = GetComponent<InteractionController>();
+        m_suffox = GetComponent<Suffox>();
     }
     private void Update()
     {
@@ -42,7 +44,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void Death()
+    public void Death()
     {
         m_isDead = true;
         StopCoroutine(RespawnCooldownCoroutine());
@@ -51,8 +53,16 @@ public class PlayerController : MonoBehaviour
     
     private void Respawn()
     {
+        m_suffox.RecoverAllOxygen();
         GetComponent<CharacterController>().enabled = false;
-        transform.position = m_lastCheckpoint.transform.position;
+        if (m_lastCheckpoint)
+        {
+            transform.position = m_lastCheckpoint.transform.position;
+        }
+        else
+        {
+            transform.position = Vector3.zero;
+        }
         GetComponent<CharacterController>().enabled = true;
         StartCoroutine(ResetDeathCoroutine(1));
     }
