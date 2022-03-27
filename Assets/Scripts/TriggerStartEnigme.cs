@@ -10,8 +10,7 @@ public class TriggerStartEnigme : MonoBehaviour
     
     [SerializeField, Tooltip("Les autres trigger de la pièce de l'énigme")]
     private List<TriggerStartEnigme> m_myTriggers = new List<TriggerStartEnigme>();
-    [SerializeField, Tooltip("Porte(s) de l'énigme")]
-    private List<Door> m_myDoors = new List<Door>();
+    
 
     [SerializeField, Tooltip("Layer du Player")]
     private LayerMask m_playerLayer;
@@ -19,11 +18,7 @@ public class TriggerStartEnigme : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if ((m_playerLayer.value & 1 << other.gameObject.layer) <= 0) return;
-        // Fermeture de toutes les portes
-        foreach (Door door in m_myDoors)
-        {
-            door.Close();
-        }
+        
         // Lancement de l'énigme
         m_myEnigmeToStart.GetComponent<IEnigme>().StartEnigme();
         

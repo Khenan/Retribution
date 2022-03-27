@@ -26,6 +26,10 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
 
     [SerializeField, Tooltip("Fumée de l'énigme")]
     private SmokeBehaviour m_smoke;
+    
+    [SerializeField, Tooltip("Porte(s) de l'énigme")]
+    private List<Door> m_myDoors = new List<Door>();
+
 
     private void Start()
     {
@@ -35,6 +39,13 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     public void StartEnigme()
     {
         Debug.Log("L'énigme des pupitres commence !!!");
+        
+        // Fermeture de toutes les portes
+        foreach (Door door in m_myDoors)
+        {
+            door.Close();
+            door.m_isLock = true;
+        }
         
         if (m_smoke)
         {
@@ -66,6 +77,12 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         m_isCompleted = true;
         m_checkpoint.m_repop = true;
         m_checkpoint.gameObject.GetComponent<BoxCollider>().enabled = true;
+        
+        // Fermeture de toutes les portes
+        foreach (Door door in m_myDoors)
+        {
+            door.m_isLock = false;
+        }
     }
 
     public bool CheckPupitre(int p_numPupitre)

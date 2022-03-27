@@ -72,12 +72,12 @@ public class Door : MonoBehaviour, IInteractible
             m_animator.SetTrigger(m_closeAnimator);
             return;
         }
-        m_isOpen = true;
         if (m_isLock)
         {
             // Lancer une animation de porte fermée
             return;
         }
+        m_isOpen = true;
         if (m_left)
         {
             m_animator.SetTrigger(m_openLeftAnimator);
