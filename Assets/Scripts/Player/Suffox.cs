@@ -8,9 +8,9 @@ public class Suffox : MonoBehaviour
 {
     private PlayerController m_playerCtrl;
 
-    [SerializeField, Tooltip("Point d'oxygène du joueur"), Range(0, 100)]
+    [SerializeField, Tooltip("(1 = 1 seconde) En combien de temps le joueur perd 1 oxygène"), Range(0, 100)]
     private float m_cooldownTakeDamage = 0.1f;
-    [SerializeField, Tooltip("Point d'oxygène du joueur"), Range(0, 100)]
+    [SerializeField, Tooltip("(1 = 1 seconde) En combien de temps le joueur récuàère 1 oxygène"), Range(0, 100)]
     private float m_cooldownRecoverOxygen = 0.1f;
     
     [SerializeField, Tooltip("Point d'oxygène du joueur"), Range(0, 100)]
