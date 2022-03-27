@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class PlayerSound : MonoBehaviour
 {
+    private bool m_walkStart = false;
     public void UpdateSound()
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         if (x != 0 || z != 0)
         {
+            Debug.Log("is moving");
+            if (m_walkStart) return;
+            Debug.Log("Lance le son");
             SoundManager.Instance.Play(SoundManager.Instance.m_PlayerWalkTop);
+            SoundManager.Instance.m_PlayerWalkTop.m_event.SetParameter("Progression", 0);
+            m_walkStart = true;
             return;
         }
 
-        SoundManager.Instance.Stop(SoundManager.Instance.m_PlayerWalkTop);
+        if (!m_walkStart) return;
+        Debug.Log("Arrets le son");
+        SoundManager.Instance.m_PlayerWalkTop.m_event.SetParameter("Progression", 1);
+        m_walkStart = false;
     }
 }

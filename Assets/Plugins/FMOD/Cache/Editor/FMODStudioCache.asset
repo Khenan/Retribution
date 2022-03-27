@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: ../../ETPA/GD2/PROJECT SEMESTRE 2/FMOD Project/FmodProject_01/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637834023564078219
+  lastModified: 637839916239318750
   FileSizes:
   - Name: Desktop
-    Value: 754
+    Value: 806
   Exists: 1
 --- !u!114 &-6966415462079078849
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: ../../ETPA/GD2/PROJECT SEMESTRE 2/FMOD Project/FmodProject_01/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637834023564058207
+  lastModified: 637839916239298742
   FileSizes:
   - Name: Desktop
-    Value: 14752
+    Value: 16896
   Exists: 1
 --- !u!114 &-6082872765628760018
 MonoBehaviour:
@@ -54,19 +54,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Walk
   Guid:
-    Data1: 654224934
-    Data2: 1251172895
-    Data3: -1071786344
-    Data4: 1512832537
+    Data1: 1891793363
+    Data2: 1241467646
+    Data3: -1654739546
+    Data4: -206712541
   Banks:
   - {fileID: -6966415462079078849}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 5776967353429656533}
   MinDistance: 1
   MaxDistance: 20
-  Length: 528
+  Length: 1056
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,5 +90,31 @@ MonoBehaviour:
   - {fileID: -6966415462079078849}
   StringsBanks:
   - {fileID: -7614937368292148875}
-  cacheTime: 637834023564078219
+  cacheTime: 637839916239318750
   cacheVersion: 10
+--- !u!114 &5776967353429656533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/Progression
+  m_EditorClassIdentifier: 
+  Name: Progression
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 388084877
+    data2: 1522908675
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - WalkLoop
+  - EndWalkLoop
+  Exists: 1
