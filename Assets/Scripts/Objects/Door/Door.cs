@@ -39,6 +39,7 @@ public class Door : MonoBehaviour, IInteractible
 
     public void Shine()
     {
+        print("SHINING !");
         m_shining = true;
         foreach (Renderer rnd in m_objectRendererToShine)
         {
@@ -58,6 +59,8 @@ public class Door : MonoBehaviour, IInteractible
     public IEnumerator CooldownCoroutine()
     {
         yield return new WaitForSeconds(m_cooldownOff);
+        
+        print("CLOSE SHINE !!!");
         StartCoroutine(FadeOutCoroutine());
         m_shining = false;
     }
