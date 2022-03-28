@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e99c3549be9ce4db752f1115ac6d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_myDoor: {fileID: 5612112365291836490}
+  m_myDoor: {fileID: 0}
   m_leftTrigger: 0
 --- !u!1 &6219413392725059084
 GameObject:
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e99c3549be9ce4db752f1115ac6d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_myDoor: {fileID: 5612112365291836490}
+  m_myDoor: {fileID: 0}
   m_leftTrigger: 1
 --- !u!1 &7619273335855427022
 GameObject:
@@ -225,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7619273335855427023}
-  - component: {fileID: 5612112365291836490}
+  - component: {fileID: 7701281367307563928}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -248,7 +248,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5612112365291836490
+--- !u!114 &7701281367307563928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,7 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9167d43a7b5928042a3b67a22594a667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cooldown: 0.5
+  m_fadeInSpeed: 50
+  m_fadeOutSpeed: 0.01
+  m_cooldownOff: 0.01
+  m_fresnelStep: 0.04
   m_objectRendererToShine:
   - {fileID: 5321911339721644026}
   m_isOpen: 0
