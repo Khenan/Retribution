@@ -9,6 +9,11 @@ public class Door : MonoBehaviour, IInteractible
     public List<Renderer> m_objectRendererToShine;
     private bool m_shining = false;
     private int m_idShining = Shader.PropertyToID("_shining");
+    private int m_idFresnelPower = Shader.PropertyToID("_fresnelPower");
+    private int m_idFresnelBlend = Shader.PropertyToID("_fresnelBlend");
+
+    [SerializeField, Tooltip(""), Range(0.01f, 0.1f)]
+    private float m_fresnelSpeed = 0.05f;
 
     public float Cooldown { get => m_cooldown; set => m_cooldown = value; }
     public List<Renderer> ObjectRendererToShine => m_objectRendererToShine;
@@ -31,17 +36,7 @@ public class Door : MonoBehaviour, IInteractible
 
     public void Shine()
     {
-        if (m_shining) return;
-        
         m_shining = true;
-        // Déclenchement du shining
-        foreach (Renderer rnd in m_objectRendererToShine)
-        {
-            foreach (Material mat in rnd.materials)
-            {
-                mat.SetFloat(m_idShining, 1);
-            }
-        }
         // Déclenchement du cooldown
         StartCoroutine(CooldownCoroutine());
     }
@@ -49,15 +44,18 @@ public class Door : MonoBehaviour, IInteractible
     public IEnumerator CooldownCoroutine()
     {
         yield return new WaitForSeconds(m_cooldown);
-        m_shining = false;
         // Arrêt du shining
         foreach (Renderer rnd in m_objectRendererToShine)
         {
             foreach (Material mat in rnd.materials)
             {
-                mat.SetFloat(m_idShining, 0);
+                float fresnel = mat.GetFloat(m_idShining);
+                fresnel += m_fresnelSpeed;
+                mat.SetFloat(m_idShining, fresnel);
+
             }
         }
+        m_shining = false;
     }
 
     /// <summary>
