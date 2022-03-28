@@ -5,17 +5,21 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractible
 {
-    [SerializeField, Tooltip("Cooldown de disparition de l'effet"), Range(0.01f, 0.1f)]
-    public float m_cooldownOff = 0.5f;
+    [SerializeField, Tooltip("Vitesse d'apparition de l'effet"), Range(1f, 1000f)]
+    public float m_fadeInSpeed = 0.05f;
     [SerializeField, Tooltip("Vitesse de disparition de l'effet"), Range(0.01f, 0.1f)]
-    public float m_fadeOutSpeed = 0.5f;
-    public List<Renderer> m_objectRendererToShine;
-    private bool m_shining = false;
-    private int m_idFresnelPower = Shader.PropertyToID("_fresnelPower");
-    private int m_idFresnelBlend = Shader.PropertyToID("_fresnelBlend");
+    public float m_fadeOutSpeed = 0.05f;
+    [SerializeField, Tooltip("Cooldown de disparition de l'effet"), Range(0.01f, 0.1f)]
+    public float m_cooldownOff = 0.05f;
 
     [SerializeField, Tooltip("Step d'apparition ou disparition du Fresnel"), Range(0.01f, 0.1f)]
     private float m_fresnelStep = 0.05f;
+    [SerializeField, Tooltip("Objet à faire briller possédant le layer Interact")]
+    private List<Renderer> m_objectRendererToShine;
+    private bool m_shining = false;
+    
+    private int m_idFresnelPower = Shader.PropertyToID("_fresnelPower");
+    private int m_idFresnelBlend = Shader.PropertyToID("_fresnelBlend");
 
     public float Cooldown { get => m_cooldownOff; set => m_cooldownOff = value; }
     public List<Renderer> ObjectRendererToShine => m_objectRendererToShine;
@@ -39,15 +43,16 @@ public class Door : MonoBehaviour, IInteractible
 
     public void Shine()
     {
-        print("SHINING !");
+        if (m_isLock || m_isOpen) return;
         m_shining = true;
+        float fresnel = 0;
         foreach (Renderer rnd in m_objectRendererToShine)
         {
             foreach (Material mat in rnd.materials)
             {
-                float fresnel = mat.GetFloat(m_idFresnelBlend);
-                fresnel += m_fresnelStep;
-                if (fresnel >= 1) fresnel = 1;
+                fresnel = mat.GetFloat(m_idFresnelBlend);
+                fresnel -= m_fresnelStep * m_fadeInSpeed * Time.deltaTime;
+                if (fresnel <= 0) fresnel = 0;
                 mat.SetFloat(m_idFresnelBlend, fresnel);
             }
         }
@@ -59,8 +64,6 @@ public class Door : MonoBehaviour, IInteractible
     public IEnumerator CooldownCoroutine()
     {
         yield return new WaitForSeconds(m_cooldownOff);
-        
-        print("CLOSE SHINE !!!");
         StartCoroutine(FadeOutCoroutine());
         m_shining = false;
     }
@@ -73,13 +76,13 @@ public class Door : MonoBehaviour, IInteractible
             foreach (Material mat in rnd.materials)
             {
                 fresnel = mat.GetFloat(m_idFresnelBlend);
-                fresnel -= m_fresnelStep * 1.2f;
-                if (fresnel <= 0) fresnel = 0;
+                fresnel += m_fresnelStep * 1.2f;
+                if (fresnel >= 1) fresnel = 1;
                 mat.SetFloat(m_idFresnelBlend, fresnel);
             }
         }
         m_shining = false;
-        if(fresnel > 0) StartCoroutine(FadeOutCoroutine());
+        if(fresnel < 1) StartCoroutine(FadeOutCoroutine());
     }
     
     
