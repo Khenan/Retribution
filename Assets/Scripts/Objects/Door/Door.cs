@@ -6,19 +6,17 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractible
 {
     [SerializeField, Tooltip("Vitesse d'apparition de l'effet"), Range(1f, 1000f)]
-    public float m_fadeInSpeed = 0.05f;
+    private float m_fadeInSpeed = 0.05f;
     [SerializeField, Tooltip("Vitesse de disparition de l'effet"), Range(0.01f, 0.1f)]
-    public float m_fadeOutSpeed = 0.05f;
+    private float m_fadeOutSpeed = 0.05f;
     [SerializeField, Tooltip("Cooldown de disparition de l'effet"), Range(0.01f, 0.1f)]
-    public float m_cooldownOff = 0.05f;
+    private float m_cooldownOff = 0.05f;
 
     [SerializeField, Tooltip("Step d'apparition ou disparition du Fresnel"), Range(0.01f, 0.1f)]
     private float m_fresnelStep = 0.05f;
     [SerializeField, Tooltip("Objet à faire briller possédant le layer Interact")]
     private List<Renderer> m_objectRendererToShine;
     private bool m_shining = false;
-    
-    private int m_idFresnelPower = Shader.PropertyToID("_fresnelPower");
     private int m_idFresnelBlend = Shader.PropertyToID("_fresnelBlend");
 
     public float Cooldown { get => m_cooldownOff; set => m_cooldownOff = value; }

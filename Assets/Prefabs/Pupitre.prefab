@@ -880,7 +880,7 @@ GameObject:
   m_Layer: 7
   m_Name: CouvercleInteractif
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -912,11 +912,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cooldown: 0.5
+  m_fadeInSpeed: 50
+  m_fadeOutSpeed: 0.01
+  m_cooldownOff: 0.01
+  m_fresnelStep: 0.04
   m_objectRendererToShine:
   - {fileID: 3436594175735418998}
   m_isOpen: 0
   m_animator: {fileID: 8808655760984961006}
-  m_numPupitre: 1
+  m_numPupitre: 0
 --- !u!65 &4380481698937582362
 BoxCollider:
   m_ObjectHideFlags: 0
