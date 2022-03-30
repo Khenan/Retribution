@@ -50,7 +50,9 @@ public class SmokeBehaviour : MonoBehaviour
         m_start = false;
         m_smoke.GetComponent<VisualEffect>().Reinit();
         m_smoke.GetComponent<VisualEffect>().playRate = 0;
+        Debug.Log(transform.localPosition.y.ToString());
         transform.localPosition = new Vector3(transform.localPosition.x, m_minPosY, transform.localPosition.z);
+        Debug.Log(transform.localPosition.y.ToString());
     }
 
     private void OnTriggerEnter(Collider other)

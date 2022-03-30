@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     private InteractionController m_interactionController;
     private Suffox m_suffox;
 
+    private Coroutine coroutineRespawn = null;
+    private Coroutine coroutineDeath = null;
+
     public Checkpoint m_lastCheckpoint;
 
     private bool m_isDead = false;
@@ -47,8 +50,10 @@ public class PlayerController : MonoBehaviour
     public void Death()
     {
         m_isDead = true;
-        StopCoroutine(RespawnCooldownCoroutine());
-        StartCoroutine(RespawnCooldownCoroutine());
+        Debug.Log("Le joueur est mort");
+        // On stop la coroutine si elle existe
+        if(coroutineRespawn != null) StopCoroutine(coroutineRespawn);
+        coroutineRespawn = StartCoroutine(RespawnCooldownCoroutine());
     }
     
     private void Respawn()
@@ -64,7 +69,8 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.zero;
         }
         GetComponent<CharacterController>().enabled = true;
-        StartCoroutine(ResetDeathCoroutine(1));
+        EnigmePupitre.Instance.RestartEnigme();
+        coroutineDeath = StartCoroutine(ResetDeathCoroutine(1));
     }
     
     public void SetCheckpoint(Checkpoint p_checkpoint)
@@ -81,6 +87,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator ResetDeathCoroutine(float p_waitSeconds = 2)
     {
         yield return new WaitForSeconds(p_waitSeconds);
+        Debug.Log("Le joueur peut jouer");
         m_isDead = false;
     }
 }

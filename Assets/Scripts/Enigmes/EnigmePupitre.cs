@@ -61,6 +61,13 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     public void RestartEnigme()
     {
         if (m_isCompleted && m_checkpoint.m_finish) return;
+        
+        // Déblocage de toutes les portes
+        foreach (Door door in m_myDoors)
+        {
+            door.Close();
+            door.m_isLock = false;
+        }
 
         Destroy(transform.GetChild(1).gameObject);
         m_lastNum = 0;
