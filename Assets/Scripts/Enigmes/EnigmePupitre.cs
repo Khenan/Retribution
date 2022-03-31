@@ -11,6 +11,9 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     public int m_goalNum = 4;
     public delegate void MyDelegate();
     public MyDelegate m_close;
+    
+    [SerializeField, Tooltip("Le tableau à craie de l'énigme")]
+    private TableauPupitre m_chalkboard;
 
     [SerializeField, Tooltip("Le checkpoint de l'énigme")]
     private Checkpoint m_checkpoint;
@@ -18,6 +21,9 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     
     [SerializeField, Tooltip("Le déclencheur de l'énigme")]
     private GameObject m_triggerStart;
+
+    [SerializeField, Tooltip("layer pupitres")]
+    private LayerMask m_pupitresLayer;
 
     private bool m_isCompleted = false;
     
@@ -69,7 +75,17 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
             door.m_isLock = false;
         }
 
-        Destroy(transform.GetChild(1).gameObject);
+        GameObject pupitres = null;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if ((m_pupitresLayer.value & 1 << transform.GetChild(i).gameObject.layer) > 0)
+                pupitres = transform.GetChild(i).gameObject;
+        }
+
+        if (pupitres != null)
+            Destroy(pupitres);
+        else
+            Debug.LogWarning("Les pupitres n'ont pas été trouvé !", this);
         m_lastNum = 0;
         m_isCompleted = false;
         m_triggerStart.SetActive(true);

@@ -91,6 +91,10 @@ public class Door : MonoBehaviour, IInteractible
     /// <param name="m_left">Booléen qui défini si la porte s'ouvre à gauche ou à droite, ouverture à gauche par défaut</param>
     public void Toggle(bool m_left = true)
     {
+        m_animator.ResetTrigger(m_openRightAnimator);
+        m_animator.ResetTrigger(m_openLeftAnimator);
+        m_animator.ResetTrigger(m_closeAnimator);
+        
         if (m_isOpen)
         {
             m_isOpen = false;
@@ -116,6 +120,7 @@ public class Door : MonoBehaviour, IInteractible
     /// </summary>
     public void Close()
     {
+        m_animator.ResetTrigger(m_closeAnimator);
         m_isOpen = false;
         m_animator.SetTrigger(m_closeAnimator);
     }

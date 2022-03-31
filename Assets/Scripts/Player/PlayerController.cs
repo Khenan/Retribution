@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.G))
             {
                 Death();
-                EnigmePupitre.Instance.RestartEnigme();
             }
             if (Input.GetKeyDown(KeyCode.C))
             {        
