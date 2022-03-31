@@ -14,6 +14,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     
     [SerializeField, Tooltip("Le tableau à craie de l'énigme")]
     private TableauPupitre m_chalkboard;
+    private int m_idChalkboard = 0;
 
     [SerializeField, Tooltip("Le checkpoint de l'énigme")]
     private Checkpoint m_checkpoint;
@@ -75,6 +76,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
             door.m_isLock = false;
         }
 
+        // On recherche les pupitres dans les enfants de l'énigme
         GameObject pupitres = null;
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -86,6 +88,12 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
             Destroy(pupitres);
         else
             Debug.LogWarning("Les pupitres n'ont pas été trouvé !", this);
+        
+        // on reset le tableau
+        m_chalkboard.Reset();
+        
+        // On reset les variables
+        m_idChalkboard = 0;
         m_lastNum = 0;
         m_isCompleted = false;
         m_triggerStart.SetActive(true);
