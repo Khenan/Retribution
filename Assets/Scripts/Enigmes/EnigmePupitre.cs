@@ -51,6 +51,8 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
             door.Close();
             door.m_isLock = true;
         }
+
+        m_chalkboard.ReadNextSentence();
         
         if (m_smoke)
         {
@@ -127,6 +129,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
                 print("GAGNÉ !!!!");
                 CompleteEnigme();
             }
+            m_chalkboard.ReadNextSentence();
             return true;
         }
         // Interaction avec un mauvais pupitre
