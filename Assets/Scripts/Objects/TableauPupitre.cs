@@ -52,6 +52,15 @@ public class TableauPupitre : MonoBehaviour
         
         m_TMPRO.text = "";
         
+        // Special condition
+        if (m_idSentences == 4)
+        {
+            m_symbolesVaudou[0].SetActive(false);
+            m_symbolesVaudou[1].SetActive(false);
+            m_symbolesVaudou[2].SetActive(false);
+            m_symbolesVaudou[3].SetActive(false);
+        }
+        
         int language = (int) GameManager.Instance.LanguageSelected;
         m_currentSentence = m_chalkboardSentences[m_idSentences].m_Sentences[language];
         
