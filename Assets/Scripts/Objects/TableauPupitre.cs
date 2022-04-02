@@ -29,6 +29,13 @@ public class TableauPupitre : MonoBehaviour
         {
             Debug.LogWarning("Les 5 symboles vaudou ne sont pas dans le tableau");
         }
+        else
+        {
+            foreach (GameObject go in m_symbolesVaudou)
+            {
+                go.SetActive(false);
+            }
+        }
 
         m_TMPRO.text = "";
         m_wait = new WaitForSeconds(m_letterInterval);
@@ -74,7 +81,7 @@ public class TableauPupitre : MonoBehaviour
     IEnumerator ReadingCoroutine(int p_id = 0)
     {
         yield return m_wait;
-        Debug.Log($"{p_id} / {m_currentSentence.Length}");
+        // Debug.Log($"{p_id} / {m_currentSentence.Length}");
         if (p_id < m_currentSentence.Length)
         {
             m_TMPRO.text = $"{m_TMPRO.text}{m_currentSentence[p_id]}";

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -21,8 +22,13 @@ public class SmokeBehaviour : MonoBehaviour
     private void Awake()
     {
         m_smoke = transform.GetChild(0);
-        m_smoke.GetComponent<VisualEffect>().playRate = 0;
-        transform.localPosition = new Vector3(transform.localPosition.x, m_minPosY, transform.localPosition.z);
+        Init();
+    }
+
+    private void Start()
+    {
+        // Sécurité supplémentaire
+        Init();
     }
 
     private void FixedUpdate()
@@ -43,11 +49,14 @@ public class SmokeBehaviour : MonoBehaviour
     public void Restart()
     {
         m_start = false;
+        Init();
+    }
+
+    private void Init()
+    {
         m_smoke.GetComponent<VisualEffect>().Reinit();
         m_smoke.GetComponent<VisualEffect>().playRate = 0;
-        Debug.Log(transform.localPosition.y.ToString());
         transform.localPosition = new Vector3(transform.localPosition.x, m_minPosY, transform.localPosition.z);
-        Debug.Log(transform.localPosition.y.ToString());
     }
 
     private void OnTriggerEnter(Collider other)
