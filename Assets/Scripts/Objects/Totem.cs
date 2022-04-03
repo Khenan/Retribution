@@ -16,13 +16,10 @@ public class Totem : MonoBehaviour, IInteractible
     private float m_fresnelStep = 0.05f;
     [SerializeField, Tooltip("Objet à faire briller possédant le layer Interact")]
     private List<Renderer> m_objectRendererToShine = new List<Renderer>();
-    private bool m_shining = false;
     private int m_idFresnelBlend = Shader.PropertyToID("_fresnelBlend");
     
     [SerializeField, Tooltip("L'objet peut-il être prit ?")]
     private bool m_takable = false;
-    [SerializeField, Tooltip("L'objet est-il prit ?")]
-    private bool m_isTake = false;
 
     public List<Renderer> ObjectRendererToShine => m_objectRendererToShine;
     public bool Shining { get; set; }
@@ -36,14 +33,18 @@ public class Totem : MonoBehaviour, IInteractible
 
     public void Interact()
     {
-        m_isTake = true;
         gameObject.layer = LayerMask.NameToLayer("Overlay");
+        if (transform.childCount > 0)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Overlay");
+            }
+        }
     }
 
     public void Shine()
     {
-        
-        m_shining = true;
         float fresnel = 0;
         foreach (Renderer rnd in m_objectRendererToShine)
         {
@@ -64,7 +65,6 @@ public class Totem : MonoBehaviour, IInteractible
     {
         yield return new WaitForSeconds(m_cooldownOff);
         StartCoroutine(FadeOutCoroutine());
-        m_shining = false;
     }
     IEnumerator FadeOutCoroutine()
     {
@@ -80,7 +80,6 @@ public class Totem : MonoBehaviour, IInteractible
                 mat.SetFloat(m_idFresnelBlend, fresnel);
             }
         }
-        m_shining = false;
         if(fresnel < 1) StartCoroutine(FadeOutCoroutine());
     }
 }

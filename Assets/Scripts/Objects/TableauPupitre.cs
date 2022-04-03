@@ -103,6 +103,8 @@ public class TableauPupitre : MonoBehaviour
         if (m_idSentences < 0) return;
         if(m_readingCoroutine != null)
             StopCoroutine(m_readingCoroutine);
-        m_myTMPro.text = m_chalkboardSentences[m_idSentences].m_Sentences[(int) GameManager.Instance.LanguageSelected];
+        
+        int language = (int)GameManager.Instance.LanguageSelected;
+        m_myTMPro.text = m_chalkboardSentences[m_idSentences].m_Sentences[language];
     }
 }

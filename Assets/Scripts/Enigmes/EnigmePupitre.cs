@@ -15,7 +15,6 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     
     [SerializeField, Tooltip("Le tableau à craie de l'énigme")]
     private TableauPupitre m_chalkboard;
-    private int m_idChalkboard = 0;
 
     [SerializeField, Tooltip("Le checkpoint de l'énigme")]
     private Checkpoint m_checkpoint;
@@ -103,7 +102,6 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         m_chalkboard.Reset();
         
         // On reset les variables
-        m_idChalkboard = 0;
         m_lastNum = 0;
         m_isCompleted = false;
         m_triggerStart.SetActive(true);
