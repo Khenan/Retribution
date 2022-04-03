@@ -21,6 +21,7 @@ public class Door : MonoBehaviour, IInteractible
     public float Cooldown { get => m_cooldownOff; set => m_cooldownOff = value; }
     public List<Renderer> ObjectRendererToShine => m_objectRendererToShine;
     public bool Shining { get => m_shining; set => m_shining = value; }
+    public bool Takable { get; set; }
 
     [HideInInspector]
     public bool m_isOpen = false;

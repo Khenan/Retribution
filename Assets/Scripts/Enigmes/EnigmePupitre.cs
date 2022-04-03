@@ -4,6 +4,9 @@ using UnityEngine.VFX;
 
 public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
 {
+    [SerializeField, Tooltip("Totem de l'énigme")]
+    private Totem m_totem;
+    
     private int m_lastNum = 0;
     [SerializeField, Tooltip("Numéro Vainqueur du pupitre"), Range(2, 10)]
     public int m_goalNum = 4;
@@ -35,6 +38,13 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     [SerializeField, Tooltip("Porte(s) de l'énigme")]
     private List<Door> m_myDoors = new List<Door>();
 
+    private void Awake()
+    {
+        if (!m_totem)
+        {
+            Debug.LogWarning("Attention, aucun totem n'est attribué à l'énigme des pupitres", this);
+        }
+    }
 
     private void Start()
     {
@@ -108,6 +118,9 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         m_isCompleted = true;
         m_checkpoint.m_repop = true;
         m_checkpoint.gameObject.GetComponent<BoxCollider>().enabled = true;
+        
+        // On rend récupérable le totem
+        m_totem.Takable = true;
         
         // Fermeture de toutes les portes
         foreach (Door door in m_myDoors)

@@ -7,6 +7,7 @@ public class DoorCollider : MonoBehaviour, IInteractible
     public float Cooldown { get; set; }
     public List<Renderer> ObjectRendererToShine { get; }
     public bool Shining { get; set; }
+    public bool Takable { get; set; }
     public int IdShining { get; set; }
     
     
