@@ -12,16 +12,27 @@ public class TableauPupitre : MonoBehaviour
 
     [Header("Lecture texte")]
     [SerializeField, Tooltip("Texte des phrases du tableau à craie")]
-    private TextMeshPro m_TMPRO;
+    private TextMeshPro m_myTMPro;
     [SerializeField, Tooltip("Temps entre chaque lettre")]
     private float m_letterInterval;
     private WaitForSeconds m_wait = null;
 
     [SerializeField, Tooltip("Phrases du tableau à craie")]
     private List<Text> m_chalkboardSentences = new List<Text>();
-    private int m_idSentences = 0;
+    private int m_idSentences = -1;
     private string m_currentSentence = "";
     private Coroutine m_readingCoroutine = null;
+    
+    
+    private void OnEnable()
+    {
+        GameManager.Instance.m_delegateLanguage += Rewrite;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.m_delegateLanguage -= Rewrite;
+    }
 
     private void Awake()
     {
@@ -37,14 +48,14 @@ public class TableauPupitre : MonoBehaviour
             }
         }
 
-        m_TMPRO.text = "";
+        m_myTMPro.text = "";
         m_wait = new WaitForSeconds(m_letterInterval);
     }
 
     public void Reset()
     {
-        m_TMPRO.text = "";
-        m_idSentences = 0;
+        m_myTMPro.text = "";
+        m_idSentences = -1;
         foreach (GameObject go in m_symbolesVaudou)
         {
             go.SetActive(false);
@@ -54,10 +65,10 @@ public class TableauPupitre : MonoBehaviour
     public void ReadNextSentence()
     {
         if (m_idSentences >= m_chalkboardSentences.Count) return;
-        
+        m_idSentences++;
         m_symbolesVaudou[m_idSentences].SetActive(true);
         
-        m_TMPRO.text = "";
+        m_myTMPro.text = "";
         
         // Special condition
         if (m_idSentences == 4)
@@ -71,8 +82,6 @@ public class TableauPupitre : MonoBehaviour
         int language = (int) GameManager.Instance.LanguageSelected;
         m_currentSentence = m_chalkboardSentences[m_idSentences].m_Sentences[language];
         
-        m_idSentences++;
-        
         if(m_readingCoroutine != null)
             StopCoroutine(m_readingCoroutine);
         m_readingCoroutine = StartCoroutine(ReadingCoroutine());
@@ -84,8 +93,16 @@ public class TableauPupitre : MonoBehaviour
         // Debug.Log($"{p_id} / {m_currentSentence.Length}");
         if (p_id < m_currentSentence.Length)
         {
-            m_TMPRO.text = $"{m_TMPRO.text}{m_currentSentence[p_id]}";
+            m_myTMPro.text = $"{m_myTMPro.text}{m_currentSentence[p_id]}";
             m_readingCoroutine = StartCoroutine(ReadingCoroutine(p_id + 1));
         }
+    }
+
+    private void Rewrite()
+    {
+        if (m_idSentences < 0) return;
+        if(m_readingCoroutine != null)
+            StopCoroutine(m_readingCoroutine);
+        m_myTMPro.text = m_chalkboardSentences[m_idSentences].m_Sentences[(int) GameManager.Instance.LanguageSelected];
     }
 }

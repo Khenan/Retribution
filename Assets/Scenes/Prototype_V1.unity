@@ -12947,6 +12947,7 @@ GameObject:
   m_Component:
   - component: {fileID: 662191605}
   - component: {fileID: 662191604}
+  - component: {fileID: 662191606}
   - component: {fileID: 662191603}
   m_Layer: 0
   m_Name: StartText_01
@@ -13040,7 +13041,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.002822875, y: 0.0072077513, z: -0.0012876985, w: -0.0039437115}
+  m_margin: {x: -0.002822875, y: 0.0072077513, z: -0.87096006, w: -0.0039437115}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13109,6 +13110,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0.251, y: 2.261}
   m_SizeDelta: {x: 1.1983, y: 0.4058}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &662191606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662191602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ea536b456971a43901d436d783f1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_myText: {fileID: 11400000, guid: a12d8ff83f2054e4eb4240f08f2be2f1, type: 2}
+  m_displayOnStart: 1
 --- !u!1001 &665563897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44235,6 +44250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1928474208}
   - component: {fileID: 1928474207}
+  - component: {fileID: 1928474209}
   - component: {fileID: 1928474206}
   m_Layer: 0
   m_Name: StartText_02
@@ -44326,7 +44342,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.002822875, y: 0.0072077513, z: -0.0012876985, w: -0.0039437115}
+  m_margin: {x: -0.002822875, y: 0.0072077513, z: -0.4796872, w: -0.0039437115}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -44395,6 +44411,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0.25099993, y: 1.95}
   m_SizeDelta: {x: 1.7376, y: 0.2619}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1928474209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928474205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ea536b456971a43901d436d783f1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_myText: {fileID: 11400000, guid: dd24806647dc3b94293ffd2ce0925f69, type: 2}
+  m_displayOnStart: 1
 --- !u!43 &1937273113
 Mesh:
   m_ObjectHideFlags: 0
