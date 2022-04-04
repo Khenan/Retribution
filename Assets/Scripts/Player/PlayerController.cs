@@ -52,23 +52,28 @@ public class PlayerController : MonoBehaviour
         // On stop la coroutine si elle existe
         if(coroutineRespawn != null) StopCoroutine(coroutineRespawn);
         coroutineRespawn = StartCoroutine(RespawnCooldownCoroutine());
+        
+        // Fondu au noir apparait
+        UIManager.Instance.FadeIn();
     }
     
     private void Respawn()
     {
+        // Il récupère son oxygène
         m_suffox.RecoverAllOxygen();
+        
+        // On le renvoi au dernier checkpoint
         GetComponent<CharacterController>().enabled = false;
-        if (m_lastCheckpoint)
-        {
-            transform.position = m_lastCheckpoint.transform.position;
-        }
-        else
-        {
-            transform.position = Vector3.zero;
-        }
+        transform.position = m_lastCheckpoint ? m_lastCheckpoint.transform.position : Vector3.zero;
         GetComponent<CharacterController>().enabled = true;
+        
+        // On restart l'énigme
         EnigmePupitre.Instance.RestartEnigme();
+        
         coroutineDeath = StartCoroutine(ResetDeathCoroutine(1));
+        
+        // Fondu au noir disparait
+        UIManager.Instance.FadeOut();
     }
     
     public void SetCheckpoint(Checkpoint p_checkpoint)

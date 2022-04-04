@@ -3,7 +3,8 @@ using UnityEngine;
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T m_instance = null;
-    [SerializeField] [Tooltip("Destruction au changement de scene ?")] private bool m_dontDestroyOnLoad = true;
+    [SerializeField] [Tooltip("Destruction au changement de scene ?")]
+    private bool m_dontDestroyOnLoad = false;
 
     public static T Instance
     {

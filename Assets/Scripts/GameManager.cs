@@ -26,15 +26,17 @@ public class GameManager : Singleton<GameManager>
     }
 
     public Languages LanguageSelected = Languages.ENGLISH;
+    private void ChangeLanguage(Languages p_language)
+    {
+        LanguageSelected = p_language;
+        m_delegateLanguage?.Invoke();
+    }
+    
+    
 
     protected override string GetSingletonName()
     {
         return "GameManager";
     }
 
-    private void ChangeLanguage(Languages p_language)
-    {
-        LanguageSelected = p_language;
-        m_delegateLanguage?.Invoke();
-    }
 }
