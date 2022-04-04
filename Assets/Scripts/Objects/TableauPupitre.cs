@@ -19,7 +19,7 @@ public class TableauPupitre : MonoBehaviour
 
     [SerializeField, Tooltip("Phrases du tableau à craie")]
     private List<Text> m_chalkboardSentences = new List<Text>();
-    private int m_idSentences = -1;
+    public int m_idSentences = -1;
     private string m_currentSentence = "";
     private Coroutine m_readingCoroutine = null;
     

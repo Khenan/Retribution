@@ -133,14 +133,15 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         if (m_lastNum + 1 == p_numPupitre)
         {
             m_lastNum = p_numPupitre;
-            
+            Debug.Log($"{m_lastNum}, {m_chalkboard.m_idSentences}");
+            if(m_lastNum > m_chalkboard.m_idSentences)
+                m_chalkboard.ReadNextSentence();
             // Interaction avec le dernier bon pupitre
             if (m_lastNum == m_goalNum)
             {
                 print("GAGNÉ !!!!");
                 CompleteEnigme();
             }
-            m_chalkboard.ReadNextSentence();
             return true;
         }
         // Interaction avec un mauvais pupitre

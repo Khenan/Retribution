@@ -46,8 +46,10 @@ public class CharaController : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        // Peut bouger si n'est pas accroupi
-        if(!m_isCrouching)
+        // Vitesse divisée par 3 si accroupi
+        if(m_isCrouching)
+            m_characterController.Move(move * (m_speed / 3) * Time.deltaTime);
+        else
             m_characterController.Move(move * m_speed * Time.deltaTime);
 
         // On met à jour les float dans l'animator
