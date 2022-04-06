@@ -34,7 +34,6 @@ public class SceneManager : Singleton<SceneManager>
 
         while (!asynOp.isDone)
         {
-            Debug.Log(asynOp.progress);
             if (m_loadSlider)
             {
                 float prct = asynOp.progress * 100;
