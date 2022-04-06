@@ -32,7 +32,13 @@ public class Pupitre : MonoBehaviour, IInteractible
     private EnigmePupitre m_enigmePupitre;
     [SerializeField, Tooltip("Numéro du pupitre"), Range(0, 10)]
     private int m_numPupitre = 0;
-
+    
+    [Header("DESK'S SOUNDS")]
+    [SerializeField, Tooltip("Son d'ouverture du pupitre")]
+    public SoundEvent m_openDesk;
+    [SerializeField, Tooltip("Son de fermeture du pupitre")]
+    public SoundEvent m_closeDesk;
+    
     private void Awake()
     {
         m_enigmePupitre = FindObjectOfType<EnigmePupitre>();
@@ -105,6 +111,7 @@ public class Pupitre : MonoBehaviour, IInteractible
         m_isOpen = true;
         print("Open !");
         m_animator.SetTrigger(m_openAnimator);
+        StartOpenSound();
     }
     private void Close()
     {
@@ -112,5 +119,22 @@ public class Pupitre : MonoBehaviour, IInteractible
         m_isOpen = false;
         print("Close !");
         m_animator.SetTrigger(m_closeAnimator);
+        StartCloseSound();
+    }
+    private void StartOpenSound()
+    {
+        m_openDesk.m_event.Play();
+    }
+
+    private void StartCloseSound()
+    {
+        float second = Random.Range(0, 0.5f);
+        StartCoroutine(CloseSoundCoroutine(second));
+    }
+
+    IEnumerator CloseSoundCoroutine(float p_second)
+    {
+        yield return new WaitForSeconds(p_second);
+        m_closeDesk.m_event.Play();
     }
 }

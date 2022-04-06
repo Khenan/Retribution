@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private CharaController m_charaController;
     private InteractionController m_interactionController;
     private Suffox m_suffox;
+    private PlayerSound m_playerSound;
 
     private Coroutine coroutineRespawn = null;
     private Coroutine coroutineDeath = null;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         m_charaController = GetComponent<CharaController>();
         m_interactionController = GetComponent<InteractionController>();
         m_suffox = GetComponent<Suffox>();
+        m_playerSound = GetComponent<PlayerSound>();
     }
     private void Update()
     {
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
             m_cameraController.UpdateCamera();
         }
         
+        m_playerSound.UpdateSound();
     }
 
     public void Death()
