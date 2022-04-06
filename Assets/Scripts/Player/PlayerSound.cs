@@ -14,15 +14,15 @@ public class PlayerSound : MonoBehaviour
             Debug.Log("is moving");
             if (m_walkStart) return;
             Debug.Log("Lance le son");
-            SoundManager.Instance.Play(SoundManager.Instance.m_PlayerWalkTop);
-            SoundManager.Instance.m_PlayerWalkTop.m_event.SetParameter("Progression", 0);
+            SoundManager.Instance.Play(SoundManager.Instance.m_playerWalkTop);
+            SoundManager.Instance.m_playerWalkTop.m_event.SetParameter("Progression", 0);
             m_walkStart = true;
             return;
         }
 
         if (!m_walkStart) return;
         Debug.Log("Arrets le son");
-        SoundManager.Instance.m_PlayerWalkTop.m_event.SetParameter("Progression", 1);
+        SoundManager.Instance.m_playerWalkTop.m_event.SetParameter("Progression", 1);
         m_walkStart = false;
     }
 }
