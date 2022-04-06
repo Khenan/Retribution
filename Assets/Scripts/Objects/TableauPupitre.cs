@@ -23,9 +23,6 @@ public class TableauPupitre : MonoBehaviour
     private string m_currentSentence = "";
     private Coroutine m_readingCoroutine = null;
 
-    [Header("Son")] [SerializeField, Tooltip("SoundEvent du tableau")]
-    private SoundEvent m_soundEvent;
-
     private bool m_writing = false;
 
     private void OnEnable()
@@ -120,7 +117,6 @@ public class TableauPupitre : MonoBehaviour
     private void StartSound()
     {
         if (m_writing) return;
-        Debug.Log("Lance le son");
         SoundManager.Instance.Play(SoundManager.Instance.m_chalkboardWriting);
         SoundManager.Instance.m_chalkboardWriting.m_event.SetParameter("Progression", 0);
         m_writing = true;
@@ -129,7 +125,6 @@ public class TableauPupitre : MonoBehaviour
     private void StopSound()
     {
         if (!m_writing) return;
-        Debug.Log("Arrets le son");
         SoundManager.Instance.m_chalkboardWriting.m_event.SetParameter("Progression", 1);
         m_writing = false;
     }

@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: ../../ETPA/GD2/PROJECT SEMESTRE 2/FMOD Project/FmodProject_01/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637848561963512155
+  lastModified: 637848566554461565
   FileSizes:
   - Name: Desktop
-    Value: 866
+    Value: 956
   Exists: 1
 --- !u!114 &-6966415462079078849
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: ../../ETPA/GD2/PROJECT SEMESTRE 2/FMOD Project/FmodProject_01/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637848561963492155
+  lastModified: 637848566554431556
   FileSizes:
   - Name: Desktop
-    Value: 61280
+    Value: 165376
   Exists: 1
 --- !u!114 &-6082872765628760018
 MonoBehaviour:
@@ -68,6 +68,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 528
+--- !u!114 &-1020603762969528906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/OpenDesk
+  m_EditorClassIdentifier: 
+  Path: event:/OpenDesk
+  Guid:
+    Data1: 1015735366
+    Data2: 1169387806
+    Data3: -1397100868
+    Data4: 5733718
+  Banks:
+  - {fileID: -6966415462079078849}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 908
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,13 +113,42 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: -6082872765628760018}
   - {fileID: 4555453222517702379}
+  - {fileID: -1020603762969528906}
+  - {fileID: 1123912924648141909}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6966415462079078849}
   StringsBanks:
   - {fileID: -7614937368292148875}
-  cacheTime: 637848561963512155
+  cacheTime: 637848566554461565
   cacheVersion: 10
+--- !u!114 &1123912924648141909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CloseDesk
+  m_EditorClassIdentifier: 
+  Path: event:/CloseDesk
+  Guid:
+    Data1: 1034379742
+    Data2: 1197415132
+    Data3: 590103209
+    Data4: -878460649
+  Banks:
+  - {fileID: -6966415462079078849}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &2909478928031872875
 MonoBehaviour:
   m_ObjectHideFlags: 0

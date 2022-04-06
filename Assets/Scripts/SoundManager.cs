@@ -23,6 +23,7 @@ public class SoundManager : Singleton<SoundManager>
     [Header("CHALKBOARD'S SOUNDS")]
     [Tooltip("Son de la craie sur le tableau")]
     public SoundEvent m_chalkboardWriting;
+    
 
     public void Play(SoundEvent m_soundEvent)
     {
