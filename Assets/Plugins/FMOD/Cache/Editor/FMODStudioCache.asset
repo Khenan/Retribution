@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: ../../ETPA/GD2/PROJECT SEMESTRE 2/FMOD Project/FmodProject_01/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637839916239318750
+  lastModified: 637848526943371426
   FileSizes:
   - Name: Desktop
-    Value: 806
+    Value: 866
   Exists: 1
 --- !u!114 &-6966415462079078849
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: ../../ETPA/GD2/PROJECT SEMESTRE 2/FMOD Project/FmodProject_01/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637839916239298742
+  lastModified: 637848526943351418
   FileSizes:
   - Name: Desktop
-    Value: 16896
+    Value: 61920
   Exists: 1
 --- !u!114 &-6082872765628760018
 MonoBehaviour:
@@ -67,7 +67,7 @@ MonoBehaviour:
   - {fileID: 5776967353429656533}
   MinDistance: 1
   MaxDistance: 20
-  Length: 1056
+  Length: 1088
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,13 +85,68 @@ MonoBehaviour:
   - {fileID: -6966415462079078849}
   EditorEvents:
   - {fileID: -6082872765628760018}
+  - {fileID: 4555453222517702379}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6966415462079078849}
   StringsBanks:
   - {fileID: -7614937368292148875}
-  cacheTime: 637839916239318750
+  cacheTime: 637848526943371426
   cacheVersion: 10
+--- !u!114 &2909478928031872875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WriteOnChalkBoard/Progression
+  m_EditorClassIdentifier: 
+  Name: Progression
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 388084877
+    data2: 1522908675
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Loop
+  - EndLoop
+  Exists: 1
+--- !u!114 &4555453222517702379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WriteOnChalkBoard
+  m_EditorClassIdentifier: 
+  Path: event:/WriteOnChalkBoard
+  Guid:
+    Data1: 386203741
+    Data2: 1241009915
+    Data3: 585832874
+    Data4: -1110263806
+  Banks:
+  - {fileID: -6966415462079078849}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2909478928031872875}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4750
 --- !u!114 &5776967353429656533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +170,6 @@ MonoBehaviour:
   Type: 2
   IsGlobal: 0
   Labels:
-  - WalkLoop
-  - EndWalkLoop
+  - Loop
+  - EndLoop
   Exists: 1
