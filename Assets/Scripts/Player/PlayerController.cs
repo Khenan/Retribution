@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Checkpoint m_lastCheckpoint;
 
     private bool m_isDead = false;
+
     private void Awake()
     {
         m_cameraController = GetComponent<CameraController>();
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
         
         m_charaController.UpdateGravity();
 
-        if (!m_isDead)
+        if (!m_isDead && !GameManager.Instance.m_inGameMenu)
         {
             if (Input.GetKeyDown(KeyCode.G))
             {

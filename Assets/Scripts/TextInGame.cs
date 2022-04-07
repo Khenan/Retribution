@@ -66,7 +66,7 @@ public class TextInGame : MonoBehaviour
 
     private void Start()
     {
-        int language = (int)GameManager.Instance.LanguageSelected;
+        int language = (int)GameManager.Instance.m_languageSelected;
         m_myTMPro.text = m_myText.m_Sentences[language];
         if (!m_displayOnStart) return;
         m_myTMPro.color = new Color(m_myTMPro.color.b, m_myTMPro.color.g, m_myTMPro.color.b, 1);
@@ -74,7 +74,7 @@ public class TextInGame : MonoBehaviour
 
     private void Rewrite()
     {
-        int language = (int)GameManager.Instance.LanguageSelected;
+        int language = (int)GameManager.Instance.m_languageSelected;
         m_myTMPro.text = m_myText.m_Sentences[language];
     }
 

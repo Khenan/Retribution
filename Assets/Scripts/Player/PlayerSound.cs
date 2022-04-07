@@ -9,7 +9,7 @@ public class PlayerSound : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        if (x != 0 || z != 0)
+        if ((x != 0 || z != 0) && !GameManager.Instance.m_inGameMenu)
         {
             Debug.Log("is moving");
             if (m_walkStart) return;

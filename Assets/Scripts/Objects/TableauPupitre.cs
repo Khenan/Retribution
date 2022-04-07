@@ -80,7 +80,7 @@ public class TableauPupitre : MonoBehaviour
             m_symbolesVaudou[3].SetActive(false);
         }
         
-        int language = (int) GameManager.Instance.LanguageSelected;
+        int language = (int) GameManager.Instance.m_languageSelected;
         m_currentSentence = m_chalkboardSentences[m_idSentences].m_Sentences[language];
         
         if(m_readingCoroutine != null)
@@ -110,7 +110,7 @@ public class TableauPupitre : MonoBehaviour
         if(m_readingCoroutine != null)
             StopCoroutine(m_readingCoroutine);
         
-        int language = (int)GameManager.Instance.LanguageSelected;
+        int language = (int)GameManager.Instance.m_languageSelected;
         m_myTMPro.text = m_chalkboardSentences[m_idSentences].m_Sentences[language];
     }
 

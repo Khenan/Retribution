@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
+    [SerializeField, Tooltip("Menu in game")]
+    public Transform m_menuInGame;
     [SerializeField, Tooltip("Image du blackFade")]
     private Image m_blackFade;
 
@@ -21,6 +23,8 @@ public class UIManager : Singleton<UIManager>
 
     private void OnEnable()
     {
+        if(m_menuInGame)
+            m_menuInGame.gameObject.SetActive(false);
         m_waitBlackFade = new WaitForSeconds(m_timeBlackFade);
         m_blackFade.color = new Color(0, 0, 0, 0);
     }
