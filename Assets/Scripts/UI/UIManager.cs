@@ -29,6 +29,11 @@ public class UIManager : Singleton<UIManager>
     [SerializeField, Tooltip("Slider Sensibilité Y")]
     private Slider m_sliderY;
 
+    [SerializeField, Tooltip("Texte de la langue séléctionnée")]
+    private TextInUI m_textUILanguage;
+    [SerializeField, Tooltip("List des textes de langues")]
+    private List<Text> m_textsLanguages = new List<Text>();
+
     private void OnEnable()
     {
         if (m_menuInGame && m_menuSettings)
@@ -106,6 +111,13 @@ public class UIManager : Singleton<UIManager>
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ChangeLanguage(int p_int)
+    {
+        GameManager.Instance.ChangeLanguage(p_int);
+        m_textUILanguage.m_myText = m_textsLanguages[(int) GameManager.Instance.m_languageSelected];
+        m_textUILanguage.Rewrite();
     }
 
     public void CloseUIInGame()

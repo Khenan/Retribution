@@ -7,11 +7,12 @@ public class TextInUI : MonoBehaviour
     private TextMeshProUGUI m_myTMProUGUI;
 
     [SerializeField, Tooltip("ScripatbleObject Text à contenir")]
-    private Text m_myText;
+    public Text m_myText;
 
     private void OnEnable()
     {
         GameManager.Instance.m_delegateLanguage += Rewrite;
+        Rewrite();
     }
 
     private void OnDisable()
@@ -29,7 +30,7 @@ public class TextInUI : MonoBehaviour
         Rewrite();
     }
 
-    private void Rewrite()
+    public void Rewrite()
     {
         int language = (int)GameManager.Instance.m_languageSelected;
         m_myTMProUGUI.text = m_myText.m_Sentences[language];

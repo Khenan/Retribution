@@ -14,11 +14,12 @@ public class GameManager : Singleton<GameManager>
     [SerializeField, Tooltip("Joueur")]
     public PlayerController m_playerCtrl;
 
-    
+
+    private int m_nbLanguages = 2;
     public enum Languages
     {
-        ENGLISH,
-        FRENCH
+        ENGLISH = 0,
+        FRENCH = 1
     }
     [Tooltip("Langue selectionnée au début du jeu")]
     public Languages m_languageSelected = Languages.ENGLISH;
@@ -39,18 +40,19 @@ public class GameManager : Singleton<GameManager>
             
             // Cursor.lockState = m_inGameMenu ? CursorLockMode.Confined : CursorLockMode.Locked;
         }
-        // Changer de langue
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (m_languageSelected == Languages.ENGLISH)
-            {
-                ChangeLanguage(Languages.FRENCH);
-                return;
-            }
-            ChangeLanguage(Languages.ENGLISH);
-        }
     }
-    private void ChangeLanguage(Languages p_language)
+
+    public void ChangeLanguage(int p_int)
+    {
+        int id = (int) m_languageSelected;
+        id += p_int;
+
+        if (id < 0) id = m_nbLanguages - 1;
+        if (id >= m_nbLanguages) id = 0;
+        
+        SetLanguage((Languages)id);
+    }
+    private void SetLanguage(Languages p_language)
     {
         m_languageSelected = p_language;
         m_delegateLanguage?.Invoke();
