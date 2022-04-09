@@ -91,6 +91,8 @@ public class UIManager : Singleton<UIManager>
         bool isOpen = m_menuInGame.gameObject.activeSelf;
         m_menuInGame.gameObject.SetActive(!isOpen);
         GameManager.Instance.m_inGameMenu = !isOpen;
+
+        GameManager.Instance.LockCursor(isOpen);
     }
     public void OpenMenuSettings()
     {
@@ -125,6 +127,7 @@ public class UIManager : Singleton<UIManager>
         m_menuSettings.gameObject.SetActive(false);
         m_menuInGame.gameObject.SetActive(false);
         GameManager.Instance.m_inGameMenu = false;
+        GameManager.Instance.LockCursor();
     }
     
     protected override string GetSingletonName()

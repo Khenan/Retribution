@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         Cursor.SetCursor(m_textureCursor, Vector2.zero, CursorMode.Auto);
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -37,9 +37,12 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             UIManager.Instance.OpenMenuInGame();
-            
-            // Cursor.lockState = m_inGameMenu ? CursorLockMode.Confined : CursorLockMode.Locked;
         }
+    }
+
+    public void LockCursor(bool p_lock = true)
+    {
+        Cursor.lockState = p_lock ? CursorLockMode.Confined : CursorLockMode.Locked;
     }
 
     public void ChangeLanguage(int p_int)
