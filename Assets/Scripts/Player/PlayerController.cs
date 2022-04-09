@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CameraController)), RequireComponent(typeof(CharaController)), RequireComponent(typeof(InteractionController))]
 public class PlayerController : MonoBehaviour
 {
-    private CameraController m_cameraController;
+    public CameraController m_cameraController;
     private CharaController m_charaController;
     private InteractionController m_interactionController;
     private Suffox m_suffox;

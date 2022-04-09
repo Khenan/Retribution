@@ -4,9 +4,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField, Tooltip("Sensibilité de la souris sur l'axe X")]
-    private float m_mouseSensitivityX = 100f;
+    public float m_mouseSensitivityX = 100f;
     [SerializeField, Tooltip("Sensibilité de la souris sur l'axe Y")]
-    private float m_mouseSensitivityY = 100f;
+    public float m_mouseSensitivityY = 100f;
     
     [SerializeField, Tooltip("Vue maximale vers le sol")]
     private float m_minViewY = -70f;
@@ -25,7 +25,6 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         m_cameraTransform.rotation = Quaternion.identity;
     }
 
