@@ -29,9 +29,6 @@ public class UIManager : Singleton<UIManager>
     [SerializeField, Tooltip("Slider Sensibilité Y")]
     private Slider m_sliderY;
 
-    [SerializeField, Tooltip("Joueur")]
-    private PlayerController m_playerCtrl;
-
     private void OnEnable()
     {
         if (m_menuInGame && m_menuSettings)
@@ -77,17 +74,13 @@ public class UIManager : Singleton<UIManager>
     public void ChangeSensitivity()
     {
         Debug.Log(m_sliderX.value);
-        m_playerCtrl.m_cameraController.m_mouseSensitivityX = m_sliderX.value;
-        m_playerCtrl.m_cameraController.m_mouseSensitivityY = m_sliderY.value;
+        GameManager.Instance.m_playerCtrl.m_cameraController.m_mouseSensitivityX = m_sliderX.value;
+        GameManager.Instance.m_playerCtrl.m_cameraController.m_mouseSensitivityY = m_sliderY.value;
     }
 
     public void OpenMenuInGame()
     {
-        // Si dans menu des paramètres 
-        if (m_menuSettings.gameObject.activeSelf)
-        {
-            m_menuSettings.gameObject.SetActive(false);
-        }
+        m_menuSettings.gameObject.SetActive(false);
         
         // Toggle le menu
         bool isOpen = m_menuInGame.gameObject.activeSelf;
@@ -105,9 +98,21 @@ public class UIManager : Singleton<UIManager>
         SceneManager.Instance.ChangeScene(p_id);
     }
 
+    public void ReloadLastCheckpoint()
+    {
+        GameManager.Instance.m_playerCtrl.Death();
+    }
+
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void CloseUIInGame()
+    {
+        m_menuSettings.gameObject.SetActive(false);
+        m_menuInGame.gameObject.SetActive(false);
+        GameManager.Instance.m_inGameMenu = false;
     }
     
     protected override string GetSingletonName()

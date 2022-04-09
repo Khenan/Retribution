@@ -11,6 +11,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField, Tooltip("Texture du curseur de la souris")]
     private Texture2D m_textureCursor;
 
+    [SerializeField, Tooltip("Joueur")]
+    public PlayerController m_playerCtrl;
+
     
     public enum Languages
     {

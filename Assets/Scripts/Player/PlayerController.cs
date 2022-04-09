@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(p_waitSeconds);
         Respawn();
+        UIManager.Instance.CloseUIInGame();
     }
     IEnumerator ResetDeathCoroutine(float p_waitSeconds = 2)
     {
