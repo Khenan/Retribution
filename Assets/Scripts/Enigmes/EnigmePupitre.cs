@@ -77,6 +77,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     public void RestartEnigme()
     {
         if (m_isCompleted && m_checkpoint.m_finish) return;
+        m_checkpoint.gameObject.GetComponent<BoxCollider>().enabled = false;
         
         // Déblocage de toutes les portes
         foreach (Door door in m_myDoors)
@@ -97,6 +98,9 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
             Destroy(pupitres);
         else
             Debug.LogWarning("Les pupitres n'ont pas été trouvé !", this);
+        
+        // On replace le totem
+        m_totem.Reset();
         
         // on reset le tableau
         m_chalkboard.Reset();

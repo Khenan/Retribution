@@ -92,6 +92,7 @@ public class UIManager : Singleton<UIManager>
         m_menuInGame.gameObject.SetActive(!isOpen);
         GameManager.Instance.m_inGameMenu = !isOpen;
 
+        Debug.Log(isOpen);
         GameManager.Instance.LockCursor(isOpen);
     }
     public void OpenMenuSettings()

@@ -4,9 +4,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField, Tooltip("Sensibilité de la souris sur l'axe X")]
-    public float m_mouseSensitivityX = 100f;
+    public float m_mouseSensitivityX = 150f;
     [SerializeField, Tooltip("Sensibilité de la souris sur l'axe Y")]
-    public float m_mouseSensitivityY = 100f;
+    public float m_mouseSensitivityY = 150f;
     
     [SerializeField, Tooltip("Vue maximale vers le sol")]
     private float m_minViewY = -70f;

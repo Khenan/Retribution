@@ -60,6 +60,12 @@ public class InteractionController : MonoBehaviour
         }
     }
 
+    public void Drop()
+    {
+        m_handFull = false;
+        StartCoroutine(MoveHandIdleCoroutine());
+    }
+
     private void Take(GameObject m_myObjectInteractible)
     {
         m_handFull = true;
@@ -75,6 +81,14 @@ public class InteractionController : MonoBehaviour
         while (m_handIK.weight < 1)
         {
             m_handIK.weight += 0.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+    IEnumerator MoveHandIdleCoroutine()
+    {
+        while (m_handIK.weight > 0)
+        {
+            m_handIK.weight -= 0.03f;
             yield return new WaitForSeconds(0.01f);
         }
     }

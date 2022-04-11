@@ -42,7 +42,7 @@ public class GameManager : Singleton<GameManager>
 
     public void LockCursor(bool p_lock = true)
     {
-        Cursor.lockState = p_lock ? CursorLockMode.Confined : CursorLockMode.Locked;
+        Cursor.lockState = p_lock ? CursorLockMode.Locked : CursorLockMode.Confined;
     }
 
     public void ChangeLanguage(int p_int)

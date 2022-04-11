@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public CameraController m_cameraController;
     private CharaController m_charaController;
-    private InteractionController m_interactionController;
+    public InteractionController m_interactionController;
     private Suffox m_suffox;
     private PlayerSound m_playerSound;
 
@@ -32,10 +32,7 @@ public class PlayerController : MonoBehaviour
 
         if (!m_isDead && !GameManager.Instance.m_inGameMenu)
         {
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                Death();
-            }
+            //if (Input.GetKeyDown(KeyCode.G)) Death();
             if (Input.GetKeyDown(KeyCode.C))
             {        
                 m_charaController.Crouch();
