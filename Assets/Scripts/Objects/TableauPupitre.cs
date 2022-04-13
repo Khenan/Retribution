@@ -86,7 +86,7 @@ public class TableauPupitre : MonoBehaviour
         if(m_readingCoroutine != null)
             StopCoroutine(m_readingCoroutine);
         m_readingCoroutine = StartCoroutine(ReadingCoroutine());
-        StartSound();
+        //StartSound();
     }
 
     IEnumerator ReadingCoroutine(int p_id = 0)

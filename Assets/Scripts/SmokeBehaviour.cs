@@ -34,6 +34,7 @@ public class SmokeBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         if(!m_start) return;
+        Debug.Log("updsateSmoke");
         m_currentTime += Time.deltaTime;
         transform.Translate(0, 1f * m_speedY * Time.deltaTime, 0);
         if (transform.localPosition.y < m_maxPosY) return;
