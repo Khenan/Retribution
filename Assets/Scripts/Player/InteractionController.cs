@@ -49,7 +49,6 @@ public class InteractionController : MonoBehaviour
             {
                 if ((m_interactLayer.value & 1<< hit.collider.gameObject.layer) > 0)
                 {
-                    print(hit.collider.name);
                     hit.collider.gameObject.GetComponent<IInteractible>().Interact();
                     if (!m_handFull && hit.collider.gameObject.GetComponent<IInteractible>().Takable)
                     {
