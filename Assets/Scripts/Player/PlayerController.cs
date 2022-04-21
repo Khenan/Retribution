@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
             m_interactionController.UpdateInteraction();
             m_cameraController.UpdateCamera();
         }
+
+        if (Input.GetKeyDown(KeyCode.G)) Death();
         
         m_playerSound.UpdateSound();
     }

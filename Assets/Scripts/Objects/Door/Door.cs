@@ -44,6 +44,10 @@ public class Door : MonoBehaviour, IInteractible
     private List<Event> m_EventToListen_Open = new List<Event>();
     [SerializeField, Tooltip("Event à écouter pour s'ouvrir")]
     private List<Event> m_EventToListen_Close = new List<Event>();
+    [SerializeField, Tooltip("Event à lire quand la porte s'ouvre")]
+    private List<Event> m_EventToRead_Open = new List<Event>();
+
+    private bool eventLaunched = false;
 
     private void OnEnable()
     {
@@ -151,9 +155,11 @@ public class Door : MonoBehaviour, IInteractible
         m_isOpen = true;
         if (m_left)
         {
+            LaunchEvent();
             m_animator.SetTrigger(m_openLeftAnimator);
             return;
         }
+        LaunchEvent();
         m_animator.SetTrigger(m_openRightAnimator);
     }
 
@@ -181,10 +187,21 @@ public class Door : MonoBehaviour, IInteractible
         
         m_isOpen = true;
         m_animator.SetTrigger(m_openLeftAnimator);
+        LaunchEvent();
     }
 
     private void LaunchAnimLock()
     {
         // Lancer une animation de porte fermée
+    }
+
+    private void LaunchEvent()
+    {
+        if (eventLaunched) return;
+        eventLaunched = true;
+        foreach (Event e in m_EventToRead_Open)
+        {
+            e.Raise();
+        }
     }
 }
