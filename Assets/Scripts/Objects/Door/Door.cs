@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractible
 {
+    [SerializeField, Tooltip("La porte est ouverte à gauche au début du jeu")]
+    private bool m_isOpenLeftOnStart = false;
+    [SerializeField, Tooltip("La porte est ouverte à droite au début du jeu")]
+    private bool m_isOpenRightOnStart = false;
+    
     [SerializeField, Tooltip("Vitesse d'apparition de l'effet"), Range(1f, 1000f)]
     private float m_fadeInSpeed = 0.05f;
     [SerializeField, Tooltip("Vitesse de disparition de l'effet"), Range(0.01f, 0.1f)]
@@ -33,6 +39,42 @@ public class Door : MonoBehaviour, IInteractible
     private readonly int m_closeAnimator = Animator.StringToHash("close");
     private readonly int m_openRightAnimator = Animator.StringToHash("openRight");
     private readonly int m_openLeftAnimator = Animator.StringToHash("openLeft");
+
+    [SerializeField, Tooltip("Event à écouter pour se fermer")]
+    private List<Event> m_EventToListen_Open = new List<Event>();
+    [SerializeField, Tooltip("Event à écouter pour s'ouvrir")]
+    private List<Event> m_EventToListen_Close = new List<Event>();
+
+    private void OnEnable()
+    {
+        foreach (Event e in m_EventToListen_Open)
+        {
+            e.m_event += OpenLeft;
+        }
+        foreach (Event e in m_EventToListen_Close)
+        {
+            e.m_event += Close;
+        }
+    }
+    private void OnDisable()
+    {
+        foreach (Event e in m_EventToListen_Open)
+        {
+            e.m_event -= OpenLeft;
+        }
+        foreach (Event e in m_EventToListen_Close)
+        {
+            e.m_event -= Close;
+        }
+    }
+
+    private void Start()
+    {
+        if (!m_isOpenLeftOnStart && !m_isOpenRightOnStart) return;
+        
+        if (m_isOpenLeftOnStart) Toggle();
+        else if (m_isOpenRightOnStart) Toggle(false);
+    }
 
     public void Interact()
     {
@@ -103,7 +145,7 @@ public class Door : MonoBehaviour, IInteractible
         }
         if (m_isLock)
         {
-            // Lancer une animation de porte fermée
+            LaunchAnimLock();
             return;
         }
         m_isOpen = true;
@@ -123,5 +165,26 @@ public class Door : MonoBehaviour, IInteractible
         m_animator.ResetTrigger(m_closeAnimator);
         m_isOpen = false;
         m_animator.SetTrigger(m_closeAnimator);
+    }
+    private void OpenLeft()
+    {
+        m_animator.ResetTrigger(m_openRightAnimator);
+        m_animator.ResetTrigger(m_openLeftAnimator);
+        m_animator.ResetTrigger(m_closeAnimator);
+
+        if (m_isOpen) return;
+        if (m_isLock)
+        {
+            LaunchAnimLock();
+            return;
+        }
+        
+        m_isOpen = true;
+        m_animator.SetTrigger(m_openLeftAnimator);
+    }
+
+    private void LaunchAnimLock()
+    {
+        // Lancer une animation de porte fermée
     }
 }

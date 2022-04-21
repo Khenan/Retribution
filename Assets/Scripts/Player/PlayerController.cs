@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 
     private bool m_isDead = false;
 
+    [SerializeField, Tooltip("Le checkpoint de départ")]
+    private Transform m_startCheckpoint = null;
+
     private void Awake()
     {
         m_cameraController = GetComponent<CameraController>();
@@ -24,6 +27,10 @@ public class PlayerController : MonoBehaviour
         m_interactionController = GetComponent<InteractionController>();
         m_suffox = GetComponent<Suffox>();
         m_playerSound = GetComponent<PlayerSound>();
+
+        if (m_startCheckpoint == null) return;
+        transform.position = m_startCheckpoint.position;
+        transform.rotation = m_startCheckpoint.rotation;
     }
     private void Update()
     {
@@ -64,9 +71,14 @@ public class PlayerController : MonoBehaviour
         m_suffox.RecoverAllOxygen();
         
         // On le renvoi au dernier checkpoint
-        GetComponent<CharacterController>().enabled = false;
+        CharacterController characterController = GetComponent<CharacterController>();
+        CharaController charaController = GetComponent<CharaController>();
+        
+        characterController.enabled = false;
+        if (charaController.m_isCrouching) charaController.Crouch();
         transform.position = m_lastCheckpoint ? m_lastCheckpoint.transform.position : Vector3.zero;
-        GetComponent<CharacterController>().enabled = true;
+        transform.rotation = m_lastCheckpoint ? m_lastCheckpoint.transform.rotation : Quaternion.identity;
+        characterController.enabled = true;
         
         // On restart l'énigme
         EnigmePupitre.Instance.RestartEnigme();
