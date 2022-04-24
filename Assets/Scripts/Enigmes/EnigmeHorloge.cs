@@ -18,17 +18,17 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     public Checkpoint Checkpoint { get; }
     public void StartEnigme()
     {
-        
+        Debug.Log("Enigme Horloge Start");
     }
 
     public void RestartEnigme()
     {
-        
+        Debug.Log("Enigme Horloge Restart");
     }
 
     public void CompleteEnigme()
     {
-        
+        Debug.Log("Enigme Horloge Complete");
     }
     protected override string GetSingletonName()
     {

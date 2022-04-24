@@ -13,6 +13,9 @@ public class ChildCorridor : MonoBehaviour
     private Vector3 m_initPos;
     private Quaternion m_initRot;
 
+    [SerializeField, Tooltip("TriggerBoxEvent que l'enfant doit pénétrer")]
+    private TriggerBoxEvent m_triggerBoxEvent;
+
     private void OnEnable()
     {
         m_rb = GetComponent<Rigidbody>();
@@ -39,6 +42,7 @@ public class ChildCorridor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (m_triggerBoxEvent.m_col != other) return;
         gameObject.SetActive(false);
     }
 
@@ -48,5 +52,6 @@ public class ChildCorridor : MonoBehaviour
         transform.position = m_initPos;
         transform.rotation = m_initRot;
         gameObject.SetActive(true);
+        m_triggerBoxEvent.Reset();
     }
 }

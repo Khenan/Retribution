@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cooldownTakeDamage: 0.1
-  m_cooldownRecoverOxygen: 0.02
+  m_cooldownRecoverOxygen: 0.05
   m_oxygenMax: 100
   m_oxygen: 0
   m_oxygenSlider: {fileID: 0}
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_groundDistance: 0.2
   m_groundLayer:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 1207
   m_animator: {fileID: 907520841}
   m_isCrouching: 0
 --- !u!114 &875586874871653108
@@ -261,8 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3537e38427a8b2c45b2764553120228f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_mouseSensitivityX: 350
-  m_mouseSensitivityY: 350
+  m_mouseSensitivityX: 150
+  m_mouseSensitivityY: 150
   m_minViewY: -70
   m_maxViewY: 70
   m_cameraTransform: {fileID: 2413784371072856571}
@@ -284,10 +284,13 @@ MonoBehaviour:
   m_range: 1.2
   m_noPlayerLayer:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 4279
   m_interactLayer:
     serializedVersion: 2
     m_Bits: 128
+  m_clockDrawLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   m_crouchPos: {fileID: 694211368}
   m_standPos: {fileID: 979312974}
   m_handIK: {fileID: 7146147063157713253}
@@ -320,6 +323,7 @@ MonoBehaviour:
   m_cameraController: {fileID: 875586874871653108}
   m_interactionController: {fileID: 949758533101385306}
   m_lastCheckpoint: {fileID: 0}
+  m_startCheckpoint: {fileID: 0}
 --- !u!143 &1131155440
 CharacterController:
   m_ObjectHideFlags: 0

@@ -2,21 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorCollider : MonoBehaviour, IInteractible
+public class DoorCollider : InteractibleObject
 {
-    public float Cooldown { get; set; }
-    public List<Renderer> ObjectRendererToShine { get; }
-    public bool Shining { get; set; }
-    public bool Takable { get; set; }
-    public int IdShining { get; set; }
-    
-    
     [SerializeField, Tooltip("Porte Parente")]
     private Door m_myDoor;
 
     [SerializeField, Tooltip("Trigger de gauche")]
     private bool m_leftTrigger = true;
-    public void Interact()
+    public override void Interact()
     {
         if (m_myDoor.m_isOpen) return;
         if (m_leftTrigger)
@@ -27,13 +20,8 @@ public class DoorCollider : MonoBehaviour, IInteractible
         m_myDoor.Toggle(false);
     }
 
-    public void Shine()
+    public override void Shine()
     {
         m_myDoor.Shine();
-    }
-
-    public IEnumerator CooldownCoroutine()
-    {
-        yield return 0;
     }
 }
