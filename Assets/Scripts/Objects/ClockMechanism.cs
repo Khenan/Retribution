@@ -10,8 +10,29 @@ public class ClockMechanism : InteractibleObject
     private int m_animatorPushHash = Animator.StringToHash("push");
 
     private bool m_isPush = false;
-    [SerializeField, Tooltip("Le bouton est-t-il bloqué")]
+    [SerializeField, Tooltip("Le bouton est-t-il bloqué au start de l'énigme")]
+    private bool m_isLockOnStart = false;
     private bool m_isLock = false;
+    
+    [SerializeField, Tooltip("Evenement à appeler")]
+    private Event m_callEvent;
+    [SerializeField, Tooltip("Evenement à écouter")]
+    private Event m_listenEvent;
+
+    private void OnEnable()
+    {
+        m_listenEvent.m_event += Handle;
+    }
+    
+    private void OnDisable()
+    {
+        m_listenEvent.m_event -= Handle;
+    }
+
+    private void Handle()
+    {
+        m_isLock = false;
+    }
 
     public override void Interact()
     {
@@ -30,5 +51,11 @@ public class ClockMechanism : InteractibleObject
     private void PushButton()
     {
         Debug.Log("Button is Push");
+        if(m_callEvent != null) m_callEvent.Raise();
+    }
+
+    public void Reset()
+    {
+        m_isLock = m_isLockOnStart;
     }
 }
