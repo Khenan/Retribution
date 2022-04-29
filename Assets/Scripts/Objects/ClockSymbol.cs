@@ -34,11 +34,13 @@ public class ClockSymbol : MonoBehaviour
 
     private void OnEnable()
     {
+        if (m_listenEvent == null) return;
         m_listenEvent.m_event += Handle;
     }
     
     private void OnDisable()
     {
+        if (m_listenEvent == null) return;
         m_listenEvent.m_event -= Handle;
     }
 
@@ -58,7 +60,10 @@ public class ClockSymbol : MonoBehaviour
         {
             Debug.Log("Symbole chargé au max !");
             // Appel de l'event
-            m_callEvent.Raise();
+            if (m_callEvent != null)
+            {
+                m_callEvent.Raise();
+            }
             m_isLock = true;
             m_SpriteRenderer.color = m_finalColor;
             m_currentTimeLook = m_timeLookTarget;

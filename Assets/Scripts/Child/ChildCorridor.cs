@@ -1,57 +1,34 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-[RequireComponent(typeof(Rigidbody))]
 public class ChildCorridor : MonoBehaviour
 {
-    [SerializeField, Tooltip("Event à écouter pour s'ouvrir")]
-    private List<Event> m_EventToListen = new List<Event>();
+    [SerializeField, Tooltip("Event à écouter pour s'enfuir")] private Event m_EventToListen;
+    [SerializeField, Tooltip("Delay en seconde de la fermeture de la porte")] private float m_waitTimeSecond = 1f;
+    [SerializeField, Tooltip("Porte à fermer")] private Door m_door;
 
-    private Rigidbody m_rb;
-    private Vector3 m_initPos;
-    private Quaternion m_initRot;
-
-    [SerializeField, Tooltip("TriggerBoxEvent que l'enfant doit pénétrer")]
-    private TriggerBoxEvent m_triggerBoxEvent;
+    private int m_triggerAnim = Animator.StringToHash("trigger");
+    private Animator m_anim;
 
     private void OnEnable()
     {
-        m_rb = GetComponent<Rigidbody>();
-        m_initPos = transform.position;
-        m_initRot = transform.rotation;
-        
-        foreach (Event e in m_EventToListen)
-        {
-            e.m_event += Run;
-        }
+        m_anim = GetComponent<Animator>();
+        m_EventToListen.m_event += Trigger;
     }
     private void OnDisable()
     {
-        foreach (Event e in m_EventToListen)
-        {
-            e.m_event -= Run;
-        }
+        m_EventToListen.m_event -= Trigger;
     }
 
-    private void Run()
+    private void Trigger()
     {
-        m_rb.velocity = transform.forward;
+        m_anim.SetTrigger(m_triggerAnim);
+        StartCoroutine(CloseDoorCoroutine());
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator CloseDoorCoroutine()
     {
-        if (m_triggerBoxEvent.m_col != other) return;
+        yield return new WaitForSeconds(m_waitTimeSecond);
         gameObject.SetActive(false);
-    }
-
-    public void Reset()
-    {
-        m_rb.velocity = Vector3.zero;
-        transform.position = m_initPos;
-        transform.rotation = m_initRot;
-        gameObject.SetActive(true);
-        m_triggerBoxEvent.Reset();
+        m_door.Close();
     }
 }

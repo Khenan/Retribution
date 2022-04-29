@@ -21,11 +21,13 @@ public class ClockMechanism : InteractibleObject
 
     private void OnEnable()
     {
+        if (m_listenEvent == null) return;
         m_listenEvent.m_event += Handle;
     }
     
     private void OnDisable()
     {
+        if (m_listenEvent == null) return;
         m_listenEvent.m_event -= Handle;
     }
 

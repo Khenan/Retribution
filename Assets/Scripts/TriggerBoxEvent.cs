@@ -13,6 +13,7 @@ public class TriggerBoxEvent : MonoBehaviour
     [SerializeField, Tooltip("Le trigger doit se lancer qu'une seule fois")]
     private bool m_once = false;
 
+    [HideInInspector]
     public Collider m_col = null;
 
     private void Awake()
