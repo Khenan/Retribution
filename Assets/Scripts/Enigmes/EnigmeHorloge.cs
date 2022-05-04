@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
 {
@@ -24,8 +25,11 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     private Animator m_glassDoorAnimator;
     private int m_glassDoorAnimator_restart = Animator.StringToHash("restart");
     private int m_glassDoorAnimator_open = Animator.StringToHash("open");
-
-
+    
+    
+    [SerializeField, Tooltip("Fumée de l'énigme")]
+    private SmokeBehaviour m_smoke;
+    
     public Checkpoint Checkpoint { get; }
 
     private void OnEnable()
@@ -55,6 +59,15 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         // Fermeture de la porte
         m_myDoor.Close();
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_four);
+        if (m_smoke)
+        {
+            m_smoke.m_smoke.GetComponent<VisualEffect>().playRate = 1;
+            m_smoke.Begin();
+        }
+        else
+        {
+            Debug.LogWarning("Attention, aucune fumée n'a été attribué à l'énigme, elle ne peut donc pas apparaître", this);
+        }
     }
 
     public void RestartEnigme()
@@ -66,6 +79,9 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         // On remet l'aiguille à zero
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_restart);
         m_glassDoorAnimator.SetTrigger(m_glassDoorAnimator_restart);
+        
+        if (!m_smoke) return;
+        m_smoke.Restart();
     }
 
     private void MidEnigme()

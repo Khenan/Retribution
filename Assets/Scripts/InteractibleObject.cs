@@ -19,7 +19,7 @@ public class InteractibleObject : MonoBehaviour, IInteractible
     private int m_idFresnelBlend = Shader.PropertyToID("_fresnelBlend");
 
     public List<Renderer> ObjectRendererToShine => m_objectRendererToShine;
-    public bool Takable { get; set; }
+    public virtual bool Takable { get; set; }
 
     public virtual void Interact()
     {

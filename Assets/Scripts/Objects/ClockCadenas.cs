@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClockFlapper : MonoBehaviour
+public class ClockCadenas : MonoBehaviour
 {
     private Animator m_animator;
 

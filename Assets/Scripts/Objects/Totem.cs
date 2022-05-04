@@ -6,11 +6,11 @@ using UnityEngine;
 public class Totem : InteractibleObject
 {
     [SerializeField, Tooltip("L'objet peut-il être prit ?")]
-    private bool m_takable = false;
+    private bool m_takable = true;
 
     public bool m_isTake = false;
     
-    public bool Takable { get => m_takable; set => m_takable = value; }
+    public override bool Takable { get => m_takable; set => m_takable = value; }
 
     private Vector3 m_initPos;
     private Transform m_initParent;
@@ -20,7 +20,7 @@ public class Totem : InteractibleObject
     [SerializeField, Tooltip("Animator du Mesh")]
     private Animator m_animator;
     // Animation du totem quand il se brise
-    // private readonly int m_breakAnimator = Animator.StringToHash("break");
+    private readonly int m_breakAnimator = Animator.StringToHash("break");
 
     private void OnEnable()
     {
@@ -63,5 +63,13 @@ public class Totem : InteractibleObject
                 transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Overlay");
             }
         }
+
+        StartCoroutine(BreakTotem());
+    }
+
+    IEnumerator BreakTotem()
+    {
+        yield return new WaitForSeconds(2);
+        m_animator.SetTrigger(m_breakAnimator);
     }
 }

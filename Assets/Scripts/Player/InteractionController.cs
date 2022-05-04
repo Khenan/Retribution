@@ -45,7 +45,7 @@ public class InteractionController : MonoBehaviour
             // ----------------- INTERACT ----------------- //
             if ((m_interactLayer.value & 1<< hit.collider.gameObject.layer) > 0)
             {
-                hit.collider.gameObject.GetComponent<IInteractible>().Shine();
+                hit.collider.gameObject.GetComponent<InteractibleObject>().Shine();
             }
             
             // Si clique droit, on affiche le nom de l'objet
@@ -65,8 +65,8 @@ public class InteractionController : MonoBehaviour
     {
         if ((m_interactLayer.value & 1<< p_hit.collider.gameObject.layer) > 0)
         {
-            p_hit.collider.gameObject.GetComponent<IInteractible>().Interact();
-            if (!m_handFull && p_hit.collider.gameObject.GetComponent<IInteractible>().Takable)
+            p_hit.collider.gameObject.GetComponent<InteractibleObject>().Interact();
+            if (!m_handFull && p_hit.collider.gameObject.GetComponent<InteractibleObject>().Takable)
             {
                 Take(p_hit.collider.gameObject);
             }
@@ -88,12 +88,14 @@ public class InteractionController : MonoBehaviour
 
     private void Take(GameObject m_myObjectInteractible)
     {
+        Debug.Log("TakeObject");
         m_handFull = true;
         m_myObjectInteractible.transform.SetParent(m_objectPos);
         m_myObjectInteractible.transform.position = m_objectPos.position;
         m_myObjectInteractible.transform.rotation = m_objectPos.rotation;
 
         StartCoroutine(MoveHandCoroutine());
+        StartCoroutine(ReplaceHandCoroutine());
     }
 
     IEnumerator MoveHandCoroutine()
@@ -103,6 +105,11 @@ public class InteractionController : MonoBehaviour
             m_handIK.weight += 0.03f;
             yield return new WaitForSeconds(0.01f);
         }
+    }
+    IEnumerator ReplaceHandCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(MoveHandIdleCoroutine());
     }
     IEnumerator MoveHandIdleCoroutine()
     {
