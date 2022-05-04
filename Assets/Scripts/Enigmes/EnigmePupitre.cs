@@ -58,7 +58,6 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         foreach (Door door in m_myDoors)
         {
             door.Close();
-            door.m_isLock = true;
         }
 
         m_chalkboard.ReadNextSentence();
@@ -124,10 +123,10 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         // On rend récupérable le totem
         m_totem.Takable = true;
         
-        // Fermeture de toutes les portes
+        // Ouverture de toutes les portes
         foreach (Door door in m_myDoors)
         {
-            door.m_isLock = false;
+            door.OpenLeft();
         }
     }
 

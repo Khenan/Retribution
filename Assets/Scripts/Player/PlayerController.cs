@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
             m_interactionController.UpdateInteraction();
             m_cameraController.UpdateCamera();
         }
+
+        if (Input.GetKeyDown(KeyCode.G)) Death();
         
         m_playerSound.UpdateSound();
     }
@@ -80,8 +82,9 @@ public class PlayerController : MonoBehaviour
         transform.rotation = m_lastCheckpoint ? m_lastCheckpoint.transform.rotation : Quaternion.identity;
         characterController.enabled = true;
         
-        // On restart l'énigme
+        // On restart les énigmes
         EnigmePupitre.Instance.RestartEnigme();
+        EnigmeHorloge.Instance.RestartEnigme();
         
         coroutineDeath = StartCoroutine(ResetDeathCoroutine(1));
         

@@ -17,12 +17,10 @@ public class SoundEvent : MonoBehaviour
 
     public void Play()
     {
-        Debug.Log("PLAY !");
         m_event.Play();
     }
     public void Stop()
     {
-        Debug.Log("STOP !");
         m_event.Stop();
     }
 }
