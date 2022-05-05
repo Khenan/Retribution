@@ -26,6 +26,8 @@ public class Door : InteractibleObject
     private List<Event> m_EventToListen_Open = new List<Event>();
     [SerializeField, Tooltip("Event à écouter pour s'ouvrir")]
     private List<Event> m_EventToListen_Close = new List<Event>();
+    [SerializeField, Tooltip("Event à écouter pour se débloquer")]
+    private List<Event> m_EventToListen_Unlock = new List<Event>();
     [SerializeField, Tooltip("Event à lire quand la porte s'ouvre")]
     private List<Event> m_EventToRead_Open = new List<Event>();
 
@@ -41,6 +43,10 @@ public class Door : InteractibleObject
         {
             e.m_event += Close;
         }
+        foreach (Event e in m_EventToListen_Unlock)
+        {
+            e.m_event += Unlock;
+        }
     }
     private void OnDisable()
     {
@@ -51,6 +57,10 @@ public class Door : InteractibleObject
         foreach (Event e in m_EventToListen_Close)
         {
             e.m_event -= Close;
+        }
+        foreach (Event e in m_EventToListen_Unlock)
+        {
+            e.m_event -= Unlock;
         }
     }
 
@@ -111,6 +121,11 @@ public class Door : InteractibleObject
         m_animator.ResetTrigger(m_closeAnimator);
         m_isOpen = false;
         m_animator.SetTrigger(m_closeAnimator);
+    }
+
+    private void Unlock()
+    {
+        m_isLock = false;
     }
     public void OpenLeft()
     {

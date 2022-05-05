@@ -17,7 +17,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     private int m_aiguilleAnimator_four = Animator.StringToHash("four");
     private int m_aiguilleAnimator_nine = Animator.StringToHash("nine");
     private int m_aiguilleAnimator_zeroEnd = Animator.StringToHash("zeroEnd");
-    private int m_aiguilleAnimator_restart = Animator.StringToHash("restart");
+    private int m_aiguilleAnimator_restart = Animator.StringToHash("reset");
 
     [SerializeField, Tooltip("Event qui place l'aiguille sur le 9")] private Event m_eventNine;
     [SerializeField, Tooltip("Event qui place l'aiguille sur le 0")] private Event m_eventZeroEnd;
@@ -31,6 +31,10 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     private SmokeBehaviour m_smoke;
     
     public Checkpoint Checkpoint { get; }
+    
+    [SerializeField, Tooltip("Event à appeler pour restart")] private Event m_eventRestart;
+
+    private bool m_enigmeStarted = false;
 
     private void OnEnable()
     {
@@ -39,6 +43,8 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_eventStart.m_event += StartEnigme;
         m_eventNine.m_event += MidEnigme;
         m_eventZeroEnd.m_event += CompleteEnigme;
+        // Fermeture de la porte
+        m_myDoor.Close();
     }
     
     private void OnDisable()
@@ -48,14 +54,10 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_eventZeroEnd.m_event -= CompleteEnigme;
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.A)) RestartEnigme();
-    }
-
     public void StartEnigme()
     {
         Debug.Log("Enigme Horloge Start");
+        m_enigmeStarted = true;
         // Fermeture de la porte
         m_myDoor.Close();
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_four);
@@ -75,11 +77,17 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         if (m_isCompleted && m_checkpoint.m_finish) return;
         Debug.Log("Enigme Horloge Restart");
         // On désactive le checkpoint
-        m_checkpoint.gameObject.GetComponent<BoxCollider>().enabled = false;
+        //m_checkpoint.gameObject.GetComponent<BoxCollider>().enabled = false;
         // On remet l'aiguille à zero
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_restart);
         m_glassDoorAnimator.SetTrigger(m_glassDoorAnimator_restart);
+        // Ouverture de la porte
+        if(m_enigmeStarted)
+            m_myDoor.OpenLeft();
         
+        m_eventRestart.Raise();
+
+        m_enigmeStarted = false;
         if (!m_smoke) return;
         m_smoke.Restart();
     }
@@ -93,6 +101,8 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     {
         Debug.Log("Enigme Horloge Complete");
         m_isCompleted = true;
+        // On désactive le checkpoint
+        m_checkpoint.gameObject.GetComponent<BoxCollider>().enabled = false;
         // Ouverture de la porte
         m_myDoor.OpenLeft();
         m_glassDoorAnimator.SetTrigger(m_glassDoorAnimator_open);
