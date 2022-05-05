@@ -23,8 +23,6 @@ public class CharaController : MonoBehaviour
     [SerializeField, Tooltip("Animator Component du personnage")]
     private Animator m_animator;
 
-    private int m_speedXAnimator = Animator.StringToHash("speedX");
-    private int m_speedYAnimator = Animator.StringToHash("speedY");
     private int m_crouchAnimator = Animator.StringToHash("crouch");
     private int m_standAnimator = Animator.StringToHash("stand");
 
@@ -51,10 +49,6 @@ public class CharaController : MonoBehaviour
             m_characterController.Move(move * (m_speed / 3) * Time.deltaTime);
         else
             m_characterController.Move(move * m_speed * Time.deltaTime);
-
-        // On met à jour les float dans l'animator
-        m_animator.SetFloat(m_speedXAnimator, x);
-        m_animator.SetFloat(m_speedYAnimator, z);
     }
 
     public void UpdateGravity()
@@ -67,6 +61,6 @@ public class CharaController : MonoBehaviour
     public void Crouch()
     {
         m_isCrouching = !m_isCrouching;
-        m_animator.SetTrigger(m_isCrouching ? m_crouchAnimator : m_standAnimator);
+        //m_animator.SetTrigger(m_isCrouching ? m_crouchAnimator : m_standAnimator);
     }
 }
