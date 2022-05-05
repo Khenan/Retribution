@@ -103,7 +103,7 @@ public class InteractionController : MonoBehaviour
 
     IEnumerator StartMoveHandCoroutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         StartCoroutine(MoveHandCoroutine());
         StartCoroutine(ReplaceHandCoroutine());
     }
