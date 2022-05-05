@@ -10,6 +10,8 @@ public class SmokeBehaviour : MonoBehaviour
     private float m_maxPosY = 4;
     [SerializeField, Tooltip("Vitesse de la fumée en Y en m/s"), Range(0, 1)]
     private float m_speedY = 0.01f;
+
+    [SerializeField, Tooltip("Event à appeler pour faire sortir les feux")] private Event m_eventToRead;
     
     [HideInInspector]
     public Transform m_smoke;
@@ -38,6 +40,7 @@ public class SmokeBehaviour : MonoBehaviour
         transform.Translate(0, 1f * m_speedY * Time.deltaTime, 0);
         if (transform.localPosition.y < m_maxPosY) return;
         m_start = false;
+        m_eventToRead.Raise();
         //Debug.Log("Fumée arrivée en " + m_currentTime + "s.");
     }
 

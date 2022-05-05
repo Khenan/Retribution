@@ -33,6 +33,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     public Checkpoint Checkpoint { get; }
     
     [SerializeField, Tooltip("Event à appeler pour restart")] private Event m_eventRestart;
+    [SerializeField, Tooltip("FireRoom de l'énigme")] private Transform m_fireRoom;
 
     private bool m_enigmeStarted = false;
 
@@ -61,6 +62,10 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         // Fermeture de la porte
         m_myDoor.Close();
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_four);
+        
+        // On active le feu
+        m_fireRoom.gameObject.SetActive(true);
+        
         if (m_smoke)
         {
             m_smoke.m_smoke.GetComponent<VisualEffect>().playRate = 1;
@@ -86,6 +91,9 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
             m_myDoor.OpenLeft();
         
         m_eventRestart.Raise();
+        
+        // On désactive le feu
+        m_fireRoom.gameObject.SetActive(false);
 
         m_enigmeStarted = false;
         if (!m_smoke) return;
