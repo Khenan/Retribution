@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField, Tooltip("Joueur")]
     public PlayerController m_playerCtrl;
 
+    public int[] m_totemsBroken = new[] {0, 0, 0};
 
     private int m_nbLanguages = 2;
     public enum Languages
@@ -60,8 +61,24 @@ public class GameManager : Singleton<GameManager>
         m_languageSelected = p_language;
         m_delegateLanguage?.Invoke();
     }
-    
-    
+
+    public void BreakTotem(int p_id)
+    {
+        int id = p_id - 1;
+        if (id >= 0 && id < m_totemsBroken.Length)
+            m_totemsBroken[id] = 1;
+        foreach (int value in m_totemsBroken)
+        {
+            if (value == 0)  return;
+        }
+
+        WinGame();
+    }
+
+    private void WinGame()
+    {
+        Debug.Log("La partie est gagnée");
+    }
 
     protected override string GetSingletonName()
     {

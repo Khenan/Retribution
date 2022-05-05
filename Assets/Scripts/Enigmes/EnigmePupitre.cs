@@ -43,6 +43,11 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         {
             Debug.LogWarning("Attention, aucun totem n'est attribué à l'énigme des pupitres", this);
         }
+        // Fermeture de toutes les portes
+        foreach (Door door in m_myDoors)
+        {
+            door.Close();
+        }
     }
 
     private void Start()

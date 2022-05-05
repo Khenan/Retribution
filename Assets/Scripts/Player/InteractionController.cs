@@ -109,6 +109,7 @@ public class InteractionController : MonoBehaviour
     IEnumerator ReplaceHandCoroutine()
     {
         yield return new WaitForSeconds(3f);
+        m_handFull = false;
         StartCoroutine(MoveHandIdleCoroutine());
     }
     IEnumerator MoveHandIdleCoroutine()

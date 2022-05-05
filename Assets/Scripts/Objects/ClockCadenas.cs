@@ -30,6 +30,7 @@ public class ClockCadenas : MonoBehaviour
 
     private void Open()
     {
+        m_animator.ResetTrigger(m_animatorReset);
         m_animator.SetTrigger(m_animatorOpen);
     }
     

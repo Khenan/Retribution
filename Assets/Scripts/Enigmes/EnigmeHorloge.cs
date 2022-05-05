@@ -43,6 +43,8 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_eventStart.m_event += StartEnigme;
         m_eventNine.m_event += MidEnigme;
         m_eventZeroEnd.m_event += CompleteEnigme;
+        // Fermeture de la porte
+        m_myDoor.Close();
     }
     
     private void OnDisable()
@@ -50,11 +52,6 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_eventStart.m_event -= StartEnigme;
         m_eventNine.m_event -= MidEnigme;
         m_eventZeroEnd.m_event -= CompleteEnigme;
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.A)) RestartEnigme();
     }
 
     public void StartEnigme()

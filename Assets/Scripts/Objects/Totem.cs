@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Totem : InteractibleObject
 {
+    [SerializeField, Tooltip("Numéro du totem"), Range(1, 3)]
+    private int m_totemNum = 1;
     [SerializeField, Tooltip("L'objet peut-il être prit ?")]
     private bool m_takable = true;
 
@@ -21,6 +24,9 @@ public class Totem : InteractibleObject
     private Animator m_animator;
     // Animation du totem quand il se brise
     private readonly int m_breakAnimator = Animator.StringToHash("break");
+
+    [SerializeField, Tooltip("Event à lire")]
+    private Event m_eventToRead;
 
     private void OnEnable()
     {
@@ -71,5 +77,8 @@ public class Totem : InteractibleObject
     {
         yield return new WaitForSeconds(2);
         m_animator.SetTrigger(m_breakAnimator);
+        GameManager.Instance.BreakTotem(m_totemNum);
+
+        if(m_eventToRead != null) m_eventToRead.Raise();
     }
 }

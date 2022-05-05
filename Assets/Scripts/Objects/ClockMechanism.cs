@@ -70,10 +70,4 @@ public class ClockMechanism : InteractibleObject
         m_meshAnimator.ResetTrigger(m_animatorPushHash);
         m_meshAnimator.SetTrigger(m_animatorResetHash);
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.J)) 
-            Debug.Log(m_isPush);
-    }
 }
