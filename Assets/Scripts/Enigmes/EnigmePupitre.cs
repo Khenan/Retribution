@@ -37,6 +37,9 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     [SerializeField, Tooltip("Porte(s) de l'énigme")]
     private List<Door> m_myDoors = new List<Door>();
 
+    [SerializeField, Tooltip("Feu de l'énigme")]
+    private Transform m_fireRoom;
+
     private void Awake()
     {
         if (!m_totem)
@@ -59,6 +62,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     {
         Debug.Log("L'énigme des pupitres commence !!!");
         
+        m_fireRoom.gameObject.SetActive(true);
         // Fermeture de toutes les portes
         foreach (Door door in m_myDoors)
         {
@@ -89,6 +93,9 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
             door.Close();
             door.m_isLock = false;
         }
+        
+        // On retire les feux
+        m_fireRoom.gameObject.SetActive(false);
 
         // On recherche les pupitres dans les enfants de l'énigme
         GameObject pupitres = null;
