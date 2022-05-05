@@ -31,15 +31,19 @@ public class ClockSymbol : MonoBehaviour
     private Event m_callEvent;
     [SerializeField, Tooltip("Evenement à écouter")]
     private Event m_listenEvent;
+    [SerializeField, Tooltip("Evenement à écouter pour restart")]
+    private Event m_listenEventRestart;
 
     private void OnEnable()
     {
+        m_listenEventRestart.m_event += Reset;
         if (m_listenEvent == null) return;
         m_listenEvent.m_event += Handle;
     }
     
     private void OnDisable()
     {
+        m_listenEventRestart.m_event -= Reset;
         if (m_listenEvent == null) return;
         m_listenEvent.m_event -= Handle;
     }
@@ -102,6 +106,7 @@ public class ClockSymbol : MonoBehaviour
     public void Reset()
     {
         m_SpriteRenderer.color = m_baseColor;
+        m_currentTimeLook = 0;
         m_isLock = m_isLockOnStart;
         UpdateAlpha(0);
     }

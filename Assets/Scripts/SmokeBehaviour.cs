@@ -34,12 +34,11 @@ public class SmokeBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         if(!m_start) return;
-        Debug.Log("updsateSmoke");
         m_currentTime += Time.deltaTime;
         transform.Translate(0, 1f * m_speedY * Time.deltaTime, 0);
         if (transform.localPosition.y < m_maxPosY) return;
         m_start = false;
-        Debug.Log("Fumée arrivée en " + m_currentTime + "s.");
+        //Debug.Log("Fumée arrivée en " + m_currentTime + "s.");
     }
 
     public void Begin()
@@ -62,13 +61,11 @@ public class SmokeBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Dedans");
         other.transform.parent.parent.GetComponent<Suffox>().TakeDamage();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        print("Dehors");
         other.transform.parent.parent.GetComponent<Suffox>().RecoverOxygen();
     }
 }
