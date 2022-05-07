@@ -8,22 +8,16 @@ public class SoundManager : Singleton<SoundManager>
     // PLAYER
     [Header("PLAYER'S SOUNDS")]
     [Tooltip("Son de la marche du joueur avec le bois qui grince")]
-    public SoundEvent m_playerWalkTop;
+    public SoundEvent m_PlayerWalkTop;
     [Tooltip("Son de la marche du joueur au sol en bas")]
-    public SoundEvent m_playerWalkBottom;
+    public SoundEvent m_PlayerWalkBottom;
     
     // DOOR
     [Header("DOOR'S SOUNDS")]
     [Tooltip("Son de la porte qui s'ouvre")]
-    public SoundEvent m_doorOpenning;
+    public SoundEvent m_DoorOpenning;
     [Tooltip("Son de la porte qui se ferme")]
-    public SoundEvent m_doorClosing;
-    
-    // CHALKBOARD
-    [Header("CHALKBOARD'S SOUNDS")]
-    [Tooltip("Son de la craie sur le tableau")]
-    public SoundEvent m_chalkboardWriting;
-    
+    public SoundEvent m_DoorClosing;
 
     public void Play(SoundEvent m_soundEvent)
     {

@@ -7,7 +7,6 @@ using FMODUnity;
 [RequireComponent(typeof(StudioEventEmitter))]
 public class SoundEvent : MonoBehaviour
 {
-    [HideInInspector]
     public StudioEventEmitter m_event;
 
     private void Awake()
@@ -17,10 +16,12 @@ public class SoundEvent : MonoBehaviour
 
     public void Play()
     {
+        Debug.Log("PLAY !");
         m_event.Play();
     }
     public void Stop()
     {
+        Debug.Log("STOP !");
         m_event.Stop();
     }
 }
