@@ -33,6 +33,12 @@ public class Door : InteractibleObject
 
     private bool eventLaunched = false;
 
+    [Header("DOOR'S SOUNDS")]
+    [Tooltip("Son de la porte qui s'ouvre")]
+    public SoundEvent m_DoorOpenning;
+    [Tooltip("Son de la porte qui se ferme")]
+    public SoundEvent m_DoorClosing;
+
     private void OnEnable()
     {
         foreach (Event e in m_EventToListen_Open)
@@ -72,7 +78,14 @@ public class Door : InteractibleObject
         else if (m_isOpenRightOnStart) Toggle(false);
     }
 
-    
+    private void PlaySoundOpen()
+    {
+        m_DoorOpenning.Play();
+    }
+    private void PlaySoundClose()
+    {
+        m_DoorClosing.Play();
+    }
 
     public override void Shine()
     {
@@ -93,6 +106,7 @@ public class Door : InteractibleObject
         if (m_isOpen)
         {
             m_isOpen = false;
+            PlaySoundClose();
             m_animator.SetTrigger(m_closeAnimator);
             return;
         }
@@ -102,6 +116,7 @@ public class Door : InteractibleObject
             return;
         }
         m_isOpen = true;
+        PlaySoundOpen();
         if (m_left)
         {
             LaunchEvent();
@@ -121,6 +136,7 @@ public class Door : InteractibleObject
         m_animator.ResetTrigger(m_closeAnimator);
         m_isOpen = false;
         m_animator.SetTrigger(m_closeAnimator);
+        PlaySoundClose();
     }
 
     private void Unlock()
@@ -136,6 +152,7 @@ public class Door : InteractibleObject
         if (m_isOpen) return;
         
         m_isOpen = true;
+        PlaySoundOpen();
         m_animator.SetTrigger(m_openLeftAnimator);
         LaunchEvent();
     }

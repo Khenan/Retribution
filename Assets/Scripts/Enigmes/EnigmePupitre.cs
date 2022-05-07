@@ -159,6 +159,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
             }
             return true;
         }
+        if (m_isCompleted) return false;
         // Interaction avec un mauvais pupitre
         m_lastNum = 0;
         m_close?.Invoke();

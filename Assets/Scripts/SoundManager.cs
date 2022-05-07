@@ -12,12 +12,11 @@ public class SoundManager : Singleton<SoundManager>
     [Tooltip("Son de la marche du joueur au sol en bas")]
     public SoundEvent m_PlayerWalkBottom;
     
-    // DOOR
-    [Header("DOOR'S SOUNDS")]
-    [Tooltip("Son de la porte qui s'ouvre")]
-    public SoundEvent m_DoorOpenning;
-    [Tooltip("Son de la porte qui se ferme")]
-    public SoundEvent m_DoorClosing;
+
+    // ENIGME 1
+    [Header("FIRST ENIGMA'S SOUNDS")]
+    [Tooltip("Son du tableau à craie")]
+    public SoundEvent m_chalkboardWriting;
 
     public void Play(SoundEvent m_soundEvent)
     {
