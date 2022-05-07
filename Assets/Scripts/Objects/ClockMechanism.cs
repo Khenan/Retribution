@@ -23,6 +23,9 @@ public class ClockMechanism : InteractibleObject
     [SerializeField, Tooltip("Evenement à écouter pour restart")]
     private Event m_listenEventRestart;
 
+    [SerializeField, Tooltip("Son du mécanisme")]
+    private SoundEvent m_mechanismeSound;
+
     private void OnEnable()
     {
         m_listenEventRestart.m_event += Reset;
@@ -46,6 +49,7 @@ public class ClockMechanism : InteractibleObject
     {
         if (m_isPush || m_isLock) return;
         m_isPush = true;
+        m_mechanismeSound.Play();
         m_meshAnimator.ResetTrigger(m_animatorResetHash);
         m_meshAnimator.SetTrigger(m_animatorPushHash);
         PushButton();

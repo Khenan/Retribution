@@ -77,7 +77,11 @@ public class PlayerController : MonoBehaviour
         CharaController charaController = GetComponent<CharaController>();
         
         characterController.enabled = false;
-        if (charaController.m_isCrouching) charaController.Crouch();
+        if (charaController.m_isCrouching)
+        {
+            charaController.Crouch();
+            m_cameraController.CrouchStand(m_charaController.m_isCrouching);
+        }
         transform.position = m_lastCheckpoint ? m_lastCheckpoint.transform.position : Vector3.zero;
         transform.rotation = m_lastCheckpoint ? m_lastCheckpoint.transform.rotation : Quaternion.identity;
         characterController.enabled = true;

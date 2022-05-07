@@ -41,31 +41,48 @@ public class FireRoom : MonoBehaviour
 
     private void FirstHandle()
     {
-        StartCoroutine(UpFireCoroutine(m_firstFires));
+        StartCoroutine(UpFireCoroutine(m_firstFires, false));
     }
     private void SecondHandle()
     {
-        StartCoroutine(DelaySecondFireCoroutine(20, m_secondFires));
+        StartCoroutine(DelaySecondFireCoroutine(20, m_secondFires, true));
     }
     private void LastHandle()
     {
-        StartCoroutine(DelaySecondFireCoroutine(20, m_lastFires));
+        StartCoroutine(DelayLastFireCoroutine(20, m_lastFires));
     }
 
-    IEnumerator DelaySecondFireCoroutine(float p_second, Transform p_fire)
+    IEnumerator DelaySecondFireCoroutine(float p_second, Transform p_fire, bool p_secondFire)
     {
         yield return new WaitForSeconds(p_second);
-        StartCoroutine(UpFireCoroutine(p_fire));
+        StartCoroutine(UpFireCoroutine(p_fire, p_secondFire));
+    }
+    IEnumerator DelayLastFireCoroutine(float p_second, Transform p_fire)
+    {
+        yield return new WaitForSeconds(p_second);
+        StartCoroutine(UpLastFireCoroutine(p_fire));
     }
 
-    IEnumerator UpFireCoroutine(Transform p_fire)
+    IEnumerator UpFireCoroutine(Transform p_fire, bool p_secondFire)
     {
         Vector3 pos = p_fire.localPosition;
-        if (pos.y >= 0) SecondHandle();
+        if (pos.y >= 0)
+        {
+            if (!p_secondFire) SecondHandle();
+            else LastHandle();
+        }
         if (!(pos.y < 0)) yield break;
         yield return new WaitForSeconds(0.2f);
         p_fire.localPosition = new Vector3(pos.x, pos.y + m_step, pos.z);
-        StartCoroutine(UpFireCoroutine(p_fire));
+        StartCoroutine(UpFireCoroutine(p_fire, p_secondFire));
+    }
+    IEnumerator UpLastFireCoroutine(Transform p_fire)
+    {
+        Vector3 pos = p_fire.localPosition;
+        if (!(pos.y < 0)) yield break;
+        yield return new WaitForSeconds(0.2f);
+        p_fire.localPosition = new Vector3(pos.x, pos.y + m_step, pos.z);
+        StartCoroutine(UpLastFireCoroutine(p_fire));
     }
 
     public void Reset()

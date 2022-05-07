@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_listenEvent: {fileID: 11400000, guid: 0a06ad56609f640408c1dd972a225fd0, type: 2}
-  m_listenEventRestart: {fileID: 0}
+  m_listenEventRestart: {fileID: 11400000, guid: 85a9b71108922f44c8bf9b73a20bd84a, type: 2}
 --- !u!1 &774159257451141289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,6 +2449,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3242036253249124678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4837586737345542264}
+  - component: {fileID: 1552536662076927008}
+  - component: {fileID: 312014314627713879}
+  m_Layer: 0
+  m_Name: TikTokSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4837586737345542264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3242036253249124678}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.23699999, y: 1.1120001, z: -0.32800007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7921600747776259998}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552536662076927008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3242036253249124678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 937380478
+      Data2: 1271363059
+      Data3: 492277671
+      Data4: 572625247
+    Path: event:/Enigm_2_Events/TikTok_Clock_Loop
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 13.118599
+--- !u!114 &312014314627713879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3242036253249124678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 0}
 --- !u!1 &3420700259444490630
 GameObject:
   m_ObjectHideFlags: 0
@@ -5700,7 +5775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_listenEvent: {fileID: 11400000, guid: 28b3521158b2b1a49af493ff505555c1, type: 2}
-  m_listenEventRestart: {fileID: 0}
+  m_listenEventRestart: {fileID: 11400000, guid: 85a9b71108922f44c8bf9b73a20bd84a, type: 2}
 --- !u!1 &7921600747776259987
 GameObject:
   m_ObjectHideFlags: 0
@@ -5740,6 +5815,7 @@ Transform:
   - {fileID: 328870556839195566}
   - {fileID: 3700211715375569703}
   - {fileID: 6010854125611051710}
+  - {fileID: 4837586737345542264}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14034,9 +14110,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7505751484016476667, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: m_Size.x
+      value: 0.15607601
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505751484016476667, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: m_Center.x
+      value: 0.021961875
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505751484016476667, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: m_Center.z
+      value: 3.872407e-17
+      objectReference: {fileID: 0}
     - target: {fileID: 7505751484016476668, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
       propertyPath: m_Name
       value: Mecanisme Horloge 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Enigm_2_Events/Clock_Button_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: OverrideAttenuation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 100120894
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1149869318
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: 1940345521
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: 599661068
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
@@ -14052,6 +14172,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 308690037936221878}
     m_Modifications:
+    - target: {fileID: 7388383013238173762, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
+      propertyPath: m_soundEventFlapper
+      value: 
+      objectReference: {fileID: 6290835496158228405}
+    - target: {fileID: 7388383013238173762, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
+      propertyPath: m_listenEventRestart
+      value: 
+      objectReference: {fileID: 11400000, guid: 85a9b71108922f44c8bf9b73a20bd84a, type: 2}
     - target: {fileID: 7388383013238173764, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -14107,6 +14235,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7388383013238173764, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
   m_PrefabInstance: {fileID: 821874892107620210}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7921600746866634551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7388383013238173765, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
+  m_PrefabInstance: {fileID: 821874892107620210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &248023213929375264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921600746866634551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1313904380
+      Data2: 1210592150
+      Data3: -696698436
+      Data4: 1031659852
+    Path: event:/Enigm_2_Events/Open_Clock
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &6290835496158228405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921600746866634551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 248023213929375264}
 --- !u!1001 &2330139472120035769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14180,6 +14356,14 @@ PrefabInstance:
       propertyPath: m_listenEvent
       value: 
       objectReference: {fileID: 11400000, guid: 20a2199faad120f46b16342bf35cdd8f, type: 2}
+    - target: {fileID: 7388383013238173762, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
+      propertyPath: m_soundEventFlapper
+      value: 
+      objectReference: {fileID: 8546661354085555737}
+    - target: {fileID: 7388383013238173762, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
+      propertyPath: m_listenEventRestart
+      value: 
+      objectReference: {fileID: 11400000, guid: 85a9b71108922f44c8bf9b73a20bd84a, type: 2}
     - target: {fileID: 7388383013238173764, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -14234,11 +14418,59 @@ PrefabInstance:
       objectReference: {fileID: -5861906111492328931, guid: d3c19d90abdd5a042806b27dc8b2e43b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
+--- !u!1 &821874891963759546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7388383013238173765, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
+  m_PrefabInstance: {fileID: 7921600746470542335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &821874891963759547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7388383013238173764, guid: e5240c24c4f4b274a95fd0256adff350, type: 3}
   m_PrefabInstance: {fileID: 7921600746470542335}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4190864589344288480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821874891963759546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1313904380
+      Data2: 1210592150
+      Data3: -696698436
+      Data4: 1031659852
+    Path: event:/Enigm_2_Events/Open_Clock
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &8546661354085555737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821874891963759546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 4190864589344288480}
 --- !u!1001 &7921600746651305266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14302,9 +14534,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7505751484016476667, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: m_Size.x
+      value: 0.15607601
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505751484016476667, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: m_Center.x
+      value: 0.021961875
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505751484016476667, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: m_Center.z
+      value: 3.872407e-17
+      objectReference: {fileID: 0}
     - target: {fileID: 7505751484016476668, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
       propertyPath: m_Name
       value: Mecanisme Horloge 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Enigm_2_Events/Clock_Button_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: OverrideAttenuation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: -2016724442
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1262070919
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: 833658041
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: -1565857241
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
@@ -14376,9 +14652,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7505751484016476667, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: m_Size.x
+      value: 0.15607601
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505751484016476667, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: m_Center.x
+      value: 0.021961875
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505751484016476667, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: m_Center.z
+      value: 3.872407e-17
+      objectReference: {fileID: 0}
     - target: {fileID: 7505751484016476668, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
       propertyPath: m_Name
       value: Mecanisme Horloge 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Enigm_2_Events/Clock_Button_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: OverrideAttenuation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 1526943199
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1112945815
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: -2080852585
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932525374630119746, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: -1129089769
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31c394584baf90d44aca1f5217d2fa77, type: 3}

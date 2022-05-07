@@ -151,7 +151,7 @@ MonoBehaviour:
   m_takable: 1
   m_isTake: 0
   m_animator: {fileID: 1812318634}
-  m_eventToRead: {fileID: 0}
+  m_eventToRead: {fileID: 11400000, guid: f99956f7353d2994ab1bd891afe532e3, type: 2}
 --- !u!95 &1812318634
 Animator:
   serializedVersion: 3
@@ -197,14 +197,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977530481}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.909, y: -4.7355, z: -10.669}
+  m_LocalRotation: {x: 0.5000005, y: 0.49999952, z: -0.49999967, w: 0.50000036}
+  m_LocalPosition: {x: -15.059, y: -3.47, z: -9.9}
   m_LocalScale: {x: 0.099999994, y: 0.09999999, z: 0.09999999}
   m_Children:
   - {fileID: 1589695447614281239}
   m_Father: {fileID: 8874067811907339760}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!65 &1977530485
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_takable: 1
   m_isTake: 0
   m_animator: {fileID: 1977530483}
-  m_eventToRead: {fileID: 0}
+  m_eventToRead: {fileID: 11400000, guid: 3e45b1d191e9f4e4ab09a72d14c273df, type: 2}
 --- !u!95 &1977530483
 Animator:
   serializedVersion: 3
@@ -286,14 +286,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036395669}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.6355, y: -4.7364, z: -10.6604}
+  m_LocalRotation: {x: 0.5000005, y: 0.49999952, z: -0.49999967, w: 0.50000036}
+  m_LocalPosition: {x: -15.059896, y: -3.4786007, z: -10.1735}
   m_LocalScale: {x: 0.099999994, y: 0.09999999, z: 0.09999999}
   m_Children:
   - {fileID: 1589695447372122942}
   m_Father: {fileID: 8874067811907339760}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!65 &2036395673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_takable: 1
   m_isTake: 0
   m_animator: {fileID: 2036395671}
-  m_eventToRead: {fileID: 0}
+  m_eventToRead: {fileID: 11400000, guid: 3e45b1d191e9f4e4ab09a72d14c273df, type: 2}
 --- !u!95 &2036395671
 Animator:
   serializedVersion: 3
@@ -30725,6 +30725,8 @@ GameObject:
   - component: {fileID: 7417201882890440253}
   - component: {fileID: 7417201882890440255}
   - component: {fileID: 8908956989445292461}
+  - component: {fileID: 980198142522089103}
+  - component: {fileID: 7749656977330872382}
   m_Layer: 0
   m_Name: CorridorChild
   m_TagString: Untagged
@@ -30811,6 +30813,7 @@ MonoBehaviour:
   m_EventToListen: {fileID: 11400000, guid: edee6555fe9d451449710024d3f960b1, type: 2}
   m_waitTimeSecond: 1
   m_door: {fileID: 0}
+  m_screamerSound: {fileID: 7749656977330872382}
 --- !u!95 &8908956989445292461
 Animator:
   serializedVersion: 3
@@ -30830,6 +30833,49 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &980198142522089103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417201882890440249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1049088348
+      Data2: 1312308603
+      Data3: -1887933038
+      Data4: -575836009
+    Path: event:/Ambiance_Events/Screamer
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 20
+  OverrideMaxDistance: 20
+--- !u!114 &7749656977330872382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417201882890440249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 980198142522089103}
 --- !u!1 &7417201882944716700
 GameObject:
   m_ObjectHideFlags: 0
@@ -33591,6 +33637,8 @@ GameObject:
   - component: {fileID: 7417201884992258011}
   - component: {fileID: 7417201884992258010}
   - component: {fileID: 7417201884992258009}
+  - component: {fileID: 130789000}
+  - component: {fileID: 130788999}
   m_Layer: 12
   m_Name: SymboleHorloge 2
   m_TagString: Untagged
@@ -33632,6 +33680,7 @@ MonoBehaviour:
   m_callEvent: {fileID: 11400000, guid: b1b55987ab56f364394d5213d03c2e16, type: 2}
   m_listenEvent: {fileID: 0}
   m_listenEventRestart: {fileID: 11400000, guid: 85a9b71108922f44c8bf9b73a20bd84a, type: 2}
+  m_finalSound: {fileID: 130788999}
 --- !u!65 &7417201884992258009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33645,6 +33694,49 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5704084, y: 0.5060153, z: 0.14734434}
   m_Center: {x: -5.064164e-15, y: 0, z: 0.02367209}
+--- !u!114 &130789000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417201884992258020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1932715763
+      Data2: 1212627364
+      Data3: -759928650
+      Data4: -1137942037
+    Path: event:/Enigm_2_Events/Symbol_Appears 2
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &130788999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417201884992258020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 130789000}
 --- !u!1 &7417201885006507620
 GameObject:
   m_ObjectHideFlags: 0
@@ -33656,6 +33748,8 @@ GameObject:
   - component: {fileID: 7417201885006507611}
   - component: {fileID: 7417201885006507609}
   - component: {fileID: 7417201885006507610}
+  - component: {fileID: 1612039534}
+  - component: {fileID: 1612039533}
   m_Layer: 12
   m_Name: SymboleHorloge 3
   m_TagString: Untagged
@@ -33697,6 +33791,7 @@ MonoBehaviour:
   m_callEvent: {fileID: 11400000, guid: 20a2199faad120f46b16342bf35cdd8f, type: 2}
   m_listenEvent: {fileID: 11400000, guid: 0a06ad56609f640408c1dd972a225fd0, type: 2}
   m_listenEventRestart: {fileID: 11400000, guid: 85a9b71108922f44c8bf9b73a20bd84a, type: 2}
+  m_finalSound: {fileID: 1612039533}
 --- !u!65 &7417201885006507610
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33710,6 +33805,49 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5704084, y: 0.5060153, z: 0.14734434}
   m_Center: {x: -5.064164e-15, y: 0, z: 0.02367209}
+--- !u!114 &1612039534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417201885006507620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1932715763
+      Data2: 1212627364
+      Data3: -759928650
+      Data4: -1137942037
+    Path: event:/Enigm_2_Events/Symbol_Appears 2
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1612039533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417201885006507620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 1612039534}
 --- !u!1 &7434421816836140870
 GameObject:
   m_ObjectHideFlags: 0
@@ -40415,9 +40553,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c635b240f451629448803c2c37fc82bd, type: 3}
---- !u!4 &7417201884556125792 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7921600747776259998, guid: c635b240f451629448803c2c37fc82bd, type: 3}
+--- !u!1 &350018852130730495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1142674548446879745, guid: c635b240f451629448803c2c37fc82bd, type: 3}
   m_PrefabInstance: {fileID: 792664562267542014}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8594636644442459660 stripped
@@ -40425,9 +40563,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8954937568134373362, guid: c635b240f451629448803c2c37fc82bd, type: 3}
   m_PrefabInstance: {fileID: 792664562267542014}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &350018852130730495 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1142674548446879745, guid: c635b240f451629448803c2c37fc82bd, type: 3}
+--- !u!4 &7417201884556125792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7921600747776259998, guid: c635b240f451629448803c2c37fc82bd, type: 3}
   m_PrefabInstance: {fileID: 792664562267542014}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1262418479804822012
@@ -40586,14 +40724,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 676abddf36fe034478ed0bde2585638b, type: 3}
---- !u!4 &1589695447372122942 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 676abddf36fe034478ed0bde2585638b, type: 3}
-  m_PrefabInstance: {fileID: 1262418480080530645}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &451652209238880337 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 676abddf36fe034478ed0bde2585638b, type: 3}
+  m_PrefabInstance: {fileID: 1262418480080530645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1589695447372122942 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 676abddf36fe034478ed0bde2585638b, type: 3}
   m_PrefabInstance: {fileID: 1262418480080530645}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1262418480094112864
@@ -40718,6 +40856,10 @@ PrefabInstance:
       propertyPath: m_minPosY
       value: -2.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4302922150747556501, guid: b9300741b6d9eda4186e81de600731d7, type: 3}
+      propertyPath: m_eventToRead
+      value: 
+      objectReference: {fileID: 11400000, guid: 197ba7f5bc073124e964736aaf781cf7, type: 2}
     - target: {fileID: 6510652600515468865, guid: b9300741b6d9eda4186e81de600731d7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
