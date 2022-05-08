@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
     
     private void Respawn()
     {
+        m_playAmbiantMusicEvent.Raise();
         // Il récupère son oxygène
         m_suffox.RecoverAllOxygen();
         
