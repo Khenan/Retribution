@@ -28,7 +28,6 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         Cursor.SetCursor(m_textureCursor, Vector2.zero, CursorMode.Auto);
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
