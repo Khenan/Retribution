@@ -34,6 +34,21 @@ public class UIManager : Singleton<UIManager>
     [SerializeField, Tooltip("List des textes de langues")]
     private List<Text> m_textsLanguages = new List<Text>();
 
+    private FMOD.Studio.VCA VcaMasterController;
+    private FMOD.Studio.VCA VcaSFXController;
+    private FMOD.Studio.VCA VcaMusicController;
+
+    private void Start()
+    {
+        VcaMasterController = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
+        VcaSFXController = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
+        VcaMusicController = FMODUnity.RuntimeManager.GetVCA("vca:/Music");
+
+        SetVolumeMaster(1f);
+        SetVolumeMusic(1f);
+        SetVolumeSFX(0.5f);
+    }
+
     private void OnEnable()
     {
         if (m_menuInGame && m_menuSettings)
@@ -81,6 +96,19 @@ public class UIManager : Singleton<UIManager>
         Debug.Log(m_sliderX.value);
         GameManager.Instance.m_playerCtrl.m_cameraController.m_mouseSensitivityX = m_sliderX.value;
         GameManager.Instance.m_playerCtrl.m_cameraController.m_mouseSensitivityY = m_sliderY.value;
+    }
+
+    public void SetVolumeMaster(float p_volume)
+    {
+        VcaMasterController.setVolume(p_volume);
+    }
+    public void SetVolumeSFX(float p_volume)
+    {
+        VcaSFXController.setVolume(p_volume);
+    }
+    public void SetVolumeMusic(float p_volume)
+    {
+        VcaMusicController.setVolume(p_volume);
     }
 
     public void OpenMenuInGame()

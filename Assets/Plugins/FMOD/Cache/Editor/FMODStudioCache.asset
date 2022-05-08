@@ -74,6 +74,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1008
   Exists: 1
+--- !u!114 &-8701875899981509265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiance_Events/Ambiance_Loop2
+  m_EditorClassIdentifier: 
+  Path: event:/Ambiance_Events/Ambiance_Loop2
+  Guid:
+    Data1: -2071086213
+    Data2: 1219265715
+    Data3: 285936573
+    Data4: 32777755
+  Banks:
+  - {fileID: -1204265258526535617}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 176200
 --- !u!114 &-8671234653505720038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +445,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 264
+--- !u!114 &-5590416373611785711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WalkFloor/Progression
+  m_EditorClassIdentifier: 
+  Name: Progression
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 388084877
+    data2: 1522908675
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Loop
+  - EndLoop
+  Exists: 1
 --- !u!114 &-5583792557428216715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +632,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 908
+--- !u!114 &-3190379817857806217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters_Events/WalkFloor
+  m_EditorClassIdentifier: 
+  Path: event:/Characters_Events/WalkFloor
+  Guid:
+    Data1: 1891793363
+    Data2: 1241467646
+    Data3: -1654739546
+    Data4: -206712541
+  Banks:
+  - {fileID: -1204265258526535617}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -5590416373611785711}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 700
 --- !u!114 &-2143027258737014726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,6 +687,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 684
+--- !u!114 &-1532895225082991958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enigm_1_Events/WriteOnChalkBoard
+  m_EditorClassIdentifier: 
+  Path: event:/Enigm_1_Events/WriteOnChalkBoard
+  Guid:
+    Data1: 386203741
+    Data2: 1241009915
+    Data3: 585832874
+    Data4: -1110263806
+  Banks:
+  - {fileID: -1204265258526535617}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 55752603536932335}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4750
 --- !u!114 &-1204265258526535617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,10 +730,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMODProject/FmodProject_01/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637875264093485074
+  lastModified: 637876078595734465
   FileSizes:
   - Name: Desktop
-    Value: 7353728
+    Value: 7372672
   Exists: 1
 --- !u!114 &-422730802911636425
 MonoBehaviour:
@@ -721,7 +830,6 @@ MonoBehaviour:
   - {fileID: 2319029325679131452}
   - {fileID: -5583792557428216715}
   - {fileID: -3471928714416553426}
-  - {fileID: 3327272567918603065}
   - {fileID: -7990331393926435756}
   - {fileID: -7006760400584087789}
   - {fileID: 7320077706942607561}
@@ -738,13 +846,43 @@ MonoBehaviour:
   - {fileID: -7364531575482635503}
   - {fileID: 7409991786822863719}
   - {fileID: -8099420204038835018}
+  - {fileID: -8701875899981509265}
+  - {fileID: -1532895225082991958}
+  - {fileID: 7907843632037574826}
+  - {fileID: -3190379817857806217}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1204265258526535617}
   StringsBanks:
   - {fileID: 5227644675011868939}
-  cacheTime: 637875264093534509
+  cacheTime: 637876078595814244
   cacheVersion: 10
+--- !u!114 &55752603536932335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WriteOnChalkBoard/Progression
+  m_EditorClassIdentifier: 
+  Name: Progression
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 388084877
+    data2: 1522908675
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Loop
+  - EndLoop
+  Exists: 1
 --- !u!114 &160410325602620139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,33 +1234,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 528
---- !u!114 &3327272567918603065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Enigm_1_Events/WriteOnChalkboard
-  m_EditorClassIdentifier: 
-  Path: event:/Enigm_1_Events/WriteOnChalkboard
-  Guid:
-    Data1: 1710056111
-    Data2: 1094750691
-    Data3: -1636119108
-    Data4: 680744829
-  Banks:
-  - {fileID: -1204265258526535617}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4152
 --- !u!114 &4500295545841242214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,10 +1384,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMODProject/FmodProject_01/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637875264093534509
+  lastModified: 637876078595814244
   FileSizes:
   - Name: Desktop
-    Value: 2786
+    Value: 3170
   Exists: 1
 --- !u!114 &5992546348595106193
 MonoBehaviour:
@@ -1408,11 +1519,65 @@ MonoBehaviour:
   - {fileID: -1204265258526535617}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 10416
+--- !u!114 &7907843632037574826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters_Events/WalkRDC
+  m_EditorClassIdentifier: 
+  Path: event:/Characters_Events/WalkRDC
+  Guid:
+    Data1: -1579337821
+    Data2: 1175479302
+    Data3: -1952405316
+    Data4: -308815926
+  Banks:
+  - {fileID: -1204265258526535617}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 8020099971856077706}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 700
+--- !u!114 &8020099971856077706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WalkRDC/Progression
+  m_EditorClassIdentifier: 
+  Name: Progression
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 388084877
+    data2: 1522908675
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Loop
+  - EndLoop
+  Exists: 1
 --- !u!114 &8560474137295077149
 MonoBehaviour:
   m_ObjectHideFlags: 0

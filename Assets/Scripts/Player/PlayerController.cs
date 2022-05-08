@@ -17,8 +17,10 @@ public class PlayerController : MonoBehaviour
 
     private bool m_isDead = false;
 
-    [SerializeField, Tooltip("Le checkpoint de départ")]
-    private Transform m_startCheckpoint = null;
+    [SerializeField, Tooltip("Le checkpoint de départ")] private Transform m_startCheckpoint = null;
+
+    [SerializeField, Tooltip("Event de lancement de la music d'ambiance")] private Event m_stopAmbiantMusicEvent;
+    [SerializeField, Tooltip("Event d'arrêt de la music d'ambiance")] private Event m_playAmbiantMusicEvent;
 
     private void Awake()
     {
@@ -32,6 +34,12 @@ public class PlayerController : MonoBehaviour
         transform.position = m_startCheckpoint.position;
         transform.rotation = m_startCheckpoint.rotation;
     }
+
+    private void Start()
+    {
+        m_playAmbiantMusicEvent.Raise();
+    }
+
     private void Update()
     {
         
@@ -62,7 +70,9 @@ public class PlayerController : MonoBehaviour
         // On stop la coroutine si elle existe
         if(coroutineRespawn != null) StopCoroutine(coroutineRespawn);
         coroutineRespawn = StartCoroutine(RespawnCooldownCoroutine());
-        
+
+        m_stopAmbiantMusicEvent.Raise();
+
         // Fondu au noir apparait
         UIManager.Instance.FadeIn();
     }

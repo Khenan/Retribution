@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{a1dd37a3-6406-4610-bca8-a08bcad797ed}">
+		<property name="color">
+			<value>Yellow</value>
+		</property>
 		<property name="name">
 			<value>WalkRDC</value>
 		</property>
@@ -8,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{61617752-7acc-41d4-8d49-476630aa68fe}</destination>
+			<destination>{ebae59d8-c2bc-4a76-b0f3-b50b152a1893}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{94eb1b96-58cf-435f-81ee-816c15908ab9}</destination>
@@ -56,7 +59,7 @@
 			<destination>{f9da992c-c398-4843-ac60-fabb64cfb5f5}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{c7847398-7d7a-4883-b964-7aa01fa20636}</destination>
+			<destination>{151c1b0e-5af8-4184-9d29-614d7e8ef27c}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{f9377f93-3a4e-4b2f-8044-7fe85ee03cc9}" />
@@ -87,6 +90,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{8dc6234a-b685-4bd8-a7d1-91f6984dac88}">
+		<property name="volume">
+			<value>-6</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{845c7d92-0d2e-4f9b-85df-9e5b8c3e6b4d}</destination>
 		</relationship>
@@ -112,7 +118,6 @@
 		<property name="length">
 			<value>0.70000000000000007</value>
 		</property>
-		<property name="name" />
 		<relationship name="fadeInCurve">
 			<destination>{04960ae1-e98b-4eed-ade9-c290feb9208d}</destination>
 		</relationship>
@@ -148,7 +153,6 @@
 		<property name="length">
 			<value>0.70000000000000007</value>
 		</property>
-		<property name="name" />
 		<relationship name="timeline">
 			<destination>{2df65439-a405-47d8-8fb7-5db2b5629a2c}</destination>
 		</relationship>
