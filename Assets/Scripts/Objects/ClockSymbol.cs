@@ -34,6 +34,9 @@ public class ClockSymbol : MonoBehaviour
     [SerializeField, Tooltip("Evenement à écouter pour restart")]
     private Event m_listenEventRestart;
 
+    [SerializeField, Tooltip("Son du finish")]
+    private SoundEvent m_finalSound;
+
     private void OnEnable()
     {
         m_listenEventRestart.m_event += Reset;
@@ -63,6 +66,7 @@ public class ClockSymbol : MonoBehaviour
         if (m_currentTimeLook >= m_timeLookTarget)
         {
             Debug.Log("Symbole chargé au max !");
+            m_finalSound.Play();
             // Appel de l'event
             if (m_callEvent != null)
             {

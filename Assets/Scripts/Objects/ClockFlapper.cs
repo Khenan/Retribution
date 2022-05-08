@@ -14,6 +14,9 @@ public class ClockFlapper : MonoBehaviour
     [SerializeField, Tooltip("Evenement à écouter pour restart")]
     private Event m_listenEventRestart;
 
+    [SerializeField, Tooltip("Son du clapet")]
+    private SoundEvent m_soundEventFlapper;
+
     private void OnEnable()
     {
         m_animator = GetComponent<Animator>();
@@ -29,12 +32,18 @@ public class ClockFlapper : MonoBehaviour
 
     private void Open()
     {
-        m_animator.SetTrigger(m_animatorOpen);
+        StartCoroutine(OpenCoroutine());
     }
     
     public void Reset()
     {
         m_animator.ResetTrigger(m_animatorOpen);
         m_animator.SetTrigger(m_animatorReset);
+    }
+    IEnumerator OpenCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        m_soundEventFlapper.Play();
+        m_animator.SetTrigger(m_animatorOpen);
     }
 }

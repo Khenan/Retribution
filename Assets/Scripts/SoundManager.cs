@@ -8,22 +8,33 @@ public class SoundManager : Singleton<SoundManager>
     // PLAYER
     [Header("PLAYER'S SOUNDS")]
     [Tooltip("Son de la marche du joueur avec le bois qui grince")]
-    public SoundEvent m_playerWalkTop;
+    public SoundEvent m_PlayerWalkTop;
     [Tooltip("Son de la marche du joueur au sol en bas")]
-    public SoundEvent m_playerWalkBottom;
+    public SoundEvent m_PlayerWalkBottom;
     
-    // DOOR
-    [Header("DOOR'S SOUNDS")]
-    [Tooltip("Son de la porte qui s'ouvre")]
-    public SoundEvent m_doorOpenning;
-    [Tooltip("Son de la porte qui se ferme")]
-    public SoundEvent m_doorClosing;
-    
-    // CHALKBOARD
-    [Header("CHALKBOARD'S SOUNDS")]
-    [Tooltip("Son de la craie sur le tableau")]
+
+    // ENIGME 1
+    [Header("FIRST ENIGMA'S SOUNDS")]
+    [Tooltip("Son du tableau à craie")]
     public SoundEvent m_chalkboardWriting;
-    
+
+    // MUSIC AMBIANT
+    [Header("AMBIANT'S SOUNDS")]
+    [SerializeField, Tooltip("Event pour lancer la music")] private Event m_playMusicEvent;
+    [SerializeField, Tooltip("Event pour stoper la music")] private Event m_stopMusicEvent;
+    [SerializeField, Tooltip("MusicAmbiant")] private SoundEvent m_ambiantMusic;
+
+
+    private void OnEnable()
+    {
+        m_playMusicEvent.m_event += PlayMusic;
+        m_stopMusicEvent.m_event += StopMusic;
+    }
+    private void OnDisable()
+    {
+        m_playMusicEvent.m_event -= PlayMusic;
+        m_stopMusicEvent.m_event -= StopMusic;
+    }
 
     public void Play(SoundEvent m_soundEvent)
     {
@@ -38,6 +49,15 @@ public class SoundManager : Singleton<SoundManager>
     public void Stop(SoundEvent m_soundEvent)
     {
         m_soundEvent.Stop();
+    }
+    private void PlayMusic()
+    {
+        m_ambiantMusic.Play();
+    }
+
+    private void StopMusic()
+    {
+        m_ambiantMusic.Stop();
     }
 
     protected override string GetSingletonName()

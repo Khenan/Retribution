@@ -30,13 +30,19 @@ public class ClockCadenas : MonoBehaviour
 
     private void Open()
     {
-        m_animator.ResetTrigger(m_animatorReset);
-        m_animator.SetTrigger(m_animatorOpen);
+        StartCoroutine(OpenCoroutine());
     }
     
     public void Reset()
     {
         m_animator.ResetTrigger(m_animatorOpen);
         m_animator.SetTrigger(m_animatorReset);
+    }
+
+    IEnumerator OpenCoroutine()
+    {
+        yield return new WaitForSeconds(1.6f);
+        m_animator.ResetTrigger(m_animatorReset);
+        m_animator.SetTrigger(m_animatorOpen);
     }
 }

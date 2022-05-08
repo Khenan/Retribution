@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7505751484016476666}
   - component: {fileID: 7505751484016476667}
   - component: {fileID: 7505751484016476665}
+  - component: {fileID: 7932525374630119746}
+  - component: {fileID: 6298090111380550049}
   m_Layer: 7
   m_Name: MecanismeHorloge
   m_TagString: Untagged
@@ -68,6 +70,51 @@ MonoBehaviour:
   m_isLockOnStart: 0
   m_callEvent: {fileID: 11400000, guid: 6826e23c582f8964593f5f089b33309a, type: 2}
   m_listenEvent: {fileID: 0}
+  m_listenEventRestart: {fileID: 0}
+  m_mechanismeSound: {fileID: 6298090111380550049}
+--- !u!114 &7932525374630119746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505751484016476668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
+--- !u!114 &6298090111380550049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505751484016476668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 7932525374630119746}
 --- !u!1 &7505751484066933965
 GameObject:
   m_ObjectHideFlags: 0

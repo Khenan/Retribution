@@ -46,13 +46,13 @@ public class InteractionController : MonoBehaviour
         {
             
             // ----------------- INTERACT ----------------- //
-            if ((m_interactLayer.value & 1<< hit.collider.gameObject.layer) > 0)
+            if ((m_interactLayer.value & 1<< hit.collider.gameObject.layer) > 0 && !m_handFull)
             {
                 hit.collider.gameObject.GetComponent<InteractibleObject>().Shine();
             }
             
             // Si clique droit, on affiche le nom de l'objet
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !m_handFull)
             {
                 Interact(hit);
             }
@@ -79,7 +79,6 @@ public class InteractionController : MonoBehaviour
     private void Look(RaycastHit p_hit)
     {
         if (!GetComponent<CharaController>().m_isCrouching) return;
-        Debug.Log("Le joueur regarde un dessin pour l'énigme de l'horloge");
         p_hit.collider.gameObject.GetComponent<ClockSymbol>().LookContinue(Time.deltaTime);
     }
 
@@ -91,7 +90,6 @@ public class InteractionController : MonoBehaviour
 
     private void Take(GameObject m_myObjectInteractible)
     {
-        Debug.Log("TakeObject");
         m_handFull = true;
         m_myObjectInteractible.transform.SetParent(m_objectPos);
         m_myObjectInteractible.transform.position = m_objectPos.position;

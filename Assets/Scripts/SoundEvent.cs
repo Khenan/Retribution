@@ -7,7 +7,6 @@ using FMODUnity;
 [RequireComponent(typeof(StudioEventEmitter))]
 public class SoundEvent : MonoBehaviour
 {
-    [HideInInspector]
     public StudioEventEmitter m_event;
 
     private void Awake()

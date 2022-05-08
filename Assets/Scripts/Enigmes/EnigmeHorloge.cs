@@ -61,6 +61,8 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         // Fermeture de la porte
         m_myDoor.Close();
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_four);
+        
+        
         if (m_smoke)
         {
             m_smoke.m_smoke.GetComponent<VisualEffect>().playRate = 1;
@@ -86,6 +88,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
             m_myDoor.OpenLeft();
         
         m_eventRestart.Raise();
+        
 
         m_enigmeStarted = false;
         if (!m_smoke) return;
@@ -105,8 +108,14 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_checkpoint.gameObject.GetComponent<BoxCollider>().enabled = false;
         // Ouverture de la porte
         m_myDoor.OpenLeft();
-        m_glassDoorAnimator.SetTrigger(m_glassDoorAnimator_open);
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_zeroEnd);
+        StartCoroutine(OpenGlassDoorCoroutine());
+    }
+
+    IEnumerator OpenGlassDoorCoroutine()
+    {
+        yield return new WaitForSeconds(2.2f);
+        m_glassDoorAnimator.SetTrigger(m_glassDoorAnimator_open);
     }
     protected override string GetSingletonName()
     {

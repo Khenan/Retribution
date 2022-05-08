@@ -9,6 +9,9 @@ public class ChildCorridor : MonoBehaviour
     private int m_triggerAnim = Animator.StringToHash("trigger");
     private Animator m_anim;
 
+    [SerializeField, Tooltip("Son de screamer")]
+    private SoundEvent m_screamerSound;
+
     private void OnEnable()
     {
         m_anim = GetComponent<Animator>();
@@ -21,6 +24,7 @@ public class ChildCorridor : MonoBehaviour
 
     private void Trigger()
     {
+        m_screamerSound.Play();
         m_anim.SetTrigger(m_triggerAnim);
         StartCoroutine(CloseDoorCoroutine());
     }
