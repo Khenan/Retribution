@@ -53,6 +53,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     private void Start()
     {
         Instantiate(m_pupitresPrefab, transform);
+        m_totem.Takable = false;
     }
 
     public void StartEnigme()
