@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerSound : MonoBehaviour
 {
     private bool m_walkStart = false;
+    
     public void UpdateSound()
     {
         float x = Input.GetAxis("Horizontal");
@@ -24,5 +25,10 @@ public class PlayerSound : MonoBehaviour
         Debug.Log("Arrets le son");
         SoundManager.Instance.m_PlayerWalkBottom.m_event.SetParameter("Progression", 1);
         m_walkStart = false;
+    }
+
+    public void Dead()
+    {
+        SoundManager.Instance.Play(SoundManager.Instance.m_playerDeathSound);
     }
 }

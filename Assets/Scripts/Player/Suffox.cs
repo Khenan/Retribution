@@ -25,6 +25,11 @@ public class Suffox : MonoBehaviour
     [SerializeField, Tooltip("Slider UI d'oxygène")]
     private List<Image> m_oxygenImages = new List<Image>();
     
+    // Couch Step
+    public bool m_cough_0;
+    public bool m_cough_1;
+    public bool m_cough_2;
+    
     private void Awake()
     {
         m_oxygen = m_oxygenMax;
@@ -104,22 +109,51 @@ public class Suffox : MonoBehaviour
     {
         ResetAnim();
         if (m_oxygen < 20)
+        {
             m_oxygenImages[2].GetComponent<Animator>().SetTrigger("fadeIn");
+            if (m_cough_2) return;
+            m_cough_2 = true;
+            Cough();
+        }
         else if (m_oxygen < 50)
-            m_oxygenImages[1].GetComponent<Animator>().SetTrigger("fadeIn");
+        {
+            m_oxygenImages[1].GetComponent<Animator>().SetTrigger("fadeIn");  
+            if (m_cough_1) return;
+            m_cough_1 = true;
+            Cough();
+        }
         else if (m_oxygen < 100)
-            m_oxygenImages[0].GetComponent<Animator>().SetTrigger("fadeIn");
+        {
+            m_oxygenImages[0].GetComponent<Animator>().SetTrigger("fadeIn");  
+            if (m_cough_0) return;
+            m_cough_0 = true;
+            Cough();
+        }
+    }
+
+    private void Cough()
+    {
+        SoundManager.Instance.Play(SoundManager.Instance.m_playerCoughSound); 
     }
 
     private void UpdateSuffoxImageFadeOut()
     {
         ResetAnim();
         if(m_oxygen >= 100)
+        {
             m_oxygenImages[0].GetComponent<Animator>().SetTrigger("fadeOut");
+            m_cough_0 = false;
+        }
         else if(m_oxygen > 50)
+        {
             m_oxygenImages[1].GetComponent<Animator>().SetTrigger("fadeOut");
+            m_cough_1 = false;
+        }
         else if(m_oxygen > 20)
+        {
             m_oxygenImages[2].GetComponent<Animator>().SetTrigger("fadeOut");
+            m_cough_2 = false;
+        }
     }
 
     private void ResetAnim()
@@ -138,5 +172,10 @@ public class Suffox : MonoBehaviour
         m_oxygenImages[0].GetComponent<Animator>().SetTrigger("fadeOut");
         m_oxygenImages[1].GetComponent<Animator>().SetTrigger("fadeOut");
         m_oxygenImages[2].GetComponent<Animator>().SetTrigger("fadeOut");
+        
+        
+        m_cough_0 = true;
+        m_cough_1 = true;
+        m_cough_2 = true;
     }
 }
