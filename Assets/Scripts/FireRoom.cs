@@ -14,6 +14,8 @@ public class FireRoom : MonoBehaviour
     [SerializeField, Tooltip("Event à écouter pour reset")] private Event m_eventToReset;
 
     [SerializeField] private float m_step = 0.05f;
+    [SerializeField] private float m_timeToStartSecondFire = 5f;
+    [SerializeField] private float m_timeToStartLastFire = 40f;
 
     private Vector3 m_init_posFirstFires;
     private Vector3 m_init_posSecondFires;
@@ -45,11 +47,11 @@ public class FireRoom : MonoBehaviour
     }
     private void SecondHandle()
     {
-        StartCoroutine(DelaySecondFireCoroutine(20, m_secondFires, true));
+        StartCoroutine(DelaySecondFireCoroutine(m_timeToStartSecondFire, m_secondFires, true));
     }
     private void LastHandle()
     {
-        StartCoroutine(DelayLastFireCoroutine(20, m_lastFires));
+        StartCoroutine(DelayLastFireCoroutine(m_timeToStartLastFire, m_lastFires));
     }
 
     IEnumerator DelaySecondFireCoroutine(float p_second, Transform p_fire, bool p_secondFire)
