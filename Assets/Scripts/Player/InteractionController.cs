@@ -11,9 +11,8 @@ public class InteractionController : MonoBehaviour
     private Transform m_rootTransform;
     [SerializeField, Tooltip("Portée du joueur en mètre")]
     private float m_range = 2;
-    [SerializeField, Tooltip("Animator des bras")]
-    private Animator m_armAnimator;
-    private int m_takeArmAnimator = Animator.StringToHash("take");
+    [SerializeField]
+    private PlayerController m_playerController;
     
     [Header("LAYERS")]
     [SerializeField, Tooltip("Tous Layers sauf Player")]
@@ -37,6 +36,7 @@ public class InteractionController : MonoBehaviour
 
     private void Awake()
     {
+        m_playerController = GetComponent<PlayerController>();
         m_handIK.weight = 0;
     }
 
@@ -95,7 +95,7 @@ public class InteractionController : MonoBehaviour
         m_myObjectInteractible.transform.position = m_objectPos.position;
         m_myObjectInteractible.transform.rotation = m_objectPos.rotation;
         
-        m_armAnimator.SetTrigger(m_takeArmAnimator);
+        m_playerController.AnimTake();
         StartCoroutine(StartMoveHandCoroutine());
     }
 

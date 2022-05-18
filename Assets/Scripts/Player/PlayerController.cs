@@ -21,6 +21,20 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField, Tooltip("Event de lancement de la music d'ambiance")] private Event m_stopAmbiantMusicEvent;
     [SerializeField, Tooltip("Event d'arrêt de la music d'ambiance")] private Event m_playAmbiantMusicEvent;
+    
+    [Tooltip("Animator Component des bras du personnage")]
+    public Animator m_armsAnimator;
+    [Tooltip("Animator Component de la caméra du personnage")]
+    public Animator m_cameraAnimator;
+
+    private int m_animHash_jumpscare = Animator.StringToHash("jumpscare");
+    private int m_animHash_openFirst = Animator.StringToHash("openFirst");
+    private int m_animHash_open = Animator.StringToHash("open");
+    private int m_animHash_take = Animator.StringToHash("take");
+    
+    private int m_animHash_start = Animator.StringToHash("start");
+    private int m_animHash_dead = Animator.StringToHash("dead");
+    private int m_animHash_reset = Animator.StringToHash("reset");
 
     private void Awake()
     {
@@ -58,20 +72,33 @@ public class PlayerController : MonoBehaviour
             m_cameraController.UpdateCamera();
         }
 
-        if (Input.GetKeyDown(KeyCode.G)) Death();
+        if (Input.GetKeyDown(KeyCode.G)) AnimJumpscare();
+        if (Input.GetKeyDown(KeyCode.H)) AnimOpen();
+        if (Input.GetKeyDown(KeyCode.J)) AnimOpenFirst();
+        if (Input.GetKeyDown(KeyCode.K)) AnimTake();
         
         m_playerSound.UpdateSound();
     }
 
     public void Death()
     {
+        if (m_isDead) return;
         m_isDead = true;
         Debug.Log("Le joueur est mort");
+
+        m_playerSound.Dead();
+        AnimDeadCamera();
+        m_stopAmbiantMusicEvent.Raise();
+        StartCoroutine(GameOver());
+    }
+
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        
         // On stop la coroutine si elle existe
         if(coroutineRespawn != null) StopCoroutine(coroutineRespawn);
         coroutineRespawn = StartCoroutine(RespawnCooldownCoroutine());
-
-        m_stopAmbiantMusicEvent.Raise();
 
         // Fondu au noir apparait
         UIManager.Instance.FadeIn();
@@ -82,6 +109,9 @@ public class PlayerController : MonoBehaviour
         m_playAmbiantMusicEvent.Raise();
         // Il récupère son oxygène
         m_suffox.RecoverAllOxygen();
+
+        // On reset la caméra
+        AnimResetCamera();
         
         // On le renvoi au dernier checkpoint
         CharacterController characterController = GetComponent<CharacterController>();
@@ -124,5 +154,35 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(p_waitSeconds);
         Debug.Log("Le joueur peut jouer");
         m_isDead = false;
+    }
+
+    public void AnimJumpscare()
+    {
+        m_armsAnimator.SetTrigger(m_animHash_jumpscare);
+    }
+    public void AnimTake()
+    {
+        m_armsAnimator.SetTrigger(m_animHash_take);
+    }
+    public void AnimOpen()
+    {
+        m_armsAnimator.SetTrigger(m_animHash_open);
+    }
+    public void AnimOpenFirst()
+    {
+        m_armsAnimator.SetTrigger(m_animHash_openFirst);
+    }
+    
+    public void AnimStartCamera()
+    {
+        m_cameraAnimator.SetTrigger(m_animHash_start);
+    }
+    private void AnimDeadCamera()
+    {
+        m_cameraAnimator.SetTrigger(m_animHash_dead);
+    }
+    private void AnimResetCamera()
+    {
+        m_cameraAnimator.SetTrigger(m_animHash_reset);
     }
 }
