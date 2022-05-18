@@ -20,16 +20,14 @@ public class CharaController : MonoBehaviour
 
     private bool m_isGrounded;
 
-    [SerializeField, Tooltip("Animator Component du personnage")]
-    private Animator m_animator;
+    [SerializeField]
+    private PlayerController m_playerController;
 
-    private int m_crouchAnimator = Animator.StringToHash("crouch");
-    private int m_standAnimator = Animator.StringToHash("stand");
-
-    public bool m_isCrouching = false;
+    public bool m_isCrouching;
 
     private void Awake()
     {
+        m_playerController = GetComponent<PlayerController>();
         m_characterController = GetComponent<CharacterController>();
     }
 
@@ -61,6 +59,5 @@ public class CharaController : MonoBehaviour
     public void Crouch()
     {
         m_isCrouching = !m_isCrouching;
-        //m_animator.SetTrigger(m_isCrouching ? m_crouchAnimator : m_standAnimator);
     }
 }

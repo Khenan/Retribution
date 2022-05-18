@@ -11,6 +11,10 @@ public class SoundManager : Singleton<SoundManager>
     public SoundEvent m_PlayerWalkTop;
     [Tooltip("Son de la marche du joueur au sol en bas")]
     public SoundEvent m_PlayerWalkBottom;
+    [SerializeField, Tooltip("Son de mort")]
+    public SoundEvent m_playerDeathSound;
+    [SerializeField, Tooltip("Son de toux")]
+    public SoundEvent m_playerCoughSound;
     
 
     // ENIGME 1
@@ -23,8 +27,7 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField, Tooltip("Event pour lancer la music")] private Event m_playMusicEvent;
     [SerializeField, Tooltip("Event pour stoper la music")] private Event m_stopMusicEvent;
     [SerializeField, Tooltip("MusicAmbiant")] private SoundEvent m_ambiantMusic;
-
-
+    
     private void OnEnable()
     {
         m_playMusicEvent.m_event += PlayMusic;

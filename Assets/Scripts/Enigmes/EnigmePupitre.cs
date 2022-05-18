@@ -53,6 +53,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     private void Start()
     {
         Instantiate(m_pupitresPrefab, transform);
+        m_totem.Takable = false;
     }
 
     public void StartEnigme()
@@ -154,6 +155,12 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         if (m_isCompleted) return false;
         // Interaction avec un mauvais pupitre
         m_lastNum = 0;
+        // on reset le tableau
+        if (m_chalkboard.m_idSentences > 0)
+        {
+            m_chalkboard.Reset();
+            m_chalkboard.ReadNextSentence();
+        }
         m_close?.Invoke();
         print(m_lastNum);
         return false;
