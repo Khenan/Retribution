@@ -34,6 +34,8 @@ public class InteractionController : MonoBehaviour
     [SerializeField, Tooltip("Objet dans la main du joueur")]
     private bool m_handFull = false;
 
+    public bool m_firstOpenDoor;
+
     private void Awake()
     {
         m_playerController = GetComponent<PlayerController>();
@@ -92,8 +94,9 @@ public class InteractionController : MonoBehaviour
     {
         m_handFull = true;
         m_myObjectInteractible.transform.SetParent(m_objectPos);
-        m_myObjectInteractible.transform.position = m_objectPos.position;
-        m_myObjectInteractible.transform.rotation = m_objectPos.rotation;
+        m_myObjectInteractible.transform.localPosition = Vector3.zero;
+        m_myObjectInteractible.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        m_myObjectInteractible.transform.localScale = Vector3.one;
         
         m_playerController.AnimTake();
         StartCoroutine(StartMoveHandCoroutine());

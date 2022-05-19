@@ -18,6 +18,7 @@ public class Totem : InteractibleObject
     private Vector3 m_initPos;
     private Transform m_initParent;
     private Quaternion m_initQuaternion;
+    private Vector3 m_initScale;
     
     
     [SerializeField, Tooltip("Animator du Mesh")]
@@ -34,6 +35,7 @@ public class Totem : InteractibleObject
         m_initPos = tr.position;
         m_initParent = tr.parent;
         m_initQuaternion = tr.rotation;
+        m_initScale = tr.localScale;
     }
 
     public void Reset()
@@ -46,6 +48,7 @@ public class Totem : InteractibleObject
         tr.position = m_initPos;
         tr.SetParent(m_initParent);
         tr.rotation = m_initQuaternion;
+        tr.localScale = m_initScale;
         
         gameObject.layer = LayerMask.NameToLayer("Interact");
         if (transform.childCount > 0)
@@ -67,6 +70,11 @@ public class Totem : InteractibleObject
             for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Overlay");
+                if (transform.GetChild(i).childCount <= 0) continue;
+                for (int j = 0; j < transform.childCount; j++)
+                {
+                    transform.GetChild(i).GetChild(j).gameObject.layer = LayerMask.NameToLayer("Overlay");
+                }
             }
         }
 

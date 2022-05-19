@@ -18,6 +18,17 @@ public class DoorCollider : InteractibleObject
             return;
         }
         m_myDoor.Toggle(false);
+        
+        InteractionController interactCtrl = FindObjectOfType<InteractionController>();
+        PlayerController playerCtrl = FindObjectOfType<PlayerController>();
+        // Si la porte peut s'ouvrir
+        if (!interactCtrl.m_firstOpenDoor)
+        {
+            interactCtrl.m_firstOpenDoor = true;
+            playerCtrl.AnimOpenFirst();
+        }
+        else
+            playerCtrl.AnimOpen();
     }
 
     public override void Shine()
