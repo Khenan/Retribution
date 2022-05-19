@@ -42,6 +42,7 @@ public class Totem : InteractibleObject
     {
         m_isTake = false;
         m_takable = false;
+        GetComponent<BoxCollider>().enabled = true;
         
         Debug.Log(m_initPos.x);
         var tr = transform;
@@ -64,6 +65,7 @@ public class Totem : InteractibleObject
     public override void Interact()
     {
         gameObject.layer = LayerMask.NameToLayer("Overlay");
+        GetComponent<BoxCollider>().enabled = false;
         m_isTake = true;
         if (transform.childCount > 0)
         {
