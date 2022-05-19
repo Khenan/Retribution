@@ -202,6 +202,7 @@ Transform:
   - {fileID: 6184500578740889855}
   - {fileID: 9176847800234530718}
   - {fileID: 1991593036121379461}
+  - {fileID: 9027960712585353616}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -232,8 +233,85 @@ MonoBehaviour:
   m_EventToListen_Close: []
   m_EventToListen_Unlock: []
   m_EventToRead_Open: []
+  m_EventToListen_Lock: []
   m_DoorOpenning: {fileID: 1786201788531238223}
   m_DoorClosing: {fileID: 3089808171582746596}
+  m_DoorDontOpen: {fileID: 0}
+--- !u!1 &6578972484854213245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9027960712585353616}
+  - component: {fileID: 2706142415580151550}
+  - component: {fileID: 4876360612026435679}
+  m_Layer: 0
+  m_Name: DontOpenSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9027960712585353616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578972484854213245}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.003, y: 1.2370168, z: 0.01}
+  m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999976}
+  m_Children: []
+  m_Father: {fileID: 5547793882500678281}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2706142415580151550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578972484854213245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1289539825
+      Data2: 1117002576
+      Data3: -69187653
+      Data4: -1043097673
+    Path: event:/General_Props_Events/Close_Door
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4876360612026435679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578972484854213245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 2706142415580151550}
 --- !u!1 &7248470539324369324
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,14 +579,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0b2f81f97db735f42a03d511c7c91511, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ff142b0ca4838c46b8cd6bd6f534e8a, type: 3}
---- !u!4 &1894603730927232834 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 657216050986824812, guid: 1ff142b0ca4838c46b8cd6bd6f534e8a, type: 3}
-  m_PrefabInstance: {fileID: 1392767365037232942}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &721087018000702509 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1825587705554063107, guid: 1ff142b0ca4838c46b8cd6bd6f534e8a, type: 3}
+  m_PrefabInstance: {fileID: 1392767365037232942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1894603730927232834 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 657216050986824812, guid: 1ff142b0ca4838c46b8cd6bd6f534e8a, type: 3}
   m_PrefabInstance: {fileID: 1392767365037232942}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2153819440989184848
