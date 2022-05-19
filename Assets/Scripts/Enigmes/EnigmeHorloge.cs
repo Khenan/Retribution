@@ -60,6 +60,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_enigmeStarted = true;
         // Fermeture de la porte
         m_myDoor.Close();
+        m_myDoor.Lock();
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_four);
         
         
