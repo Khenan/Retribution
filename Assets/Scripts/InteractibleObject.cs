@@ -15,7 +15,7 @@ public class InteractibleObject : MonoBehaviour, IInteractible
     [SerializeField, Tooltip("Step d'apparition ou disparition du Fresnel"), Range(0.01f, 0.1f)]
     private float m_fresnelStep = 0.04f;
     [SerializeField, Tooltip("Objet à faire briller possédant le layer Interact")]
-    private List<Renderer> m_objectRendererToShine;
+    protected List<Renderer> m_objectRendererToShine;
     private int m_idFresnelBlend = Shader.PropertyToID("_fresnelBlend");
 
     public List<Renderer> ObjectRendererToShine => m_objectRendererToShine;

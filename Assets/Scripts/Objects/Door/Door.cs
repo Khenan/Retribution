@@ -23,6 +23,7 @@ public class Door : InteractibleObject
     private readonly int m_closeAnimator = Animator.StringToHash("close");
     private readonly int m_openRightAnimator = Animator.StringToHash("openRight");
     private readonly int m_openLeftAnimator = Animator.StringToHash("openLeft");
+    private readonly int m_notOpenAnimator = Animator.StringToHash("notOpen");
 
     [SerializeField, Tooltip("Event à écouter pour se fermer")]
     private List<Event> m_EventToListen_Open = new List<Event>();
@@ -178,6 +179,8 @@ public class Door : InteractibleObject
     private void LaunchAnimLock()
     {
         // Lancer une animation de porte fermée
+        m_animator.SetTrigger(m_notOpenAnimator);
+        m_DoorDontOpen.Play();
     }
 
     private void LaunchEvent()

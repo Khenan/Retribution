@@ -92,13 +92,18 @@ public class InteractionController : MonoBehaviour
 
     private void Take(GameObject m_myObjectInteractible)
     {
+        m_playerController.AnimTake();
         m_handFull = true;
+        StartCoroutine(CoroutineTake(m_myObjectInteractible));
+    }
+    
+    IEnumerator CoroutineTake(GameObject m_myObjectInteractible)
+    {
+        yield return new WaitForSeconds(1f);
         m_myObjectInteractible.transform.SetParent(m_objectPos);
         m_myObjectInteractible.transform.localPosition = Vector3.zero;
         m_myObjectInteractible.transform.localRotation = Quaternion.Euler(Vector3.zero);
         m_myObjectInteractible.transform.localScale = Vector3.one;
-        
-        m_playerController.AnimTake();
         StartCoroutine(StartMoveHandCoroutine());
     }
 

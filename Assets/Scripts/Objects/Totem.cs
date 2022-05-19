@@ -64,31 +64,41 @@ public class Totem : InteractibleObject
 
     public override void Interact()
     {
+        StartCoroutine(Take());
+        StartCoroutine(BreakTotem());
+    }
+
+    IEnumerator Take()
+    {
+        yield return new WaitForSeconds(1);
         gameObject.layer = LayerMask.NameToLayer("Overlay");
         GetComponent<BoxCollider>().enabled = false;
         m_isTake = true;
-        if (transform.childCount > 0)
-        {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Overlay");
-                if (transform.GetChild(i).childCount <= 0) continue;
-                for (int j = 0; j < transform.childCount; j++)
-                {
-                    transform.GetChild(i).GetChild(j).gameObject.layer = LayerMask.NameToLayer("Overlay");
-                }
-            }
-        }
+        if (transform.childCount <= 0) yield break;
+        PassOnOverlay();
+    }
 
-        StartCoroutine(BreakTotem());
+    private void PassOnOverlay()
+    {
+        foreach (var rnd in m_objectRendererToShine)
+        {
+            rnd.gameObject.layer = LayerMask.NameToLayer("Overlay");
+        }
     }
 
     IEnumerator BreakTotem()
     {
         yield return new WaitForSeconds(2);
         m_animator.SetTrigger(m_breakAnimator);
+        StartCoroutine(Disable());
         GameManager.Instance.BreakTotem(m_totemNum);
 
         if(m_eventToRead != null) m_eventToRead.Raise();
+    }
+    
+    IEnumerator Disable()
+    {
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
     }
 }

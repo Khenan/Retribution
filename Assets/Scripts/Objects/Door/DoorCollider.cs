@@ -12,12 +12,6 @@ public class DoorCollider : InteractibleObject
     public override void Interact()
     {
         if (m_myDoor.m_isOpen) return;
-        if (m_leftTrigger)
-        {
-            m_myDoor.Toggle();
-            return;
-        }
-        m_myDoor.Toggle(false);
         
         InteractionController interactCtrl = FindObjectOfType<InteractionController>();
         PlayerController playerCtrl = FindObjectOfType<PlayerController>();
@@ -29,6 +23,21 @@ public class DoorCollider : InteractibleObject
         }
         else
             playerCtrl.AnimOpen();
+        
+        // On ouvre la porte
+        StartCoroutine(CoroutineOpen());
+    }
+    
+
+    IEnumerator CoroutineOpen()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (m_leftTrigger)
+        {
+            m_myDoor.Toggle();
+            yield break;
+        }
+        m_myDoor.Toggle(false);
     }
 
     public override void Shine()
