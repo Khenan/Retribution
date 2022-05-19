@@ -58,7 +58,6 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
 
     public void StartEnigme()
     {
-        Debug.Log("L'énigme des pupitres commence !!!");
         // Fermeture de toutes les portes
         foreach (Door door in m_myDoors)
         {
@@ -138,18 +137,15 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
 
     public bool CheckPupitre(int p_numPupitre)
     {
-        Debug.Log("uds");
         // Interaction avec le prochain bon pupitre
         if (m_lastNum + 1 == p_numPupitre)
         {
             m_lastNum = p_numPupitre;
-            Debug.Log($"{m_lastNum}, {m_chalkboard.m_idSentences}");
             if(m_lastNum > m_chalkboard.m_idSentences)
                 m_chalkboard.ReadNextSentence();
             // Interaction avec le dernier bon pupitre
             if (m_lastNum == m_goalNum)
             {
-                print("GAGNÉ !!!!");
                 CompleteEnigme();
             }
             return true;
