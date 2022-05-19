@@ -9,11 +9,13 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     [SerializeField, Tooltip("Checkpoint de l'énigme")] private Checkpoint m_checkpoint;
     [SerializeField, Tooltip("Porte de l'énigme")] private Door m_myDoor;
     [SerializeField, Tooltip("Aiguille des minutes")] private GameObject m_aiguilleMinute;
+    [SerializeField, Tooltip("Aiguille Fantome des minutes")] private GameObject m_aiguilleFantome;
     [SerializeField, Tooltip("Event qui lance l'énigme")] private Event m_eventStart;
     [SerializeField, Tooltip("Porte vitrée de l'horloge")] private GameObject m_glassDoor;
     private bool m_isCompleted = false;
     
     private Animator m_aiguilleAnimator;
+    private Animator m_aiguilleFantomeAnimator;
     private int m_aiguilleAnimator_four = Animator.StringToHash("four");
     private int m_aiguilleAnimator_nine = Animator.StringToHash("nine");
     private int m_aiguilleAnimator_zeroEnd = Animator.StringToHash("zeroEnd");
@@ -21,6 +23,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
 
     [SerializeField, Tooltip("Event qui place l'aiguille sur le 9")] private Event m_eventNine;
     [SerializeField, Tooltip("Event qui place l'aiguille sur le 0")] private Event m_eventZeroEnd;
+    [SerializeField, Tooltip("Event qui lance la fumée")] private Event m_eventLaunchSmoke;
     
     private Animator m_glassDoorAnimator;
     private int m_glassDoorAnimator_restart = Animator.StringToHash("restart");
@@ -39,10 +42,12 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     private void OnEnable()
     {
         m_aiguilleAnimator = m_aiguilleMinute.GetComponent<Animator>();
+        m_aiguilleFantomeAnimator = m_aiguilleFantome.GetComponent<Animator>();
         m_glassDoorAnimator = m_glassDoor.GetComponent<Animator>();
         m_eventStart.m_event += StartEnigme;
         m_eventNine.m_event += MidEnigme;
         m_eventZeroEnd.m_event += CompleteEnigme;
+        m_eventLaunchSmoke.m_event += LaunchSmoke;
         // Fermeture de la porte
         m_myDoor.Close();
     }
@@ -52,18 +57,11 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_eventStart.m_event -= StartEnigme;
         m_eventNine.m_event -= MidEnigme;
         m_eventZeroEnd.m_event -= CompleteEnigme;
+        m_eventLaunchSmoke.m_event -= LaunchSmoke;
     }
 
-    public void StartEnigme()
+    private void LaunchSmoke()
     {
-        Debug.Log("Enigme Horloge Start");
-        m_enigmeStarted = true;
-        // Fermeture de la porte
-        m_myDoor.Close();
-        m_myDoor.Lock();
-        m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_four);
-        
-        
         if (m_smoke)
         {
             m_smoke.m_smoke.GetComponent<VisualEffect>().playRate = 1;
@@ -75,6 +73,17 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         }
     }
 
+    public void StartEnigme()
+    {
+        Debug.Log("Enigme Horloge Start");
+        m_enigmeStarted = true;
+        // Fermeture de la porte
+        m_myDoor.Close();
+        m_myDoor.Lock();
+        m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_four);
+        m_aiguilleFantomeAnimator.SetTrigger(m_aiguilleAnimator_four);
+    }
+
     public void RestartEnigme()
     {
         if (m_isCompleted && m_checkpoint.m_finish) return;
@@ -83,6 +92,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         //m_checkpoint.gameObject.GetComponent<BoxCollider>().enabled = false;
         // On remet l'aiguille à zero
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_restart);
+        m_aiguilleFantomeAnimator.SetTrigger(m_aiguilleAnimator_restart);
         m_glassDoorAnimator.SetTrigger(m_glassDoorAnimator_restart);
         // Ouverture de la porte
         if(m_enigmeStarted)
@@ -99,6 +109,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     private void MidEnigme()
     {
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_nine);
+        m_aiguilleFantomeAnimator.SetTrigger(m_aiguilleAnimator_nine);
     }
 
     public void CompleteEnigme()
@@ -110,6 +121,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         // Ouverture de la porte
         m_myDoor.OpenLeft();
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_zeroEnd);
+        m_aiguilleFantomeAnimator.SetTrigger(m_aiguilleAnimator_zeroEnd);
         StartCoroutine(OpenGlassDoorCoroutine());
     }
 

@@ -44,9 +44,9 @@ public class UIManager : Singleton<UIManager>
         VcaSFXController = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
         VcaMusicController = FMODUnity.RuntimeManager.GetVCA("vca:/Music");
 
-        SetVolumeMaster(1f);
-        SetVolumeMusic(1f);
-        SetVolumeSFX(0.5f);
+        SetVolumeMaster(3.5f);
+        SetVolumeMusic(10f);
+        SetVolumeSFX(10f);
     }
 
     private void OnEnable()
