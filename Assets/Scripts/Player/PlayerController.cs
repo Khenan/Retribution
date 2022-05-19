@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.Instance.LockCursor();
+        
         m_cameraController = GetComponent<CameraController>();
         m_charaController = GetComponent<CharaController>();
         m_interactionController = GetComponent<InteractionController>();

@@ -6,6 +6,13 @@ using UnityEngine;
 public class LockSymbol : MonoBehaviour
 {
     [SerializeField, Tooltip("Event à écouter pour disparaitre")] private Event m_eventToListen;
+    private Animator m_animator;
+    private int m_disappearAnim = Animator.StringToHash("disappear");
+
+    private void Awake()
+    {
+        m_animator = GetComponent<Animator>();
+    }
 
     private void OnEnable()
     {
@@ -18,6 +25,6 @@ public class LockSymbol : MonoBehaviour
 
     private void Handle()
     {
-        Destroy(gameObject, 0.5f);
+        m_animator.SetTrigger(m_disappearAnim);
     }
 }

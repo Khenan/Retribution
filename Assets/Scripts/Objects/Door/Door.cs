@@ -30,6 +30,8 @@ public class Door : InteractibleObject
     private List<Event> m_EventToListen_Unlock = new List<Event>();
     [SerializeField, Tooltip("Event à lire quand la porte s'ouvre")]
     private List<Event> m_EventToRead_Open = new List<Event>();
+    [SerializeField, Tooltip("Event à lire pour bloquer")]
+    private List<Event> m_EventToListen_Lock = new List<Event>();
 
     private bool eventLaunched = false;
 
@@ -38,6 +40,8 @@ public class Door : InteractibleObject
     public SoundEvent m_DoorOpenning;
     [Tooltip("Son de la porte qui se ferme")]
     public SoundEvent m_DoorClosing;
+    [Tooltip("Son de la porte qui ne s'ouvre pas")]
+    public SoundEvent m_DoorDontOpen;
 
     private void OnEnable()
     {
@@ -53,6 +57,10 @@ public class Door : InteractibleObject
         {
             e.m_event += Unlock;
         }
+        foreach (Event e in m_EventToListen_Lock)
+        {
+            e.m_event += Lock;
+        }
     }
     private void OnDisable()
     {
@@ -67,6 +75,10 @@ public class Door : InteractibleObject
         foreach (Event e in m_EventToListen_Unlock)
         {
             e.m_event -= Unlock;
+        }
+        foreach (Event e in m_EventToListen_Lock)
+        {
+            e.m_event += Lock;
         }
     }
 
@@ -132,7 +144,6 @@ public class Door : InteractibleObject
     /// </summary>
     public void Close()
     {
-        m_isLock = true;
         m_animator.ResetTrigger(m_closeAnimator);
         m_isOpen = false;
         m_animator.SetTrigger(m_closeAnimator);
@@ -142,6 +153,10 @@ public class Door : InteractibleObject
     private void Unlock()
     {
         m_isLock = false;
+    }
+    public void Lock()
+    {
+        m_isLock = true;
     }
     public void OpenLeft()
     {

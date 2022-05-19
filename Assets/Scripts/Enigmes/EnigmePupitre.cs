@@ -63,6 +63,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         foreach (Door door in m_myDoors)
         {
             door.Close();
+            door.Lock();
         }
 
         m_chalkboard.ReadNextSentence();
