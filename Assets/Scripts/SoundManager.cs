@@ -43,7 +43,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (!m_soundEvent)
         {
-            Debug.Log("Le son n'est pas enregistré dans le SoundManager");
+            Debug.LogWarning("Le son n'est pas enregistré dans le SoundManager");
             return;
         }
         m_soundEvent.Play();
