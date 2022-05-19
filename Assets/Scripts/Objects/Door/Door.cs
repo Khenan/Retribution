@@ -9,6 +9,8 @@ public class Door : InteractibleObject
     private bool m_isOpenLeftOnStart = false;
     [SerializeField, Tooltip("La porte est ouverte à droite au début du jeu")]
     private bool m_isOpenRightOnStart = false;
+    [SerializeField, Tooltip("La porte est lock au début du jeu")]
+    private bool m_isLockOnStart = false;
     
 
     [HideInInspector]
@@ -84,6 +86,7 @@ public class Door : InteractibleObject
 
     private void Start()
     {
+        if (m_isLockOnStart) m_isLock = true;
         if (!m_isOpenLeftOnStart && !m_isOpenRightOnStart) return;
         
         if (m_isOpenLeftOnStart) Toggle();

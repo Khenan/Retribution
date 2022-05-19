@@ -20,6 +20,8 @@ public class Pupitre : InteractibleObject
     public SoundEvent m_openDesk;
     [SerializeField, Tooltip("Son de fermeture du pupitre")]
     public SoundEvent m_closeDesk;
+    [SerializeField, Tooltip("Son de bloqué du pupitre")]
+    public SoundEvent m_dontOpenDesk;
     
     private void Awake()
     {
@@ -37,7 +39,11 @@ public class Pupitre : InteractibleObject
 
     public override void Interact()
     {
-        if (m_isOpen) return;
+        if (m_isOpen)
+        {
+            StartDontOpenSound();
+            return;
+        }
         if (m_enigmePupitre.CheckPupitre(m_numPupitre))
         {
             Open();
@@ -74,6 +80,10 @@ public class Pupitre : InteractibleObject
     {
         float second = Random.Range(0, 0.5f);
         StartCoroutine(CloseSoundCoroutine(second));
+    }
+    private void StartDontOpenSound()
+    {
+        m_dontOpenDesk.m_event.Play();
     }
 
     IEnumerator CloseSoundCoroutine(float p_second)

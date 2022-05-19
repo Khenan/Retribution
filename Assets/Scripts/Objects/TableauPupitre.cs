@@ -125,7 +125,6 @@ public class TableauPupitre : MonoBehaviour
     private void StopSound()
     {
         if (!m_writing) return;
-        // SoundManager.Instance.Stop(SoundManager.Instance.m_chalkboardWriting);
         SoundManager.Instance.m_chalkboardWriting.m_event.SetParameter("Progression", 1);
         m_writing = false;
     }

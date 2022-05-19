@@ -12,9 +12,7 @@ public class PlayerSound : MonoBehaviour
         float z = Input.GetAxis("Vertical");
         if (x != 0 || z != 0)
         {
-            Debug.Log("is moving");
             if (m_walkStart) return;
-            Debug.Log("Lance le son");
             SoundManager.Instance.Play(SoundManager.Instance.m_PlayerWalkBottom);
             SoundManager.Instance.m_PlayerWalkBottom.m_event.SetParameter("Progression", 0);
             m_walkStart = true;
@@ -22,7 +20,6 @@ public class PlayerSound : MonoBehaviour
         }
 
         if (!m_walkStart) return;
-        Debug.Log("Arrets le son");
         SoundManager.Instance.m_PlayerWalkBottom.m_event.SetParameter("Progression", 1);
         m_walkStart = false;
     }
