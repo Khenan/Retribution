@@ -55,7 +55,7 @@ VisualEffect:
       - m_Value: 10
         m_Name: LifeTime_Max
         m_Overridden: 1
-      - m_Value: 200
+      - m_Value: 1000
         m_Name: Smokerate
         m_Overridden: 1
     m_Vector2f:
@@ -65,7 +65,7 @@ VisualEffect:
       - m_Value: {x: 8, y: 3, z: 11.5}
         m_Name: SizeBounds
         m_Overridden: 1
-      - m_Value: {x: 8, y: 0, z: 10}
+      - m_Value: {x: 8, y: 1, z: 10}
         m_Name: SizeBoxCollider
         m_Overridden: 1
       - m_Value: {x: 0, y: 1.55, z: 0}
@@ -188,4 +188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d8b4965424dff4fa9476bbb44c5f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_minPosY: 0
+  m_maxPosY: 4
   m_speedY: 0.01
+  m_eventToRead: {fileID: 0}
+  m_fireRoom: {fileID: 0}
+  m_smoke: {fileID: 0}
+  m_start: 0
