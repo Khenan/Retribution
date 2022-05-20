@@ -15,7 +15,6 @@ public class Door : InteractibleObject
 
     [HideInInspector]
     public bool m_isOpen = false;
-    [HideInInspector]
     public bool m_isLock = false;
     [SerializeField, Tooltip("Animator du Mesh")]
     private Animator m_animator;
