@@ -16,6 +16,8 @@ public class ClockFlapper : MonoBehaviour
 
     [SerializeField, Tooltip("Son du clapet")]
     private SoundEvent m_soundEventFlapper;
+    [SerializeField, Tooltip("Box Collider du clapet")]
+    private BoxCollider m_boxCollider;
 
     private void OnEnable()
     {
@@ -39,11 +41,13 @@ public class ClockFlapper : MonoBehaviour
     {
         m_animator.ResetTrigger(m_animatorOpen);
         m_animator.SetTrigger(m_animatorReset);
+        m_boxCollider.enabled = true;
     }
     IEnumerator OpenCoroutine()
     {
         yield return new WaitForSeconds(2f);
         m_soundEventFlapper.Play();
         m_animator.SetTrigger(m_animatorOpen);
+        m_boxCollider.enabled = false;
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorCollider : InteractibleObject
@@ -12,7 +11,7 @@ public class DoorCollider : InteractibleObject
     public override void Interact()
     {
         if (m_myDoor.m_isOpen) return;
-        
+        m_myDoor.ClearCollider();
         InteractionController interactCtrl = FindObjectOfType<InteractionController>();
         PlayerController playerCtrl = FindObjectOfType<PlayerController>();
         // Si la porte peut s'ouvrir

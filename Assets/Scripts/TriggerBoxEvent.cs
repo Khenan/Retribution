@@ -10,6 +10,9 @@ public class TriggerBoxEvent : MonoBehaviour
     [SerializeField, Tooltip("Events à appeler quand on rentre dans la boite")]
     private List<Event> m_eventsToCall = new List<Event>();
 
+    [SerializeField, Tooltip("Events à lire pour s'activer")]
+    private Event m_eventsToPop;
+
     [SerializeField, Tooltip("Le trigger doit se lancer qu'une seule fois")]
     private bool m_once = false;
 
@@ -22,6 +25,22 @@ public class TriggerBoxEvent : MonoBehaviour
         m_col.isTrigger = true;
     }
 
+    private void OnEnable()
+    {
+        if (!m_eventsToPop) return;
+        m_eventsToPop.m_event += Pop;
+    }
+    private void OnDisable()
+    {
+        if (!m_eventsToPop) return;
+        m_eventsToPop.m_event -= Pop;
+    }
+
+    private void Pop()
+    {
+        m_col.enabled = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (m_eventsToCall.Count == 0) return;
@@ -30,11 +49,11 @@ public class TriggerBoxEvent : MonoBehaviour
             e.Raise();
         }
 
-        if (m_once) GetComponent<BoxCollider>().enabled = false;
+        if (m_once) m_col.enabled = false;
     }
 
     public void Reset()
     {
-        GetComponent<BoxCollider>().enabled = true;
+        m_col.enabled = true;
     }
 }

@@ -28,6 +28,8 @@ public class Totem : InteractibleObject
 
     [SerializeField, Tooltip("Event à lire")]
     private Event m_eventToRead;
+    [SerializeField, Tooltip("Event à lire")]
+    private Event m_eventToRead2;
 
     private void OnEnable()
     {
@@ -94,6 +96,7 @@ public class Totem : InteractibleObject
         GameManager.Instance.BreakTotem(m_totemNum);
 
         if(m_eventToRead != null) m_eventToRead.Raise();
+        if(m_eventToRead2 != null) m_eventToRead2.Raise();
     }
     
     IEnumerator Disable()

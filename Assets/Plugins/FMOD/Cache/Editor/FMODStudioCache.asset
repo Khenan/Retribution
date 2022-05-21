@@ -1321,6 +1321,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4750
+--- !u!114 &-5419796139680354475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiance_Events/Final_Music
+  m_EditorClassIdentifier: 
+  Path: event:/Ambiance_Events/Final_Music
+  Guid:
+    Data1: -604727289
+    Data2: 1132477849
+    Data3: 1131877804
+    Data4: 1600397309
+  Banks:
+  - {fileID: 8142418540263176146}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 16000
 --- !u!114 &-5301636346472426236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3694,7 +3721,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4008
+  Length: 8250
 --- !u!114 &-174252682740758704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3802,6 +3829,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 14200
+--- !u!114 &-69992983863994181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters_Events/End
+  m_EditorClassIdentifier: 
+  Path: event:/Characters_Events/End
+  Guid:
+    Data1: -1836917914
+    Data2: 1240991423
+    Data3: 1055970707
+    Data4: -324381770
+  Banks:
+  - {fileID: 8142418540263176146}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 17304
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3868,12 +3922,14 @@ MonoBehaviour:
   - {fileID: 290081058141929333}
   - {fileID: -4942684513103564330}
   - {fileID: -5749091046568069159}
+  - {fileID: -5419796139680354475}
+  - {fileID: -69992983863994181}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8142418540263176146}
   StringsBanks:
   - {fileID: 1245597279323257097}
-  cacheTime: 637886890180438739
+  cacheTime: 637887352145089855
   cacheVersion: 10
 --- !u!114 &87539833852513430
 MonoBehaviour:
@@ -4309,10 +4365,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMODProject/FmodProject_01/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637886890180438739
+  lastModified: 637887352145089855
   FileSizes:
   - Name: Desktop
-    Value: 3470
+    Value: 3564
   Exists: 1
 --- !u!114 &1280323924526200799
 MonoBehaviour:
@@ -6862,10 +6918,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMODProject/FmodProject_01/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637886890180428775
+  lastModified: 637887352145049839
   FileSizes:
   - Name: Desktop
-    Value: 7297024
+    Value: 7300704
   Exists: 1
 --- !u!114 &8412477625224376482
 MonoBehaviour:

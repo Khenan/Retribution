@@ -15,6 +15,8 @@ public class SoundManager : Singleton<SoundManager>
     public SoundEvent m_playerDeathSound;
     [SerializeField, Tooltip("Son de toux")]
     public SoundEvent m_playerCoughSound;
+    [SerializeField, Tooltip("End")]
+    public SoundEvent m_playerEndSound;
     
 
     // ENIGME 1
@@ -24,19 +26,28 @@ public class SoundManager : Singleton<SoundManager>
 
     // MUSIC AMBIANT
     [Header("AMBIANT'S SOUNDS")]
-    [SerializeField, Tooltip("Event pour lancer la music")] private Event m_playMusicEvent;
-    [SerializeField, Tooltip("Event pour stoper la music")] private Event m_stopMusicEvent;
+    [SerializeField, Tooltip("Event pour lancer la music ambiente")] private Event m_playAmbiantMusicEvent;
+    [SerializeField, Tooltip("Event pour stoper la music ambiente")] private Event m_stopAmbiantMusicEvent;
     [SerializeField, Tooltip("MusicAmbiant")] private SoundEvent m_ambiantMusic;
+    // MUSIC FINAL
+    [Header("FINAL MUSIC'S SOUNDS")]
+    [SerializeField, Tooltip("Event pour lancer la music finale")] private Event m_playFinalMusicEvent;
+    [SerializeField, Tooltip("Event pour stoper la music finale")] private Event m_stopFinalMusicEvent;
+    [SerializeField, Tooltip("Music Finale")] private SoundEvent m_finalMusic;
     
     private void OnEnable()
     {
-        m_playMusicEvent.m_event += PlayMusic;
-        m_stopMusicEvent.m_event += StopMusic;
+        m_playAmbiantMusicEvent.m_event += PlayAmbiantMusic;
+        m_stopAmbiantMusicEvent.m_event += StopAmbiantMusic;
+        m_playFinalMusicEvent.m_event += PlayFinalMusic;
+        m_stopFinalMusicEvent.m_event += StopFinalMusic;
     }
     private void OnDisable()
     {
-        m_playMusicEvent.m_event -= PlayMusic;
-        m_stopMusicEvent.m_event -= StopMusic;
+        m_playAmbiantMusicEvent.m_event -= PlayAmbiantMusic;
+        m_stopAmbiantMusicEvent.m_event -= StopAmbiantMusic;
+        m_playFinalMusicEvent.m_event -= PlayFinalMusic;
+        m_stopFinalMusicEvent.m_event -= StopFinalMusic;
     }
 
     public void Play(SoundEvent m_soundEvent)
@@ -49,22 +60,15 @@ public class SoundManager : Singleton<SoundManager>
         m_soundEvent.Play();
     }
 
-    public void Stop(SoundEvent m_soundEvent)
+    public void Stop(SoundEvent m_soundEvent) { m_soundEvent.Stop(); }
+    private void PlayAmbiantMusic() { m_ambiantMusic.Play(); }
+    private void StopAmbiantMusic() { m_ambiantMusic.Stop(); }
+    private void PlayFinalMusic()
     {
-        m_soundEvent.Stop();
+        StopAmbiantMusic();
+        m_finalMusic.Play();
     }
-    private void PlayMusic()
-    {
-        m_ambiantMusic.Play();
-    }
+    private void StopFinalMusic() { m_finalMusic.Stop(); }
 
-    private void StopMusic()
-    {
-        m_ambiantMusic.Stop();
-    }
-
-    protected override string GetSingletonName()
-    {
-        return "SoundManager";
-    }
+    protected override string GetSingletonName() { return "SoundManager"; }
 }

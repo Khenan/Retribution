@@ -38,9 +38,16 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     [SerializeField, Tooltip("Event à appeler pour restart")] private Event m_eventRestart;
 
     private bool m_enigmeStarted = false;
+    
+    
+    [SerializeField, Tooltip("Texte Indice")]
+    private Transform m_onYourKnees;
+
+    private bool m_midEnigme = false;
 
     private void OnEnable()
     {
+        m_onYourKnees.gameObject.SetActive(false);
         m_aiguilleAnimator = m_aiguilleMinute.GetComponent<Animator>();
         m_aiguilleFantomeAnimator = m_aiguilleFantome.GetComponent<Animator>();
         m_glassDoorAnimator = m_glassDoor.GetComponent<Animator>();
@@ -82,6 +89,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_myDoor.Lock();
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_four);
         m_aiguilleFantomeAnimator.SetTrigger(m_aiguilleAnimator_four);
+        StartCoroutine(DisplayIndiceCoroutine());
     }
 
     public void RestartEnigme()
@@ -100,6 +108,8 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         
         m_eventRestart.Raise();
         
+        m_onYourKnees.gameObject.SetActive(false);
+        m_midEnigme = false;
 
         m_enigmeStarted = false;
         if (!m_smoke) return;
@@ -108,6 +118,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
 
     private void MidEnigme()
     {
+        m_midEnigme = true;
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_nine);
         m_aiguilleFantomeAnimator.SetTrigger(m_aiguilleAnimator_nine);
     }
@@ -129,6 +140,12 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     {
         yield return new WaitForSeconds(2.2f);
         m_glassDoorAnimator.SetTrigger(m_glassDoorAnimator_open);
+    }
+    IEnumerator DisplayIndiceCoroutine()
+    {
+        yield return new WaitForSeconds(5f);
+        if(m_midEnigme) yield break;
+        m_onYourKnees.gameObject.SetActive(true);
     }
     protected override string GetSingletonName()
     {

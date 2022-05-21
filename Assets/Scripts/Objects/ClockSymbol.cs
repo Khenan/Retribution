@@ -16,11 +16,6 @@ public class ClockSymbol : MonoBehaviour
     private bool m_isLockOnStart = false;
     private bool m_isLock = false;
 
-    [SerializeField, Tooltip("Couleur de base")]
-    private Color m_baseColor;
-    [SerializeField, Tooltip("Couleur finale en débloqué")]
-    private Color m_finalColor;
-
     private WaitForSeconds m_cooldownWait = new WaitForSeconds(0.2f);
     private WaitForSeconds m_resetWait = new WaitForSeconds(0.01f);
 
@@ -53,7 +48,6 @@ public class ClockSymbol : MonoBehaviour
 
     private void Awake()
     {
-        m_SpriteRenderer.color = m_baseColor;
         m_isLock = m_isLockOnStart;
         UpdateAlpha(0);
     }
@@ -73,7 +67,7 @@ public class ClockSymbol : MonoBehaviour
                 m_callEvent.Raise();
             }
             m_isLock = true;
-            m_SpriteRenderer.color = m_finalColor;
+            GetComponent<Animator>().SetTrigger("pop");
             m_currentTimeLook = m_timeLookTarget;
         }
         UpdateAlpha(m_currentTimeLook / 3);
@@ -109,7 +103,6 @@ public class ClockSymbol : MonoBehaviour
 
     public void Reset()
     {
-        m_SpriteRenderer.color = m_baseColor;
         m_currentTimeLook = 0;
         m_isLock = m_isLockOnStart;
         UpdateAlpha(0);

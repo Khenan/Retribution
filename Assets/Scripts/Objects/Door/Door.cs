@@ -45,6 +45,22 @@ public class Door : InteractibleObject
     [Tooltip("Son de la porte qui ne s'ouvre pas")]
     public SoundEvent m_DoorDontOpen;
 
+    [Header("DOOR'S COLLIDER")]
+    [SerializeField, Tooltip("Left Collider")]
+    private DoorCollider m_doorColliderLeft;
+    [SerializeField, Tooltip("Right Collider")]
+    private DoorCollider m_doorColliderRight;
+    public void ResetCollider()
+    {
+        m_doorColliderLeft.GetComponent<BoxCollider>().enabled = true;
+        m_doorColliderRight.GetComponent<BoxCollider>().enabled = true;
+    }
+    public void ClearCollider()
+    {
+        m_doorColliderLeft.GetComponent<BoxCollider>().enabled = false;
+        m_doorColliderRight.GetComponent<BoxCollider>().enabled = false;
+    }
+
     private void OnEnable()
     {
         foreach (Event e in m_EventToListen_Open)
@@ -123,6 +139,7 @@ public class Door : InteractibleObject
             m_isOpen = false;
             PlaySoundClose();
             m_animator.SetTrigger(m_closeAnimator);
+            ResetCollider();
             return;
         }
         if (m_isLock)
@@ -151,6 +168,7 @@ public class Door : InteractibleObject
         m_isOpen = false;
         m_animator.SetTrigger(m_closeAnimator);
         PlaySoundClose();
+        ResetCollider();
     }
 
     private void Unlock()

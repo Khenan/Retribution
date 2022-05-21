@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -34,7 +35,21 @@ public class PlayerController : MonoBehaviour
     
     private int m_animHash_start = Animator.StringToHash("start");
     private int m_animHash_dead = Animator.StringToHash("dead");
+    private int m_animHash_end = Animator.StringToHash("end");
     private int m_animHash_reset = Animator.StringToHash("reset");
+
+    private bool m_end;
+    
+    [SerializeField, Tooltip("Event de fin de jeu cinématique avec la caméra")] private Event m_finalCameraEvent;
+
+    private void OnEnable()
+    {
+        m_finalCameraEvent.m_event += EndCamera;
+    }
+    private void OnDisable()
+    {
+        m_finalCameraEvent.m_event -= EndCamera;
+    }
 
     private void Awake()
     {
@@ -58,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
+        if (m_end) return;
         m_charaController.UpdateGravity();
 
         if (!m_isDead && !GameManager.Instance.m_inGameMenu)
@@ -186,5 +201,17 @@ public class PlayerController : MonoBehaviour
     private void AnimResetCamera()
     {
         m_cameraAnimator.SetTrigger(m_animHash_reset);
+    }
+    private void EndCamera()
+    {
+        m_end = true;
+        m_cameraAnimator.SetTrigger(m_animHash_end);
+        StartCoroutine(EndCoroutine());
+    }
+
+    IEnumerator EndCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        SoundManager.Instance.Play(SoundManager.Instance.m_playerEndSound);
     }
 }
