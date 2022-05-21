@@ -206,6 +206,8 @@ public class PlayerController : MonoBehaviour
     {
         m_end = true;
         m_cameraAnimator.SetTrigger(m_animHash_end);
+        GetComponent<Animator>().enabled = true;
+        SoundManager.Instance.m_PlayerWalkBottom.m_event.SetParameter("Progression", 1);
         StartCoroutine(EndCoroutine());
     }
 
@@ -213,5 +215,12 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         SoundManager.Instance.Play(SoundManager.Instance.m_playerEndSound);
+        SoundManager.Instance.StopFinalMusic();
+        StartCoroutine(CreditsCoroutine());
+    }
+    IEnumerator CreditsCoroutine()
+    {
+        yield return new WaitForSeconds(18);
+        SceneManager.Instance.LoadScene();
     }
 }

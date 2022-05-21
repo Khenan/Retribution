@@ -15,9 +15,8 @@ public class SceneManager : Singleton<SceneManager>
     public void ChangeScene(int p_sceneId)
     {
         m_sceneToLoad = p_sceneId;
-        
-        // fait une animation en fade out
         // met en pause la scene courante
+        // Time.timeScale = 0;
         
         // Lance la scene de load
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Loader");
@@ -42,6 +41,7 @@ public class SceneManager : Singleton<SceneManager>
             }
             yield return null;
         }
+        Time.timeScale = 1;
     }
 
     protected override string GetSingletonName()

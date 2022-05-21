@@ -61,14 +61,14 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     public void Stop(SoundEvent m_soundEvent) { m_soundEvent.Stop(); }
-    private void PlayAmbiantMusic() { m_ambiantMusic.Play(); }
-    private void StopAmbiantMusic() { m_ambiantMusic.Stop(); }
-    private void PlayFinalMusic()
+    public void PlayAmbiantMusic() { m_ambiantMusic.Play(); }
+    public void StopAmbiantMusic() { m_ambiantMusic.Stop(); }
+    public void PlayFinalMusic()
     {
         StopAmbiantMusic();
         m_finalMusic.Play();
     }
-    private void StopFinalMusic() { m_finalMusic.Stop(); }
+    public void StopFinalMusic() { m_finalMusic.Stop(); }
 
     protected override string GetSingletonName() { return "SoundManager"; }
 }
