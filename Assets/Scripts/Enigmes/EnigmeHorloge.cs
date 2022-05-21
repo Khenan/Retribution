@@ -143,7 +143,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     }
     IEnumerator DisplayIndiceCoroutine()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(30f);
         if(m_midEnigme) yield break;
         m_onYourKnees.gameObject.SetActive(true);
     }

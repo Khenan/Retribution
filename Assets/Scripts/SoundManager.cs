@@ -23,6 +23,8 @@ public class SoundManager : Singleton<SoundManager>
     [Header("FIRST ENIGMA'S SOUNDS")]
     [Tooltip("Son du tableau à craie")]
     public SoundEvent m_chalkboardWriting;
+    [Tooltip("Rire de Kalfu : Defeat Sound")]
+    public SoundEvent m_defeatSound;
 
     // MUSIC AMBIANT
     [Header("AMBIANT'S SOUNDS")]
@@ -30,10 +32,15 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField, Tooltip("Event pour stoper la music ambiente")] private Event m_stopAmbiantMusicEvent;
     [SerializeField, Tooltip("MusicAmbiant")] private SoundEvent m_ambiantMusic;
     // MUSIC FINAL
-    [Header("FINAL MUSIC'S SOUNDS")]
+    [Header("FINAL'S SOUNDS")]
     [SerializeField, Tooltip("Event pour lancer la music finale")] private Event m_playFinalMusicEvent;
     [SerializeField, Tooltip("Event pour stoper la music finale")] private Event m_stopFinalMusicEvent;
     [SerializeField, Tooltip("Music Finale")] private SoundEvent m_finalMusic;
+    // DEAD FINAL
+    [Header("DEAD'S SOUNDS")]
+    [SerializeField, Tooltip("Event pour lancer la music finale")] private Event m_playDeadMusicEvent;
+    [SerializeField, Tooltip("Event pour stoper la music finale")] private Event m_stopDeadMusicEvent;
+    [SerializeField, Tooltip("Music Finale")] private SoundEvent m_deadMusic;
     
     private void OnEnable()
     {
@@ -41,6 +48,8 @@ public class SoundManager : Singleton<SoundManager>
         m_stopAmbiantMusicEvent.m_event += StopAmbiantMusic;
         m_playFinalMusicEvent.m_event += PlayFinalMusic;
         m_stopFinalMusicEvent.m_event += StopFinalMusic;
+        m_playDeadMusicEvent.m_event += PlayDeadMusic;
+        m_stopDeadMusicEvent.m_event += StopDeadMusic;
     }
     private void OnDisable()
     {
@@ -48,6 +57,8 @@ public class SoundManager : Singleton<SoundManager>
         m_stopAmbiantMusicEvent.m_event -= StopAmbiantMusic;
         m_playFinalMusicEvent.m_event -= PlayFinalMusic;
         m_stopFinalMusicEvent.m_event -= StopFinalMusic;
+        m_playDeadMusicEvent.m_event -= PlayDeadMusic;
+        m_stopDeadMusicEvent.m_event -= StopDeadMusic;
     }
 
     public void Play(SoundEvent m_soundEvent)
@@ -69,6 +80,8 @@ public class SoundManager : Singleton<SoundManager>
         m_finalMusic.Play();
     }
     public void StopFinalMusic() { m_finalMusic.Stop(); }
+    public void PlayDeadMusic() { m_deadMusic.Play(); }
+    public void StopDeadMusic() { m_deadMusic.Stop(); }
 
     protected override string GetSingletonName() { return "SoundManager"; }
 }

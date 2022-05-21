@@ -154,6 +154,7 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         // Interaction avec un mauvais pupitre
         m_lastNum = 0;
         m_close?.Invoke();
+        SoundManager.Instance.Play(SoundManager.Instance.m_defeatSound);
         // on reset le tableau
         if (m_chalkboard.m_idSentences > 0)
         {

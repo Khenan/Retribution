@@ -105,6 +105,8 @@ Transform:
   m_Children:
   - {fileID: 1213833012}
   - {fileID: 3041688864263811199}
+  - {fileID: 2305335115554212763}
+  - {fileID: 6692374133381847368}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,13 +127,18 @@ MonoBehaviour:
   m_PlayerWalkBottom: {fileID: 0}
   m_playerDeathSound: {fileID: 0}
   m_playerCoughSound: {fileID: 0}
+  m_playerEndSound: {fileID: 0}
   m_chalkboardWriting: {fileID: 0}
+  m_defeatSound: {fileID: 8251730661159237840}
   m_playAmbiantMusicEvent: {fileID: 11400000, guid: cfd8a57ec63694341936ce781daaa3d7, type: 2}
   m_stopAmbiantMusicEvent: {fileID: 11400000, guid: 6d2eec2f927129a40862643da9077d18, type: 2}
   m_ambiantMusic: {fileID: 1213833013}
   m_playFinalMusicEvent: {fileID: 11400000, guid: 69735e88d20e0bf44bfcf542c34f50cd, type: 2}
   m_stopFinalMusicEvent: {fileID: 11400000, guid: 9e8aa048e806c594296fe5c34abac411, type: 2}
   m_finalMusic: {fileID: 2859819820544517432}
+  m_playDeadMusicEvent: {fileID: 11400000, guid: ff1c3f4922da6de4690f98e1352ecba2, type: 2}
+  m_stopDeadMusicEvent: {fileID: 11400000, guid: 408030073d6b7a5499e3da5738b3a601, type: 2}
+  m_deadMusic: {fileID: 3097276516313346371}
 --- !u!1 &5716522855794343321
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,3 +214,153 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_event: {fileID: 7592627402877087714}
+--- !u!1 &7797136402504789734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2305335115554212763}
+  - component: {fileID: 97128624963680427}
+  - component: {fileID: 3097276516313346371}
+  m_Layer: 0
+  m_Name: DeadMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2305335115554212763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7797136402504789734}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1535136720885499739}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97128624963680427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7797136402504789734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1773677175
+      Data2: 1201893437
+      Data3: 731500420
+      Data4: 1543354424
+    Path: event:/UI_Events/GameOver_Menu_Loop
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &3097276516313346371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7797136402504789734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 97128624963680427}
+--- !u!1 &7841535599538823599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6692374133381847368}
+  - component: {fileID: 8489225652016174287}
+  - component: {fileID: 8251730661159237840}
+  m_Layer: 0
+  m_Name: DefeatSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6692374133381847368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841535599538823599}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1535136720885499739}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8489225652016174287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841535599538823599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1555338152
+      Data2: 1197757268
+      Data3: -2077354582
+      Data4: 160381739
+    Path: event:/Characters_Events/Kalfu_Laugh
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &8251730661159237840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841535599538823599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 8489225652016174287}

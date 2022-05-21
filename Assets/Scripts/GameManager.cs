@@ -39,10 +39,13 @@ public class GameManager : Singleton<GameManager>
             UIManager.Instance.OpenMenuInGame();
         }
     }
-
-    public void LockCursor(bool p_lock = true)
+    /// <summary>
+    /// Allow Cursor to be Locked Mode or Confined Mode
+    /// </summary>
+    /// <param name="value">Activate or deactivate the Locked Mode, where true activates the Locked Mode and false deactivates the Confined Mode.</param>
+    public void LockCursor(bool value = true)
     {
-        Cursor.lockState = p_lock ? CursorLockMode.Locked : CursorLockMode.Confined;
+        Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.Confined;
     }
 
     public void ChangeLanguage(int p_int)

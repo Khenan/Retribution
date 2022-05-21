@@ -20,8 +20,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField, Tooltip("Le checkpoint de départ")] private Transform m_startCheckpoint = null;
 
-    [SerializeField, Tooltip("Event de lancement de la music d'ambiance")] private Event m_stopAmbiantMusicEvent;
-    [SerializeField, Tooltip("Event d'arrêt de la music d'ambiance")] private Event m_playAmbiantMusicEvent;
+    [SerializeField, Tooltip("Event d'arrêt de la music d'ambiance")] private Event m_stopAmbiantMusicEvent;
+    [SerializeField, Tooltip("Event de lancement de la music d'ambiance")] private Event m_playAmbiantMusicEvent;
+    [SerializeField, Tooltip("Event d'arrêt de la music d'ambiance")] private Event m_stopDeadMusicEvent;
+    [SerializeField, Tooltip("Event de lancement de la music d'ambiance")] private Event m_playDeadMusicEvent;
     
     [Tooltip("Animator Component des bras du personnage")]
     public Animator m_armsAnimator;
@@ -108,22 +110,23 @@ public class PlayerController : MonoBehaviour
         m_stopAmbiantMusicEvent.Raise();
         StartCoroutine(GameOver());
     }
+    public void ReloadLastCheckpoint()
+    {
+        if (m_isDead) return;
+        m_isDead = true;
+        UIManager.Instance.RespawnButtonUI();
+    }
 
     IEnumerator GameOver()
     {
         yield return new WaitForSeconds(3f);
-        
-        // On stop la coroutine si elle existe
-        if(coroutineRespawn != null) StopCoroutine(coroutineRespawn);
-        coroutineRespawn = StartCoroutine(RespawnCooldownCoroutine());
-
-        // Fondu au noir apparait
-        UIManager.Instance.FadeIn();
+        UIManager.Instance.DisplayDeadMenu();
     }
     
-    private void Respawn()
+    public void Respawn()
     {
         m_playAmbiantMusicEvent.Raise();
+        m_stopDeadMusicEvent.Raise();
         // Il récupère son oxygène
         m_suffox.RecoverAllOxygen();
 
@@ -151,20 +154,13 @@ public class PlayerController : MonoBehaviour
         coroutineDeath = StartCoroutine(ResetDeathCoroutine(1));
         
         // Fondu au noir disparait
-        UIManager.Instance.FadeOut();
+        UIManager.Instance.FadeIn();
     }
     
     public void SetCheckpoint(Checkpoint p_checkpoint)
     {
         m_lastCheckpoint = p_checkpoint;
         Debug.Log($"Mon checkpoint est {m_lastCheckpoint.name}");
-    }
-
-    IEnumerator RespawnCooldownCoroutine(float p_waitSeconds = 2)
-    {
-        yield return new WaitForSeconds(p_waitSeconds);
-        Respawn();
-        UIManager.Instance.CloseUIInGame();
     }
     IEnumerator ResetDeathCoroutine(float p_waitSeconds = 2)
     {

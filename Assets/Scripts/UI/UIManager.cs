@@ -10,19 +10,13 @@ public class UIManager : Singleton<UIManager>
     public Transform m_menuInGame;
     [SerializeField, Tooltip("Menu Settings")]
     public Transform m_menuSettings;
-    [SerializeField, Tooltip("Image du blackFade")]
-    private Image m_blackFade;
-
-    [SerializeField, Tooltip("Transition BlackFade")]
-    private float m_timeBlackFade = 0.1f;
-    [SerializeField, Tooltip("Step alpha BlackFade")]
-    private float m_stepAlphaBlackFade = 0.1f;
-
-    private WaitForSeconds m_waitBlackFade;
-
-    private Coroutine m_fadeInCoroutine = null;
-    private Coroutine m_fadeOutCoroutine = null;
+    [SerializeField, Tooltip("Menu Dead")]
+    private Image m_menuDead;
     
+    [SerializeField, Tooltip("Image du blackFade")]
+    private Animator m_blackFadeAnimator;
+    private int m_animFadeIn = Animator.StringToHash("fadeIn");
+    private int m_animFadeOut = Animator.StringToHash("fadeOut");
     
     [SerializeField, Tooltip("Slider Sensibilité X")]
     private Slider m_sliderX;
@@ -51,44 +45,23 @@ public class UIManager : Singleton<UIManager>
 
     private void OnEnable()
     {
-        if (m_menuInGame && m_menuSettings)
+        if (m_menuInGame && m_menuSettings && m_menuDead)
         {
             m_menuInGame.gameObject.SetActive(false);
             m_menuSettings.gameObject.SetActive(false);
+            m_menuDead.gameObject.SetActive(false);
         }
-        
-        m_waitBlackFade = new WaitForSeconds(m_timeBlackFade);
-        m_blackFade.color = new Color(0, 0, 0, 0);
     }
 
     public void FadeIn()
     {
-        if(m_fadeInCoroutine != null) StopCoroutine(m_fadeInCoroutine);
-        m_fadeInCoroutine = StartCoroutine(FadeInCoroutine());
+        m_blackFadeAnimator.ResetTrigger(m_animFadeIn);
+        m_blackFadeAnimator.SetTrigger(m_animFadeIn);
     }
     public void FadeOut()
     {
-        if(m_fadeOutCoroutine != null) StopCoroutine(m_fadeOutCoroutine);
-        m_fadeOutCoroutine = StartCoroutine(FadeOutCoroutine());
-    }
-
-    IEnumerator FadeInCoroutine()
-    {
-        yield return m_waitBlackFade;
-        m_blackFade.color = new Color(0, 0, 0, m_blackFade.color.a + m_stepAlphaBlackFade);
-        if (m_blackFade.color.a < 1)
-        {
-            m_fadeInCoroutine = StartCoroutine(FadeInCoroutine());
-        }
-    }
-    IEnumerator FadeOutCoroutine()
-    {
-        yield return m_waitBlackFade;
-        m_blackFade.color = new Color(0, 0, 0, m_blackFade.color.a - m_stepAlphaBlackFade);
-        if (m_blackFade.color.a > 0)
-        {
-            m_fadeOutCoroutine = StartCoroutine(FadeOutCoroutine());
-        }
+        m_blackFadeAnimator.ResetTrigger(m_animFadeOut);
+        m_blackFadeAnimator.SetTrigger(m_animFadeOut);
     }
 
     public void ChangeSensitivity()
@@ -134,7 +107,7 @@ public class UIManager : Singleton<UIManager>
 
     public void ReloadLastCheckpoint()
     {
-        GameManager.Instance.m_playerCtrl.Death();
+        GameManager.Instance.m_playerCtrl.ReloadLastCheckpoint();
     }
 
     public void QuitGame()
@@ -153,12 +126,46 @@ public class UIManager : Singleton<UIManager>
     {
         m_menuSettings.gameObject.SetActive(false);
         m_menuInGame.gameObject.SetActive(false);
+        m_menuDead.gameObject.SetActive(false);
         GameManager.Instance.m_inGameMenu = false;
         GameManager.Instance.LockCursor();
+    }
+
+    public void Respawn()
+    {
+        CloseUIInGame();
+        GameManager.Instance.m_playerCtrl.Respawn();
     }
     
     protected override string GetSingletonName()
     {
         return "UIManager";
+    }
+
+    public void DisplayDeadMenu()
+    {
+        GameManager.Instance.m_inGameMenu = true;
+        FadeOut();
+        StartCoroutine(DisplayDeadMenuCoroutine());
+    }
+
+    IEnumerator DisplayDeadMenuCoroutine()
+    {
+        yield return new WaitForSeconds(1.2f);
+        m_menuDead.gameObject.SetActive(true);
+        GameManager.Instance.LockCursor(false);
+        FadeIn();
+    }
+
+    public void RespawnButtonUI()
+    {
+        GameManager.Instance.LockCursor();
+        StartCoroutine(RespawnCoroutine());
+    }
+    IEnumerator RespawnCoroutine()
+    {
+        FadeOut();
+        yield return new WaitForSeconds(1.2f);
+        Respawn();
     }
 }
