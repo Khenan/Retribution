@@ -80,7 +80,7 @@ public class SoundManager : Singleton<SoundManager>
         m_finalMusic.Play();
     }
     public void StopFinalMusic() { m_finalMusic.Stop(); }
-    public void PlayDeadMusic() { m_deadMusic.Play(); }
+    public void PlayDeadMusic() { m_deadMusic.Play(); Debug.Log("PlayDeadMusic"); }
     public void StopDeadMusic() { m_deadMusic.Stop(); }
 
     protected override string GetSingletonName() { return "SoundManager"; }

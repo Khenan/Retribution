@@ -23,11 +23,6 @@ public class CameraController : MonoBehaviour
     [SerializeField, Tooltip("Transform du Root accroupi")]
     private Transform m_crouchPos;
 
-    private void Start()
-    {
-        m_cameraTransform.rotation = Quaternion.identity;
-    }
-
     public void UpdateCamera()
     {
         float x = Input.GetAxis("Mouse X") * m_mouseSensitivityX * Time.deltaTime;

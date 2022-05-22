@@ -59,6 +59,13 @@ public class Door : InteractibleObject
     {
         m_doorColliderLeft.GetComponent<BoxCollider>().enabled = false;
         m_doorColliderRight.GetComponent<BoxCollider>().enabled = false;
+        StartCoroutine(ResetColliderIfCloseCoroutine());
+    }
+
+    IEnumerator ResetColliderIfCloseCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        if (!m_isOpen) ResetCollider();
     }
 
     private void OnEnable()

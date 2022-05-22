@@ -10,7 +10,7 @@ public class KillZone : MonoBehaviour
     {
         if ((m_playerLayer.value & 1<< other.gameObject.layer) > 0)
         {
-            other.gameObject.GetComponent<PlayerController>().Death();
+            other.gameObject.GetComponent<PlayerController>().DeathByFire();
         }
     }
 }

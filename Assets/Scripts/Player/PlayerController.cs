@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public Checkpoint m_lastCheckpoint;
 
+    private bool m_canMove = false;
     private bool m_isDead = false;
 
     [SerializeField, Tooltip("Le checkpoint de départ")] private Transform m_startCheckpoint = null;
@@ -25,16 +26,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("Event d'arrêt de la music d'ambiance")] private Event m_stopDeadMusicEvent;
     [SerializeField, Tooltip("Event de lancement de la music d'ambiance")] private Event m_playDeadMusicEvent;
     
-    [Tooltip("Animator Component des bras du personnage")]
-    public Animator m_armsAnimator;
-    [Tooltip("Animator Component de la caméra du personnage")]
-    public Animator m_cameraAnimator;
+    [Tooltip("Animator Component des bras du personnage")] public Animator m_armsAnimator;
+    [Tooltip("Animator Component de la caméra du personnage")] public Animator m_cameraAnimator;
+    [SerializeField, Tooltip("Temps en secondes avant de lancer l'animation du début")] private float m_timeWaitToStart = 1f;
 
     private int m_animHash_jumpscare = Animator.StringToHash("jumpscare");
     private int m_animHash_openFirst = Animator.StringToHash("openFirst");
     private int m_animHash_open = Animator.StringToHash("open");
     private int m_animHash_take = Animator.StringToHash("take");
     
+    private int m_animHash_waitStart = Animator.StringToHash("waitStart");
     private int m_animHash_start = Animator.StringToHash("start");
     private int m_animHash_dead = Animator.StringToHash("dead");
     private int m_animHash_end = Animator.StringToHash("end");
@@ -47,10 +48,24 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         m_finalCameraEvent.m_event += EndCamera;
+        m_cameraAnimator.SetTrigger(m_animHash_waitStart);
     }
     private void OnDisable()
     {
         m_finalCameraEvent.m_event -= EndCamera;
+    }
+
+    IEnumerator StartCameraAnim()
+    {
+        yield return new WaitForSeconds(m_timeWaitToStart);
+        AnimStartCamera();
+        StartCoroutine(CanMoveCoroutine(6));
+    }
+
+    IEnumerator CanMoveCoroutine(float p_second)
+    {
+        yield return new WaitForSeconds(p_second);
+        m_canMove = true;
     }
 
     private void Awake()
@@ -71,6 +86,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         m_playAmbiantMusicEvent.Raise();
+        StartCoroutine(StartCameraAnim());
     }
 
     private void Update()
@@ -78,7 +94,7 @@ public class PlayerController : MonoBehaviour
         if (m_end) return;
         m_charaController.UpdateGravity();
 
-        if (!m_isDead && !GameManager.Instance.m_inGameMenu)
+        if (!m_isDead && !GameManager.Instance.m_inGameMenu && m_canMove)
         {
             //if (Input.GetKeyDown(KeyCode.G)) Death();
             if (Input.GetKeyDown(KeyCode.C))
@@ -110,6 +126,14 @@ public class PlayerController : MonoBehaviour
         m_stopAmbiantMusicEvent.Raise();
         StartCoroutine(GameOver());
     }
+    public void DeathByFire()
+    {
+        if (m_isDead) return;
+        m_isDead = true;
+        Debug.Log("Le joueur est mort");
+        m_stopAmbiantMusicEvent.Raise();
+        StartCoroutine(GameOver());
+    }
     public void ReloadLastCheckpoint()
     {
         if (m_isDead) return;
@@ -120,6 +144,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator GameOver()
     {
         yield return new WaitForSeconds(3f);
+        m_playDeadMusicEvent.Raise();
         UIManager.Instance.DisplayDeadMenu();
     }
     

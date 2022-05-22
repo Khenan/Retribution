@@ -26,5 +26,6 @@ public class LockSymbol : MonoBehaviour
     private void Handle()
     {
         m_animator.SetTrigger(m_disappearAnim);
+        Destroy(gameObject, 1);
     }
 }
