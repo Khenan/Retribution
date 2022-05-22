@@ -127,12 +127,6 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         
         // On rend récupérable le totem
         m_totem.Takable = true;
-        
-        // Ouverture de toutes les portes
-        foreach (Door door in m_myDoors)
-        {
-            door.OpenLeft();
-        }
     }
 
     public bool CheckPupitre(int p_numPupitre)

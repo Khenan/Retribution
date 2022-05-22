@@ -129,8 +129,6 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_isCompleted = true;
         // On désactive le checkpoint
         m_checkpoint.gameObject.GetComponent<BoxCollider>().enabled = false;
-        // Ouverture de la porte
-        m_myDoor.OpenLeft();
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_zeroEnd);
         m_aiguilleFantomeAnimator.SetTrigger(m_aiguilleAnimator_zeroEnd);
         StartCoroutine(OpenGlassDoorCoroutine());
