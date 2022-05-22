@@ -12,12 +12,11 @@ public class PlayerController : MonoBehaviour
     private PlayerSound m_playerSound;
 
     private Coroutine coroutineRespawn = null;
-    private Coroutine coroutineDeath = null;
 
     public Checkpoint m_lastCheckpoint;
 
-    private bool m_canMove = false;
-    private bool m_isDead = false;
+    private bool m_canMove;
+    private bool m_isDead;
 
     [SerializeField, Tooltip("Le checkpoint de départ")] private Transform m_startCheckpoint = null;
 
@@ -55,19 +54,6 @@ public class PlayerController : MonoBehaviour
         m_finalCameraEvent.m_event -= EndCamera;
     }
 
-    IEnumerator StartCameraAnim()
-    {
-        yield return new WaitForSeconds(m_timeWaitToStart);
-        AnimStartCamera();
-        StartCoroutine(CanMoveCoroutine(6));
-    }
-
-    IEnumerator CanMoveCoroutine(float p_second)
-    {
-        yield return new WaitForSeconds(p_second);
-        m_canMove = true;
-    }
-
     private void Awake()
     {
         GameManager.Instance.LockCursor();
@@ -87,6 +73,13 @@ public class PlayerController : MonoBehaviour
     {
         m_playAmbiantMusicEvent.Raise();
         StartCoroutine(StartCameraAnim());
+    }
+
+    IEnumerator StartCameraAnim()
+    {
+        yield return new WaitForSeconds(m_timeWaitToStart);
+        AnimStartCamera();
+        StartCoroutine(CanMoveCoroutine(6));
     }
 
     private void Update()
@@ -141,13 +134,6 @@ public class PlayerController : MonoBehaviour
         UIManager.Instance.RespawnButtonUI();
     }
 
-    IEnumerator GameOver()
-    {
-        yield return new WaitForSeconds(3f);
-        m_playDeadMusicEvent.Raise();
-        UIManager.Instance.DisplayDeadMenu();
-    }
-    
     public void Respawn()
     {
         m_playAmbiantMusicEvent.Raise();
@@ -176,7 +162,7 @@ public class PlayerController : MonoBehaviour
         EnigmePupitre.Instance.RestartEnigme();
         EnigmeHorloge.Instance.RestartEnigme();
         
-        coroutineDeath = StartCoroutine(ResetDeathCoroutine(1));
+        StartCoroutine(ResetDeathCoroutine(1));
         
         // Fondu au noir disparait
         UIManager.Instance.FadeIn();
@@ -186,12 +172,6 @@ public class PlayerController : MonoBehaviour
     {
         m_lastCheckpoint = p_checkpoint;
         Debug.Log($"Mon checkpoint est {m_lastCheckpoint.name}");
-    }
-    IEnumerator ResetDeathCoroutine(float p_waitSeconds = 2)
-    {
-        yield return new WaitForSeconds(p_waitSeconds);
-        Debug.Log("Le joueur peut jouer");
-        m_isDead = false;
     }
 
     public void AnimJumpscare()
@@ -214,6 +194,7 @@ public class PlayerController : MonoBehaviour
     public void AnimStartCamera()
     {
         m_cameraAnimator.SetTrigger(m_animHash_start);
+        StartCoroutine(StartChairSoundCoroutine(3));
     }
     private void AnimDeadCamera()
     {
@@ -243,5 +224,31 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(18);
         SceneManager.Instance.LoadScene();
+    }
+    
+    IEnumerator StartChairSoundCoroutine(float p_second)
+    {
+        yield return new WaitForSeconds(p_second);
+        SoundManager.Instance.Play(SoundManager.Instance.m_startChairSound);
+    }
+
+    IEnumerator CanMoveCoroutine(float p_second)
+    {
+        yield return new WaitForSeconds(p_second);
+        m_canMove = true;
+    }
+    
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        m_playDeadMusicEvent.Raise();
+        UIManager.Instance.DisplayDeadMenu();
+    }
+    
+    IEnumerator ResetDeathCoroutine(float p_waitSeconds = 2)
+    {
+        yield return new WaitForSeconds(p_waitSeconds);
+        Debug.Log("Le joueur peut jouer");
+        m_isDead = false;
     }
 }

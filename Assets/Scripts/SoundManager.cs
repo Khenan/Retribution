@@ -19,6 +19,11 @@ public class SoundManager : Singleton<SoundManager>
     public SoundEvent m_playerEndSound;
     
 
+    // START
+    [Header("START'S SOUNDS")]
+    [Tooltip("Son de la chaise qui traine")]
+    public SoundEvent m_startChairSound;
+    
     // ENIGME 1
     [Header("FIRST ENIGMA'S SOUNDS")]
     [Tooltip("Son du tableau à craie")]
