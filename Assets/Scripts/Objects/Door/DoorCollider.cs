@@ -12,16 +12,15 @@ public class DoorCollider : InteractibleObject
     {
         if (m_myDoor.m_isOpen) return;
         m_myDoor.ClearCollider();
-        InteractionController interactCtrl = FindObjectOfType<InteractionController>();
-        PlayerController playerCtrl = FindObjectOfType<PlayerController>();
+        InteractionController interactCtrl = GameManager.Instance.m_playerCtrl.GetComponent<InteractionController>();
         // Si la porte peut s'ouvrir
         if (!interactCtrl.m_firstOpenDoor)
         {
             interactCtrl.m_firstOpenDoor = true;
-            playerCtrl.AnimOpenFirst();
+            GameManager.Instance.m_playerCtrl.AnimOpenFirst();
         }
         else
-            playerCtrl.AnimOpen();
+            GameManager.Instance.m_playerCtrl.AnimOpen();
         
         // On ouvre la porte
         StartCoroutine(CoroutineOpen());

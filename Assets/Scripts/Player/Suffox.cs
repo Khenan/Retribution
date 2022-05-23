@@ -37,12 +37,6 @@ public class Suffox : MonoBehaviour
         UpdateSlider();
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)) TakeDamage();
-        if(Input.GetKeyUp(KeyCode.Space)) RecoverOxygen();
-    }
-
     public void TakeDamage()
     {
         StopAllCoroutines();

@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private bool m_end;
     
     [SerializeField, Tooltip("Event de fin de jeu cinématique avec la caméra")] private Event m_finalCameraEvent;
+    [SerializeField, Tooltip("Temps à la fin avant d'envoyer sur les crédits")] private float m_timeToGoCredit = 15;
 
     private void OnEnable()
     {
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour
         if (!m_isDead && !GameManager.Instance.m_inGameMenu && m_canMove)
         {
             //if (Input.GetKeyDown(KeyCode.G)) Death();
-            if (Input.GetKeyDown(KeyCode.LeftControl))
+            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
             {        
                 m_charaController.Crouch();
                 m_cameraController.CrouchStand(m_charaController.m_isCrouching);
@@ -222,7 +223,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator CreditsCoroutine()
     {
-        yield return new WaitForSeconds(18);
+        yield return new WaitForSeconds(m_timeToGoCredit);
         SceneManager.Instance.LoadScene();
     }
     

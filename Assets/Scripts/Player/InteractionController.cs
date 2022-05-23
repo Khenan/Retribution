@@ -23,10 +23,6 @@ public class InteractionController : MonoBehaviour
     private LayerMask m_clockDrawLayer;
     
     [Header("OBJET")]
-    [SerializeField, Tooltip("Crouch position")]
-    private Transform m_crouchPos;
-    [SerializeField, Tooltip("Stand position")]
-    private Transform m_standPos;
     [SerializeField, Tooltip("Emplacement de la main quand le joueur tient un objet")]
     private TwoBoneIKConstraint m_handIK;
     [SerializeField, Tooltip("Emplacement d'objet à tenir")]

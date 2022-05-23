@@ -13,18 +13,18 @@ public class SceneButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void OnEnable()
     {
-        m_leftIcon.gameObject.SetActive(false);
-        m_rightIcon.gameObject.SetActive(false);
+        if (m_leftIcon != null) m_leftIcon.gameObject.SetActive(false);
+        if (m_rightIcon != null) m_rightIcon.gameObject.SetActive(false);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        m_leftIcon.gameObject.SetActive(true);
-        m_rightIcon.gameObject.SetActive(true);
+        if (m_leftIcon != null) m_leftIcon.gameObject.SetActive(true);
+        if (m_rightIcon != null) m_rightIcon.gameObject.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        m_leftIcon.gameObject.SetActive(false);
-        m_rightIcon.gameObject.SetActive(false);
+        if (m_leftIcon != null) m_leftIcon.gameObject.SetActive(false);
+        if (m_rightIcon != null) m_rightIcon.gameObject.SetActive(false);
     }
 }
