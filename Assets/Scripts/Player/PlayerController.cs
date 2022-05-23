@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         m_finalCameraEvent.m_event += EndCamera;
         m_cameraAnimator.SetTrigger(m_animHash_waitStart);
+        StartCoroutine(StartCameraAnim());
     }
     private void OnDisable()
     {
@@ -72,7 +73,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         m_playAmbiantMusicEvent.Raise();
-        StartCoroutine(StartCameraAnim());
     }
 
     IEnumerator StartCameraAnim()
