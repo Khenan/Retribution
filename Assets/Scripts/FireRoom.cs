@@ -10,6 +10,7 @@ public class FireRoom : MonoBehaviour
     [SerializeField, Tooltip("List des feux à s'élever en deuxième")] private Transform m_secondFires;
     [SerializeField, Tooltip("List des feux à s'élever en dernier")] private Transform m_lastFires;
 
+    [SerializeField, Tooltip("Event à écouter pour monter tous les feux")] private Event m_upFire;
     [SerializeField, Tooltip("Event à écouter pour les premiers feux")] private Event m_firstFireEvent;
     [SerializeField, Tooltip("Event à écouter pour reset")] private Event m_eventToReset;
 
@@ -33,12 +34,21 @@ public class FireRoom : MonoBehaviour
         m_init_posLastFires = new Vector3(m_lastFires.position.x, m_lastFires.position.y, m_lastFires.position.z);
         m_firstFireEvent.m_event += FirstHandle;
         m_eventToReset.m_event += Reset;
+        if(m_upFire != null) m_upFire.m_event += Up;
     }
 
     private void OnDisable()
     {
         m_firstFireEvent.m_event -= FirstHandle;
         m_eventToReset.m_event -= Reset;
+        if(m_upFire != null) m_upFire.m_event -= Up;
+    }
+
+    public void Up()
+    {
+        m_firstFires.position = new Vector3(m_firstFires.position.x, 0, m_firstFires.position.z);
+        m_secondFires.position = new Vector3(m_secondFires.position.x, 0, m_secondFires.position.z);
+        m_lastFires.position = new Vector3(m_lastFires.position.x, 0, m_lastFires.position.z);
     }
 
     private void FirstHandle()
