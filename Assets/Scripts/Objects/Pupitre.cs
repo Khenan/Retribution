@@ -22,6 +22,9 @@ public class Pupitre : InteractibleObject
     public SoundEvent m_closeDesk;
     [SerializeField, Tooltip("Son de bloqué du pupitre")]
     public SoundEvent m_dontOpenDesk;
+
+    [Header("TIME OPEN"), SerializeField, Tooltip("Temps pour ouvrir le pupitre après l'anim des bras du joueur")]
+    private float m_timeToWaitOpen = 0.6f;
     
     private void Awake()
     {
@@ -40,23 +43,14 @@ public class Pupitre : InteractibleObject
     public override void Interact()
     {
         GameManager.Instance.m_playerCtrl.AnimOpen();
-        // On ouvre
-        StartCoroutine(CoroutineOpen());
-    }
-
-    IEnumerator CoroutineOpen()
-    {
-        Debug.Log("coucou1");
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log("coucou2");
-        if (m_isOpen)
-        {
-            StartDontOpenSound();
-            yield break;
-        }
+        if (m_isOpen) return;
         if (m_enigmePupitre.CheckPupitre(m_numPupitre))
         {
             Open();
+        }
+        else
+        {
+            StartDontOpenSound();
         }
     }
     public override void Shine()

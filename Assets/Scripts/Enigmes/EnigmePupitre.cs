@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -145,10 +146,12 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
             return true;
         }
         if (m_isCompleted) return false;
+        
         // Interaction avec un mauvais pupitre
+        if (m_lastNum > 0)
+            StartCoroutine(CoroutineSoundDefeat());
         m_lastNum = 0;
         m_close?.Invoke();
-        SoundManager.Instance.Play(SoundManager.Instance.m_defeatSound);
         // on reset le tableau
         if (m_chalkboard.m_idSentences > 0)
         {
@@ -157,6 +160,12 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         }
         print(m_lastNum);
         return false;
+    }
+
+    IEnumerator CoroutineSoundDefeat()
+    {
+        yield return new WaitForSeconds(1);
+        SoundManager.Instance.Play(SoundManager.Instance.m_defeatSound);
     }
 
     protected override string GetSingletonName()

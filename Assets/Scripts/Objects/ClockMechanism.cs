@@ -50,13 +50,6 @@ public class ClockMechanism : InteractibleObject
         if (m_isPush || m_isLock) return;
         
         GameManager.Instance.m_playerCtrl.AnimOpen();
-        // On ouvre
-        StartCoroutine(CoroutineOpen());
-    }
-
-    IEnumerator CoroutineOpen()
-    {
-        yield return new WaitForSeconds(0.5f);
         m_isPush = true;
         m_mechanismeSound.Play();
         m_meshAnimator.ResetTrigger(m_animatorResetHash);
