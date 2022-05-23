@@ -26,11 +26,14 @@ public class ClockMechanism : InteractibleObject
     [SerializeField, Tooltip("Son du mécanisme")]
     private SoundEvent m_mechanismeSound;
 
+    
+    private PlayerController playerCtrl;
     private void OnEnable()
     {
         m_listenEventRestart.m_event += Reset;
         if (m_listenEvent == null) return;
         m_listenEvent.m_event += Handle;
+        playerCtrl = FindObjectOfType<PlayerController>();
     }
     
     private void OnDisable()
@@ -48,6 +51,8 @@ public class ClockMechanism : InteractibleObject
     public override void Interact()
     {
         if (m_isPush || m_isLock) return;
+        
+        playerCtrl.AnimOpen();
         m_isPush = true;
         m_mechanismeSound.Play();
         m_meshAnimator.ResetTrigger(m_animatorResetHash);

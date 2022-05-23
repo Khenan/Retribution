@@ -23,9 +23,12 @@ public class Pupitre : InteractibleObject
     [SerializeField, Tooltip("Son de bloqué du pupitre")]
     public SoundEvent m_dontOpenDesk;
     
+    private PlayerController playerCtrl;
+    
     private void Awake()
     {
         m_enigmePupitre = FindObjectOfType<EnigmePupitre>();
+        playerCtrl = FindObjectOfType<PlayerController>();
     }
 
     private void OnEnable()
@@ -39,6 +42,7 @@ public class Pupitre : InteractibleObject
 
     public override void Interact()
     {
+        playerCtrl.AnimOpen();
         if (m_isOpen)
         {
             StartDontOpenSound();
