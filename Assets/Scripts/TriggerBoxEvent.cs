@@ -23,6 +23,7 @@ public class TriggerBoxEvent : MonoBehaviour
     {
         m_col = GetComponent<Collider>();
         m_col.isTrigger = true;
+        if (m_eventsToPop) m_col.enabled = false;
     }
 
     private void OnEnable()
