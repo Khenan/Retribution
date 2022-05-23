@@ -49,13 +49,13 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 7.13
+      - m_Value: 1.5
         m_Name: LifeTime_Min
         m_Overridden: 1
-      - m_Value: 10
+      - m_Value: 2.5
         m_Name: LifeTime_Max
         m_Overridden: 1
-      - m_Value: 1000
+      - m_Value: 3400
         m_Name: Smokerate
         m_Overridden: 1
     m_Vector2f:
@@ -68,14 +68,17 @@ VisualEffect:
       - m_Value: {x: 8, y: 1, z: 10}
         m_Name: SizeBoxCollider
         m_Overridden: 1
-      - m_Value: {x: 0, y: 1.55, z: 0}
+      - m_Value: {x: 0, y: 0, z: 0}
         m_Name: CenterBounds
         m_Overridden: 1
       - m_Value: {x: 0, y: 0.5, z: 0}
         m_Name: SmokeSpeed
         m_Overridden: 1
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0.014536494, y: 0.23137254, z: 0.07995072, w: 0}
+        m_Name: Color
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -83,11 +86,66 @@ VisualEffect:
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: -0.0000019073486
+            value: 0.5360036
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: AlphaOverLife
+        m_Overridden: 1
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: -0.0000019073486
+            value: 0.14588213
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0.78115845
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: SizeOverLife
+        m_Overridden: 1
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 2800000, guid: 570ef87451451614996cb766a3524cc3, type: 3}
+        m_Name: Flamme
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &6510652600515468865

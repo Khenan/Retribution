@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         if (!m_isDead && !GameManager.Instance.m_inGameMenu && m_canMove)
         {
             //if (Input.GetKeyDown(KeyCode.G)) Death();
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {        
                 m_charaController.Crouch();
                 m_cameraController.CrouchStand(m_charaController.m_isCrouching);
