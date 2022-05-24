@@ -47,7 +47,6 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
 
     private void OnEnable()
     {
-        m_onYourKnees.gameObject.SetActive(false);
         m_aiguilleAnimator = m_aiguilleMinute.GetComponent<Animator>();
         m_aiguilleFantomeAnimator = m_aiguilleFantome.GetComponent<Animator>();
         m_glassDoorAnimator = m_glassDoor.GetComponent<Animator>();
@@ -57,6 +56,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_eventLaunchSmoke.m_event += LaunchSmoke;
         // Fermeture de la porte
         m_myDoor.Close();
+        m_onYourKnees.gameObject.SetActive(false);
     }
     
     private void OnDisable()
@@ -89,6 +89,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
         m_myDoor.Lock();
         m_aiguilleAnimator.SetTrigger(m_aiguilleAnimator_four);
         m_aiguilleFantomeAnimator.SetTrigger(m_aiguilleAnimator_four);
+        
         StartCoroutine(DisplayIndiceCoroutine());
     }
 
@@ -143,6 +144,7 @@ public class EnigmeHorloge : Singleton<EnigmeHorloge>, IEnigme
     {
         yield return new WaitForSeconds(30f);
         if(m_midEnigme) yield break;
+        Debug.Log("Ajout Indice");
         m_onYourKnees.gameObject.SetActive(true);
     }
     protected override string GetSingletonName()

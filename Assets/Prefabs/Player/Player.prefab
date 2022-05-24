@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4f86beac9b1ad4e983efa58fc5b9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cooldownTakeDamage: 0.1
-  m_cooldownRecoverOxygen: 0.05
+  m_cooldownTakeDamage: 0.2
+  m_cooldownRecoverOxygen: 0.03
   m_oxygenMax: 100
   m_oxygen: 0
   m_oxygenSlider: {fileID: 0}
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785330354577987298}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3537e38427a8b2c45b2764553120228f, type: 3}
   m_Name: 
@@ -479,8 +479,6 @@ MonoBehaviour:
   m_clockDrawLayer:
     serializedVersion: 2
     m_Bits: 4096
-  m_crouchPos: {fileID: 694211368}
-  m_standPos: {fileID: 979312974}
   m_handIK: {fileID: 8150652240882550889}
   m_objectPos: {fileID: 7720987035872793572}
   m_handFull: 0
@@ -519,7 +517,9 @@ MonoBehaviour:
   m_playDeadMusicEvent: {fileID: 11400000, guid: ff1c3f4922da6de4690f98e1352ecba2, type: 2}
   m_armsAnimator: {fileID: 649633305460576377}
   m_cameraAnimator: {fileID: 46432659}
+  m_timeWaitToStart: 1
   m_finalCameraEvent: {fileID: 11400000, guid: e735c4bede84ba94db77f25193ed7006, type: 2}
+  m_timeToGoCredit: 15
 --- !u!143 &1131155440
 CharacterController:
   m_ObjectHideFlags: 0
@@ -534,7 +534,7 @@ CharacterController:
   m_Height: 1.6
   m_Radius: 0.2
   m_SlopeLimit: 45
-  m_StepOffset: 0.2
+  m_StepOffset: 0.4
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8, z: 0}
@@ -777,11 +777,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1839990642
-      Data2: 1263038799
-      Data3: 274723003
-      Data4: 1216458727
-    Path: event:/Characters_Events/End_Game
+      Data1: -1836917914
+      Data2: 1240991423
+      Data3: 1055970707
+      Data4: -324381770
+    Path: event:/Characters_Events/End
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -2522,6 +2522,22 @@ PrefabInstance:
     - target: {fileID: 8008292551632961650, guid: f10803457be3e9741bd84b7bfd296024, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 12.870259
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104475740788927464, guid: f10803457be3e9741bd84b7bfd296024, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98978585
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104475740788927464, guid: f10803457be3e9741bd84b7bfd296024, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.009569418
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104475740788927464, guid: f10803457be3e9741bd84b7bfd296024, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.1296734
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104475740788927464, guid: f10803457be3e9741bd84b7bfd296024, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.058457647
       objectReference: {fileID: 0}
     - target: {fileID: 8104475740788927464, guid: f10803457be3e9741bd84b7bfd296024, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
