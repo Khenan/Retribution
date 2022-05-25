@@ -29,7 +29,7 @@ public class DoorCollider : InteractibleObject
 
     IEnumerator CoroutineOpen()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(1.05f);
         if (m_leftTrigger)
         {
             m_myDoor.Toggle();

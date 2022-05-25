@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Pupitre : InteractibleObject
 {
@@ -26,6 +28,9 @@ public class Pupitre : InteractibleObject
 
     [Header("TIME OPEN"), SerializeField, Tooltip("Temps pour ouvrir le pupitre après l'anim des bras du joueur")]
     private float m_timeToWaitOpen = 0.6f;
+
+    private Coroutine m_coroutine = null;
+    private WaitForSeconds m_waitForSeconds = new WaitForSeconds(1.05f);
     
     private void Awake()
     {
@@ -41,8 +46,14 @@ public class Pupitre : InteractibleObject
         EnigmePupitre.Instance.m_close -= Close;
     }
 
+    private void Update()
+    {
+        Debug.Log(m_coroutine);
+    }
+
     public override void Interact()
     {
+        Debug.Log(m_isOpen);
         GameManager.Instance.m_playerCtrl.AnimOpen();
         if (m_isOpen) return;
         if (m_enigmePupitre.CheckPupitre(m_numPupitre))
