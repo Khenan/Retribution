@@ -2174,6 +2174,10 @@ PrefabInstance:
       propertyPath: m_totem
       value: 
       objectReference: {fileID: 2140588685}
+    - target: {fileID: 2327848701060174300, guid: ca48e53a9fad1c345aabf018c5045d45, type: 3}
+      propertyPath: m_fireRoom
+      value: 
+      objectReference: {fileID: 1529258527}
     - target: {fileID: 2327848701060174302, guid: ca48e53a9fad1c345aabf018c5045d45, type: 3}
       propertyPath: m_Name
       value: EnigmePupitre
@@ -17157,6 +17161,10 @@ PrefabInstance:
       propertyPath: m_startCheckpoint
       value: 
       objectReference: {fileID: 1134356499}
+    - target: {fileID: 2560776973125352297, guid: d22d19b63a18c2443bb6189a7430be8e, type: 3}
+      propertyPath: m_openFinalDoorEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: a9bc0735f70a27d40a5cd1b5ccfe9a14, type: 2}
     - target: {fileID: 3235017437738096439, guid: d22d19b63a18c2443bb6189a7430be8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -18445,6 +18453,22 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[0].m_Value.m_Curve.Array.data[0].value
       value: 1.3289266
       objectReference: {fileID: 0}
+    - target: {fileID: 6784059229370148810, guid: 55b6c55c428abf44097a281d2de5cb53, type: 3}
+      propertyPath: m_EventToListen_Lock.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784059229370148810, guid: 55b6c55c428abf44097a281d2de5cb53, type: 3}
+      propertyPath: m_EventToListen_Close.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784059229370148810, guid: 55b6c55c428abf44097a281d2de5cb53, type: 3}
+      propertyPath: m_EventToListen_Lock.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 28b3521158b2b1a49af493ff505555c1, type: 2}
+    - target: {fileID: 6784059229370148810, guid: 55b6c55c428abf44097a281d2de5cb53, type: 3}
+      propertyPath: m_EventToListen_Close.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 28b3521158b2b1a49af493ff505555c1, type: 2}
     - target: {fileID: 6865830311294556427, guid: 55b6c55c428abf44097a281d2de5cb53, type: 3}
       propertyPath: m_Name
       value: BrancheEnigmeHorloge
@@ -19345,10 +19369,6 @@ PrefabInstance:
     - target: {fileID: 7062292001512897327, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7062292001512897327, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
