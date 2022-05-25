@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private int m_animHash_waitStart = Animator.StringToHash("waitStart");
     private int m_animHash_start = Animator.StringToHash("start");
     private int m_animHash_dead = Animator.StringToHash("dead");
+    private int m_animHash_deadCrouch = Animator.StringToHash("deadCrouch");
     private int m_animHash_end = Animator.StringToHash("end");
     private int m_animHash_reset = Animator.StringToHash("reset");
 
@@ -44,16 +45,20 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField, Tooltip("Event de fin de jeu cinématique avec la caméra")] private Event m_finalCameraEvent;
     [SerializeField, Tooltip("Temps à la fin avant d'envoyer sur les crédits")] private float m_timeToGoCredit = 15;
+    
+    [SerializeField, Tooltip("Event de l'ouverture de la porte finale")] private Event m_openFinalDoorEvent;
 
     private void OnEnable()
     {
         m_finalCameraEvent.m_event += EndCamera;
+        m_openFinalDoorEvent.m_event += DecreaseSpeed;
         m_cameraAnimator.SetTrigger(m_animHash_waitStart);
         StartCoroutine(StartCameraAnim());
     }
     private void OnDisable()
     {
         m_finalCameraEvent.m_event -= EndCamera;
+        m_openFinalDoorEvent.m_event -= DecreaseSpeed;
     }
 
     private void Awake()
@@ -74,6 +79,11 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         m_playAmbiantMusicEvent.Raise();
+    }
+
+    private void DecreaseSpeed()
+    {
+        m_charaController.m_speed /= 2;
     }
 
     IEnumerator StartCameraAnim()
@@ -111,7 +121,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Le joueur est mort");
 
         m_playerSound.Dead();
-        AnimDeadCamera();
+        if(m_charaController.m_isCrouching) 
+            AnimDeadCrouchCamera();
+        else
+            AnimDeadCamera();
         m_stopAmbiantMusicEvent.Raise();
         StartCoroutine(GameOver());
     }
@@ -195,6 +208,10 @@ public class PlayerController : MonoBehaviour
     private void AnimDeadCamera()
     {
         m_cameraAnimator.SetTrigger(m_animHash_dead);
+    }
+    private void AnimDeadCrouchCamera()
+    {
+        m_cameraAnimator.SetTrigger(m_animHash_deadCrouch);
     }
     private void AnimResetCamera()
     {
