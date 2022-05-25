@@ -10,6 +10,7 @@ public class Pupitre : InteractibleObject
 
     private readonly int m_closeAnimator = Animator.StringToHash("close");
     private readonly int m_openAnimator = Animator.StringToHash("open");
+    private readonly int m_notOpenAnimator = Animator.StringToHash("notOpen");
 
     private EnigmePupitre m_enigmePupitre;
     [SerializeField, Tooltip("Numéro du pupitre"), Range(0, 10)]
@@ -50,6 +51,7 @@ public class Pupitre : InteractibleObject
         }
         else
         {
+            m_animator.SetTrigger(m_notOpenAnimator);
             StartDontOpenSound();
         }
     }
