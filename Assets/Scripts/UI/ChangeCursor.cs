@@ -9,9 +9,14 @@ public class ChangeCursor : MonoBehaviour
     private Texture2D m_cursorTexture2D;
 
     [SerializeField, Tooltip("Texture du Curseur")]
-    private bool m_centerCursor = false; 
+    private bool m_centerCursor = false;
 
     private void Start()
+    {
+        Change();
+    }
+
+    private void Change()
     {
         Cursor.lockState = CursorLockMode.Confined;
         if(m_centerCursor)
