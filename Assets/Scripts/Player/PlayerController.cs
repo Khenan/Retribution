@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator CreditsCoroutine()
     {
         yield return new WaitForSeconds(m_timeToGoCredit);
-        SceneManager.Instance.LoadScene();
+        SceneManager.Instance.ChangeScene(2);
     }
     
     IEnumerator StartChairSoundCoroutine(float p_second)
