@@ -7,6 +7,7 @@ public class ClockMechanism : InteractibleObject
 {
     [SerializeField, Tooltip("Animator du mesh")]
     private Animator m_meshAnimator;
+    private BoxCollider m_col;
 
     private int m_animatorPushHash = Animator.StringToHash("push");
     private int m_animatorResetHash = Animator.StringToHash("reset");
@@ -28,6 +29,7 @@ public class ClockMechanism : InteractibleObject
     
     private void OnEnable()
     {
+        m_col = GetComponent<BoxCollider>();
         m_listenEventRestart.m_event += Reset;
         if (m_listenEvent == null) return;
         m_listenEvent.m_event += Handle;
@@ -51,6 +53,7 @@ public class ClockMechanism : InteractibleObject
         
         GameManager.Instance.m_playerCtrl.AnimOpen();
         m_isPush = true;
+        m_col.enabled = false;
         m_mechanismeSound.Play();
         m_meshAnimator.ResetTrigger(m_animatorResetHash);
         m_meshAnimator.SetTrigger(m_animatorPushHash);
@@ -72,6 +75,7 @@ public class ClockMechanism : InteractibleObject
     private void Reset()
     {
         m_isPush = false;
+        m_col.enabled = true;
         m_isLock = m_isLockOnStart;
         m_meshAnimator.ResetTrigger(m_animatorPushHash);
         m_meshAnimator.SetTrigger(m_animatorResetHash);
