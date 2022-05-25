@@ -23,6 +23,9 @@ public class CameraController : MonoBehaviour
     [SerializeField, Tooltip("Transform du Root accroupi")]
     private Transform m_crouchPos;
 
+    [SerializeField, Tooltip("Vitesse d'accroupissement")]
+    private float m_speedCrouch = 0.05f;
+
     public void UpdateCamera()
     {
         float x = Input.GetAxis("Mouse X") * m_mouseSensitivityX * Time.deltaTime;
@@ -47,7 +50,7 @@ public class CameraController : MonoBehaviour
         {
             while (!Mathf.Approximately(m_cameraTransform.position.y, m_crouchPos.position.y))
             {
-                m_cameraTransform.position = Vector3.MoveTowards(m_cameraTransform.position, m_crouchPos.position, 0.005f);
+                m_cameraTransform.position = Vector3.MoveTowards(m_cameraTransform.position, m_crouchPos.position, m_speedCrouch);
                 yield return new WaitForSeconds(0.001f);
             } 
         }
@@ -55,7 +58,7 @@ public class CameraController : MonoBehaviour
         {
             while (!Mathf.Approximately(m_cameraTransform.position.y, m_standPos.position.y))
             {
-                m_cameraTransform.position = Vector3.MoveTowards(m_cameraTransform.position, m_standPos.position, 0.01f);
+                m_cameraTransform.position = Vector3.MoveTowards(m_cameraTransform.position, m_standPos.position, m_speedCrouch);
                 yield return new WaitForSeconds(0.001f);
             } 
         }

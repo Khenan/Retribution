@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
         if (!m_isDead && !GameManager.Instance.m_inGameMenu && m_canMove)
         {
-            //if (Input.GetKeyDown(KeyCode.G)) Death();
+            if (Input.GetKeyDown(KeyCode.G)) Death();
             if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
             {        
                 m_charaController.Crouch();
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator CreditsCoroutine()
     {
         yield return new WaitForSeconds(m_timeToGoCredit);
-        SceneManager.Instance.LoadScene();
+        SceneManager.Instance.ChangeScene(2);
     }
     
     IEnumerator StartChairSoundCoroutine(float p_second)
