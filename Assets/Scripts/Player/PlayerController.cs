@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(m_timeWaitToStart);
         AnimStartCamera();
-        StartCoroutine(CanMoveCoroutine(6));
+        StartCoroutine(CanMoveCoroutine(7.6f));
     }
 
     private void Update()
@@ -101,11 +101,6 @@ public class PlayerController : MonoBehaviour
             m_cameraController.UpdateCamera();
         }
 
-        if (Input.GetKeyDown(KeyCode.G)) AnimJumpscare();
-        if (Input.GetKeyDown(KeyCode.H)) AnimOpen();
-        if (Input.GetKeyDown(KeyCode.J)) AnimOpenFirst();
-        if (Input.GetKeyDown(KeyCode.K)) AnimTake();
-        
         m_playerSound.UpdateSound();
     }
 
