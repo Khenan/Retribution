@@ -84,7 +84,7 @@ public class FireRoom : MonoBehaviour
             else LastHandle();
         }
         if (!(pos.y < 0)) yield break;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.001f);
         p_fire.localPosition = new Vector3(pos.x, pos.y + m_step, pos.z);
         StartCoroutine(UpFireCoroutine(p_fire, p_secondFire));
     }
@@ -92,7 +92,7 @@ public class FireRoom : MonoBehaviour
     {
         Vector3 pos = p_fire.localPosition;
         if (!(pos.y < 0)) yield break;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.001f);
         p_fire.localPosition = new Vector3(pos.x, pos.y + m_step, pos.z);
         StartCoroutine(UpLastFireCoroutine(p_fire));
     }

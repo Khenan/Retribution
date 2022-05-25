@@ -133,6 +133,11 @@ public class PlayerController : MonoBehaviour
         if (m_isDead) return;
         m_isDead = true;
         Debug.Log("Le joueur est mort");
+        m_playerSound.Dead();
+        if(m_charaController.m_isCrouching) 
+            AnimDeadCrouchCamera();
+        else
+            AnimDeadCamera();
         m_stopAmbiantMusicEvent.Raise();
         StartCoroutine(GameOver());
     }
