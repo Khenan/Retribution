@@ -65,7 +65,7 @@ public class Pupitre : InteractibleObject
             m_animator.SetTrigger(m_notOpenAnimator);
             StartDontOpenSound();
         }
-    }
+    } 
     public override void Shine()
     {
         if (m_isOpen) return;
