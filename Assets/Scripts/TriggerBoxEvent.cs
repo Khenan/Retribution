@@ -16,6 +16,9 @@ public class TriggerBoxEvent : MonoBehaviour
     [SerializeField, Tooltip("Le trigger doit se lancer qu'une seule fois")]
     private bool m_once = false;
 
+    [SerializeField, Tooltip("BoxCollider Supplémentaire")]
+    private List<BoxCollider> m_colliderSupplementaire;
+
     [HideInInspector]
     public Collider m_col = null;
 
@@ -50,7 +53,10 @@ public class TriggerBoxEvent : MonoBehaviour
             e.Raise();
         }
 
-        if (m_once) m_col.enabled = false;
+        if (!m_once) return;
+        
+        m_col.enabled = false;
+        if (m_colliderSupplementaire.Count > 0) m_colliderSupplementaire.ForEach(c => c.enabled = false);
     }
 
     public void Reset()

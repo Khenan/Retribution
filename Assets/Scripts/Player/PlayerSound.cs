@@ -12,7 +12,7 @@ public class PlayerSound : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        if ((x != 0 || z != 0) && m_coroutine == null)
+        if ((x != 0 || z != 0) && m_coroutine == null && !m_isWalking)
         {
             m_coroutine = StartCoroutine(IsWalkCoroutine());
         }
@@ -31,6 +31,7 @@ public class PlayerSound : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         m_isWalking = x != 0 || z != 0;
+        m_coroutine = null;
     }
 
     private void UpdateWalking()
@@ -52,7 +53,5 @@ public class PlayerSound : MonoBehaviour
         SoundManager.Instance.m_PlayerWalkBottom.m_event.SetParameter("Progression", 1);
         m_walkStart = false;
         m_isWalking = false;
-        StopCoroutine(m_coroutine);
-        m_coroutine = null;
     }
 }

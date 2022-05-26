@@ -127,6 +127,7 @@ public class Suffox : MonoBehaviour
 
     private void Cough()
     {
+        SoundManager.Instance.Stop(SoundManager.Instance.m_playerCoughSound);
         SoundManager.Instance.Play(SoundManager.Instance.m_playerCoughSound); 
     }
 
