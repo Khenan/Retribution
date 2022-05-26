@@ -54,6 +54,7 @@ public class ClockMechanism : InteractibleObject
     private void Handle()
     {
         m_isLock = false;
+        m_col.enabled = true;
     }
 
     public override void Interact()
