@@ -45,12 +45,6 @@ public class Pupitre : InteractibleObject
     {
         EnigmePupitre.Instance.m_close -= Close;
     }
-
-    private void Update()
-    {
-        Debug.Log(m_coroutine);
-    }
-
     public override void Interact()
     {
         Debug.Log(m_isOpen);
