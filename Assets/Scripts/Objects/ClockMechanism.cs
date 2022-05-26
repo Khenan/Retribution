@@ -30,6 +30,7 @@ public class ClockMechanism : InteractibleObject
     private void OnEnable()
     {
         m_col = GetComponent<BoxCollider>();
+        if (m_isLockOnStart) m_col.enabled = false;
         m_listenEventRestart.m_event += Reset;
         if (m_listenEvent == null) return;
         m_listenEvent.m_event += Handle;
@@ -75,7 +76,7 @@ public class ClockMechanism : InteractibleObject
     private void Reset()
     {
         m_isPush = false;
-        m_col.enabled = true;
+        m_col.enabled = !m_isLockOnStart;
         m_isLock = m_isLockOnStart;
         m_meshAnimator.ResetTrigger(m_animatorPushHash);
         m_meshAnimator.SetTrigger(m_animatorResetHash);
