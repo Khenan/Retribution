@@ -13,8 +13,8 @@ public class ChildClassroom : MonoBehaviour
     private float m_timeLookTarget = 3f;
     public float m_currentTimeLook = 0f;
     private float m_stepDecreaseTime = 0.01f;
-    
-    private bool m_isLock = false;
+
+    private bool m_isLock;
 
     private WaitForSeconds m_cooldownWait = new WaitForSeconds(0.2f);
     private WaitForSeconds m_resetWait = new WaitForSeconds(0.01f);
@@ -27,6 +27,7 @@ public class ChildClassroom : MonoBehaviour
 
     public void LookContinue(float p_timeValue)
     {
+        Debug.Log("Je recois le trigger d'enfant");
         if (m_isLock) return;
         Debug.Log("Is look !");
         m_currentTimeLook += p_timeValue;

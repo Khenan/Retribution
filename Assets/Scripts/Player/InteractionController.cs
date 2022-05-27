@@ -64,6 +64,7 @@ public class InteractionController : MonoBehaviour
             // ----------------- CHILD CLASSROOM ----------------- //
             if ((m_childClassroomLayer.value & 1<< hit.collider.gameObject.layer) > 0)
             {
+                Debug.Log("Un trigger d'enfant !");
                 LookChildClassroom(hit);
             }
         }
@@ -88,6 +89,7 @@ public class InteractionController : MonoBehaviour
     private void LookChildClassroom(RaycastHit p_hit)
     {
         p_hit.collider.gameObject.GetComponent<ChildClassroom>().LookContinue(Time.deltaTime);
+        Debug.Log("Je lance le trigger d'enfant");
     }
 
     public void Drop()
