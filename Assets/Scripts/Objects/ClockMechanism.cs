@@ -26,10 +26,19 @@ public class ClockMechanism : InteractibleObject
 
     [SerializeField, Tooltip("Son du mécanisme")]
     private SoundEvent m_mechanismeSound;
-    
-    private void OnEnable()
+
+    private void Awake()
     {
         m_col = GetComponent<BoxCollider>();
+    }
+
+    private void Start()
+    {
+        if (m_isLockOnStart) m_col.enabled = false;
+    }
+
+    private void OnEnable()
+    {
         m_listenEventRestart.m_event += Reset;
         if (m_listenEvent == null) return;
         m_listenEvent.m_event += Handle;
@@ -45,6 +54,7 @@ public class ClockMechanism : InteractibleObject
     private void Handle()
     {
         m_isLock = false;
+        m_col.enabled = true;
     }
 
     public override void Interact()
@@ -75,7 +85,7 @@ public class ClockMechanism : InteractibleObject
     private void Reset()
     {
         m_isPush = false;
-        m_col.enabled = true;
+        m_col.enabled = !m_isLockOnStart;
         m_isLock = m_isLockOnStart;
         m_meshAnimator.ResetTrigger(m_animatorPushHash);
         m_meshAnimator.SetTrigger(m_animatorResetHash);

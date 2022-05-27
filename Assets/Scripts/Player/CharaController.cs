@@ -5,7 +5,7 @@ public class CharaController : MonoBehaviour
     private CharacterController m_characterController;
 
     [SerializeField, Tooltip("Vitesse du personnage")]
-    private float m_speed = 10f;
+    public float m_speed = 10f;
     [SerializeField, Tooltip("Gravité du personnage")]
     private float m_gravity = -9.81f;
 

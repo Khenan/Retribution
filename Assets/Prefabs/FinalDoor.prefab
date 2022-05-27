@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4890979130244657684}
   - component: {fileID: 2981992211110196644}
   m_Layer: 0
-  m_Name: SoundEvent_ouverture
+  m_Name: SoundEvent_Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8017519756997102919}
   m_LocalRotation: {x: -0.0000018237179, y: -0.7071069, z: -0.7071067, w: 0.0000018123146}
-  m_LocalPosition: {x: -1.4137198, y: -1.4617882, z: 0.003578186}
+  m_LocalPosition: {x: -1.518, y: -1.4617882, z: 0.004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8017519756985095711}
@@ -299,10 +299,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a75aaa4b4f7c60545adc7498b6432286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EventToListen: {fileID: 0}
+  m_EventToListen_open: {fileID: 11400000, guid: a9bc0735f70a27d40a5cd1b5ccfe9a14, type: 2}
+  m_EventToListen_close: {fileID: 11400000, guid: 12c699b427418794eb3da36747833993, type: 2}
+  m_EventToListen_slowClose: {fileID: 11400000, guid: bd138213f04b662419eb09bf22d0af3c, type: 2}
   m_leftAnimator: {fileID: 8017519757088125456}
   m_rightAnimator: {fileID: 8017519757931702987}
-  m_soundEvent: {fileID: 2981992211110196644}
+  m_soundEventSlowly: {fileID: 7620181260738284345}
+  m_soundEventFast: {fileID: 0}
 --- !u!1 &8017519757088125470
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8017519757931702985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.626, y: 0, z: 0}
+  m_LocalPosition: {x: 1.71, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8017519756997102968}
@@ -594,7 +597,7 @@ GameObject:
   - component: {fileID: 222803668051415307}
   - component: {fileID: 7620181260738284345}
   m_Layer: 0
-  m_Name: SoundEvent_fermeture
+  m_Name: SoundEvent_CloseSlowly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

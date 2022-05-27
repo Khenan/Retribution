@@ -37,6 +37,11 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
     
     [SerializeField, Tooltip("Porte(s) de l'énigme")]
     private List<Door> m_myDoors = new List<Door>();
+    
+    [SerializeField, Tooltip("Feu de l'énigme")]
+    private Transform m_fireRoom;
+
+    [SerializeField, Tooltip("Event à appeler pour faire sortir les feux")] private Event m_eventToRead;
 
     private void Awake()
     {
@@ -65,7 +70,8 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
             door.Close();
             door.Lock();
         }
-
+        m_fireRoom.gameObject.SetActive(true);
+        m_eventToRead.Raise();
         m_chalkboard.ReadNextSentence();
         
         if (m_smoke)
