@@ -15606,7 +15606,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-14972
+  m_Name: pb_Mesh-15100
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16457,17 +16457,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1316488276 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7620181260738284345, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
-  m_PrefabInstance: {fileID: 8017519758289328344}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1343606004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18796,6 +18785,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 287233509}
     m_Modifications:
+    - target: {fileID: 489383437607811089, guid: 20a2389646eec634e8864592ca79b4e5, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1816554414231410665, guid: 20a2389646eec634e8864592ca79b4e5, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -18840,9 +18833,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2094872366037659164, guid: 20a2389646eec634e8864592ca79b4e5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4823608425610568119, guid: 20a2389646eec634e8864592ca79b4e5, type: 3}
       propertyPath: m_Name
       value: ChildClassroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823779110460741537, guid: 20a2389646eec634e8864592ca79b4e5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20a2389646eec634e8864592ca79b4e5, type: 3}
@@ -19441,10 +19442,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1194674701}
     m_Modifications:
-    - target: {fileID: 7498312921935150206, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
-      propertyPath: m_Name
-      value: SoundEvent_Open
-      objectReference: {fileID: 0}
     - target: {fileID: 8017519757009483373, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
       propertyPath: m_Name
       value: FinalDoor
@@ -19493,30 +19490,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8017519757931702986, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611606166415188040, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
-      propertyPath: m_Name
-      value: SoundEvent_CloseSlowly
-      objectReference: {fileID: 0}
-    - target: {fileID: 8636737525168403142, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
-      propertyPath: m_soundEventSlowly
-      value: 
-      objectReference: {fileID: 1316488276}
-    - target: {fileID: 8636737525168403142, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
-      propertyPath: m_EventToListen_open
-      value: 
-      objectReference: {fileID: 11400000, guid: a9bc0735f70a27d40a5cd1b5ccfe9a14, type: 2}
-    - target: {fileID: 8636737525168403142, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
-      propertyPath: m_EventToListen_close
-      value: 
-      objectReference: {fileID: 11400000, guid: 12c699b427418794eb3da36747833993, type: 2}
-    - target: {fileID: 8636737525168403142, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
-      propertyPath: m_EventToListen_slowClose
-      value: 
-      objectReference: {fileID: 11400000, guid: bd138213f04b662419eb09bf22d0af3c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a56f274a59f52d043ae6f66ed974af27, type: 3}
 --- !u!4 &8017519758289328345 stripped

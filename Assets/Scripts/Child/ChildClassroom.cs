@@ -8,7 +8,7 @@ public class ChildClassroom : MonoBehaviour
     [SerializeField, Tooltip("Transform de l'enfant")]
     private Transform m_child;
     [SerializeField, Tooltip("Transform final de l'enfant")]
-    private Transform m_transformFinal;
+    private Transform m_finalTransform;
 
     private float m_timeLookTarget = 3f;
     private float m_currentTimeLook = 0f;
@@ -47,8 +47,9 @@ public class ChildClassroom : MonoBehaviour
 
     private void Pop()
     {
-        m_child.position = m_transformFinal.position;
-        m_child.rotation = m_transformFinal.rotation;
+        m_child.position = m_finalTransform.position;
+        m_child.rotation = m_finalTransform.rotation;
+        StartCoroutine(Depop());
     }
 
     IEnumerator CooldownResetTimeCoroutine()
@@ -65,6 +66,12 @@ public class ChildClassroom : MonoBehaviour
         m_currentTimeLook -= m_stepDecreaseTime;
         if (m_currentTimeLook <= 0) m_currentTimeLook = 0;
         if (m_currentTimeLook > 0) m_loopResetCoroutine = StartCoroutine(LoopResetTimeCoroutine());
+    }
+
+    IEnumerator Depop()
+    {
+        yield return new WaitForSeconds(0.3f);
+        m_child.gameObject.SetActive(false);
     }
 
     public void Reset()
