@@ -47,6 +47,7 @@ public class TriggerBoxEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Trigger touché !");
         if (m_eventsToCall.Count == 0) return;
         foreach (Event e in m_eventsToCall)
         {
