@@ -21,6 +21,8 @@ public class InteractionController : MonoBehaviour
     private LayerMask m_interactLayer;
     [SerializeField, Tooltip("Layer des dessins pour l'horloge")]
     private LayerMask m_clockDrawLayer;
+    [SerializeField, Tooltip("Layer de l'enfant dans la classe")]
+    private LayerMask m_childClassroomLayer;
     
     [Header("OBJET")]
     [SerializeField, Tooltip("Emplacement de la main quand le joueur tient un objet")]
@@ -57,7 +59,12 @@ public class InteractionController : MonoBehaviour
             // ----------------- CLOCK DRAW ----------------- //
             if ((m_clockDrawLayer.value & 1<< hit.collider.gameObject.layer) > 0)
             {
-                Look(hit);
+                LookClockSymbol(hit);
+            }
+            // ----------------- CHILD CLASSROOM ----------------- //
+            if ((m_childClassroomLayer.value & 1<< hit.collider.gameObject.layer) > 0)
+            {
+                LookChildClassroom(hit);
             }
         }
     }
@@ -74,10 +81,13 @@ public class InteractionController : MonoBehaviour
         }
     }
 
-    private void Look(RaycastHit p_hit)
+    private void LookClockSymbol(RaycastHit p_hit)
     {
-        if (!GetComponent<CharaController>().m_isCrouching) return;
         p_hit.collider.gameObject.GetComponent<ClockSymbol>().LookContinue(Time.deltaTime);
+    }
+    private void LookChildClassroom(RaycastHit p_hit)
+    {
+        p_hit.collider.gameObject.GetComponent<ChildClassroom>().LookContinue(Time.deltaTime);
     }
 
     public void Drop()

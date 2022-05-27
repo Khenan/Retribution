@@ -55,6 +55,7 @@ public class ClockSymbol : MonoBehaviour
     public void LookContinue(float p_timeValue)
     {
         if (m_isLock) return;
+        if (!GameManager.Instance.m_playerCtrl.gameObject.GetComponent<CharaController>().m_isCrouching) return;
         Debug.Log("Is look !");
         m_currentTimeLook += p_timeValue;
         if (m_currentTimeLook >= m_timeLookTarget)

@@ -11,7 +11,7 @@ public class ChildClassroom : MonoBehaviour
     private Transform m_finalTransform;
 
     private float m_timeLookTarget = 3f;
-    private float m_currentTimeLook = 0f;
+    public float m_currentTimeLook = 0f;
     private float m_stepDecreaseTime = 0.01f;
     
     private bool m_isLock = false;
@@ -77,10 +77,5 @@ public class ChildClassroom : MonoBehaviour
     public void Reset()
     {
         m_currentTimeLook = 0;
-    }
-
-    private void Handle()
-    {
-        m_isLock = false;
     }
 }
