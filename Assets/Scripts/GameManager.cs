@@ -42,7 +42,7 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// Allow Cursor to be Locked Mode or Confined Mode
     /// </summary>
-    /// <param name="value">Activate or deactivate the Locked Mode, where true activates the Locked Mode and false deactivates the Confined Mode.</param>
+    /// <param name="value">Activate or deactivate the Locked Mode, where true activates the Locked Mode and false activates the Confined Mode.</param>
     public void LockCursor(bool value = true)
     {
         Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.Confined;

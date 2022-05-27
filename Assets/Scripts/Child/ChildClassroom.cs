@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ChildClassroom : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ChildClassroom : MonoBehaviour
     private Transform m_child;
     [SerializeField, Tooltip("Transform final de l'enfant")]
     private Transform m_finalTransform;
+    [SerializeField, Tooltip("Temps que l'enfant reste")]
+    private float m_standingTime;
 
     private float m_timeLookTarget = 3f;
     public float m_currentTimeLook = 0f;
@@ -22,8 +25,8 @@ public class ChildClassroom : MonoBehaviour
     private Coroutine m_cooldownCoroutine = null;
     private Coroutine m_loopResetCoroutine = null;
 
-    [SerializeField, Tooltip("Son du finish")]
-    private SoundEvent m_finalSound;
+    [FormerlySerializedAs("m_finalSound")] [SerializeField, Tooltip("Son du finish")]
+    private SoundEvent m_screamSound;
 
     public void LookContinue(float p_timeValue)
     {
@@ -34,7 +37,7 @@ public class ChildClassroom : MonoBehaviour
         if (m_currentTimeLook >= m_timeLookTarget)
         {
             Debug.Log("Terminé !");
-            m_finalSound.Play();
+            m_screamSound.Play();
             m_isLock = true;
             Pop();
             m_currentTimeLook = m_timeLookTarget;
@@ -71,7 +74,7 @@ public class ChildClassroom : MonoBehaviour
 
     IEnumerator Depop()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(m_standingTime);
         m_child.gameObject.SetActive(false);
     }
 

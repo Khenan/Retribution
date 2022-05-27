@@ -225,8 +225,6 @@ public class PlayerController : MonoBehaviour
     private void EndCamera()
     {
         m_end = true;
-        m_cameraAnimator.SetTrigger(m_animHash_end);
-        GetComponent<Animator>().enabled = true;
         SoundManager.Instance.m_PlayerWalkBottom.m_event.SetParameter("Progression", 1);
         StartCoroutine(EndCoroutine());
     }
@@ -235,12 +233,13 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         SoundManager.Instance.Play(SoundManager.Instance.m_playerEndSound);
-        SoundManager.Instance.StopFinalMusic();
         StartCoroutine(CreditsCoroutine());
     }
     IEnumerator CreditsCoroutine()
     {
         yield return new WaitForSeconds(m_timeToGoCredit);
+        // /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\ Faire l'animation du fadeOut Fast /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+        GameManager.Instance.LockCursor(false);
         SceneManager.Instance.ChangeScene(2);
     }
     

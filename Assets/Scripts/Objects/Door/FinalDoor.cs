@@ -33,6 +33,7 @@ public class FinalDoor : MonoBehaviour
         m_rightAnimator.ResetTrigger("open");
         m_leftAnimator.SetTrigger("open");
         m_rightAnimator.SetTrigger("open");
+        m_soundEventSlowly.m_event.Stop();
         m_soundEventSlowly.m_event.Play();
     }
     private void Close()
@@ -41,6 +42,7 @@ public class FinalDoor : MonoBehaviour
         m_rightAnimator.ResetTrigger("close");
         m_leftAnimator.SetTrigger("close");
         m_rightAnimator.SetTrigger("close");
+        if(m_soundEventFast != null )m_soundEventFast.m_event.Stop();
         if(m_soundEventFast != null )m_soundEventFast.m_event.Play();
     }
     private void SlowClose()
@@ -49,6 +51,8 @@ public class FinalDoor : MonoBehaviour
         m_rightAnimator.ResetTrigger("slowClose");
         m_leftAnimator.SetTrigger("slowClose");
         m_rightAnimator.SetTrigger("slowClose");
+        Debug.Log("Sounds PLAY !!!");
+        m_soundEventSlowly.m_event.Stop();
         m_soundEventSlowly.m_event.Play();
     }
 }
