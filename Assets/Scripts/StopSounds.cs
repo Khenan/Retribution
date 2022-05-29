@@ -7,7 +7,11 @@ public class StopSounds : MonoBehaviour
     [SerializeField, Tooltip("Event pour stoper les son de feux")] private Event m_stopFireSoundEvent;
 
     [SerializeField, Tooltip("List des sons à stoper")]
-    private List<Transform> m_Sounds;
+    private List<SoundEvent> m_Sounds;
+    
+    [SerializeField, Tooltip("Son du rire")] private SoundEvent m_laughSound;
+    [SerializeField, Tooltip("Claquement de la porte finale")] private SoundEvent m_closeFinalDoorSound;
+    
 
     private void OnEnable()
     {
@@ -20,9 +24,19 @@ public class StopSounds : MonoBehaviour
 
     private void Stop()
     {
-        foreach (Transform t in m_Sounds)
+        StartCoroutine(SoundCoroutine());
+        m_closeFinalDoorSound.Stop();
+        m_closeFinalDoorSound.Play();
+        foreach (SoundEvent s in m_Sounds)
         {
-            t.gameObject.SetActive(false);
+            if(s != null) s.Stop();
         }
+    }
+
+    IEnumerator SoundCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        m_laughSound.Stop();
+        m_laughSound.Play();
     }
 }
