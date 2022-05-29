@@ -6,14 +6,10 @@ using UnityEngine.Serialization;
 
 public class ChildClassroom : MonoBehaviour
 {
-    [SerializeField, Tooltip("Transform de l'enfant")]
-    private Transform m_child;
-    [SerializeField, Tooltip("Transform final de l'enfant")]
-    private Transform m_finalTransform;
-    [SerializeField, Tooltip("Temps que l'enfant reste")]
-    private float m_standingTime;
+    [SerializeField, Tooltip("Transform de l'enfant")] private Transform m_child;
+    [SerializeField, Tooltip("Temps que l'enfant reste")] private float m_standingTime;
+    [SerializeField, Tooltip("Temps à regarder")] private float m_timeLookTarget = 3f;
 
-    private float m_timeLookTarget = 3f;
     public float m_currentTimeLook = 0f;
     private float m_stepDecreaseTime = 0.01f;
 
@@ -25,8 +21,26 @@ public class ChildClassroom : MonoBehaviour
     private Coroutine m_cooldownCoroutine = null;
     private Coroutine m_loopResetCoroutine = null;
 
-    [FormerlySerializedAs("m_finalSound")] [SerializeField, Tooltip("Son du finish")]
-    private SoundEvent m_screamSound;
+    [FormerlySerializedAs("m_finalSound")] [SerializeField, Tooltip("Son du finish")] private SoundEvent m_screamSound;
+    [SerializeField, Tooltip("Event à lire")] private Event m_eventToRead;
+    [SerializeField, Tooltip("Event à écouter pour se bloquer")] private Event m_event1ToLock;
+    [SerializeField, Tooltip("Event à écouter pour se bloquer")] private Event m_event2ToLock;
+
+    private void OnEnable()
+    {
+        if(m_event1ToLock != null) m_event1ToLock.m_event += Lock;
+        if(m_event2ToLock != null) m_event2ToLock.m_event += Lock;
+    }
+    private void OnDisable()
+    {
+        if(m_event1ToLock != null) m_event1ToLock.m_event -= Lock;
+        if(m_event2ToLock != null) m_event2ToLock.m_event -= Lock;
+    }
+
+    private void Lock()
+    {
+        m_isLock = true;
+    }
 
     public void LookContinue(float p_timeValue)
     {
@@ -38,6 +52,7 @@ public class ChildClassroom : MonoBehaviour
         {
             Debug.Log("Terminé !");
             m_screamSound.Play();
+            m_eventToRead.Raise();
             m_isLock = true;
             Pop();
             m_currentTimeLook = m_timeLookTarget;
@@ -51,8 +66,7 @@ public class ChildClassroom : MonoBehaviour
 
     private void Pop()
     {
-        m_child.position = m_finalTransform.position;
-        m_child.rotation = m_finalTransform.rotation;
+        m_child.GetComponent<Animator>().SetTrigger("pop");
         StartCoroutine(Depop());
     }
 
