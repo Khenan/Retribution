@@ -15,8 +15,6 @@ public class SoundManager : Singleton<SoundManager>
     public SoundEvent m_playerDeathSound;
     [SerializeField, Tooltip("Son de toux")]
     public SoundEvent m_playerCoughSound;
-    [SerializeField, Tooltip("End")]
-    public SoundEvent m_playerEndSound;
     
 
     // START

@@ -232,7 +232,6 @@ public class PlayerController : MonoBehaviour
     IEnumerator EndCoroutine()
     {
         yield return new WaitForSeconds(1);
-        SoundManager.Instance.Play(SoundManager.Instance.m_playerEndSound);
         StartCoroutine(CreditsCoroutine());
     }
     IEnumerator CreditsCoroutine()
