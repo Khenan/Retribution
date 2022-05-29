@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEditor.Animations;
 using UnityEngine;
 public class ChildCorridor : MonoBehaviour
@@ -10,7 +11,6 @@ public class ChildCorridor : MonoBehaviour
     [SerializeField, Tooltip("Premiere pos")] private Transform m_firstPos;
     [SerializeField, Tooltip("Deuxieme pos")] private Transform m_secondPos;
     [SerializeField, Tooltip("Deuxieme pos")] private Transform m_waitPos;
-    [SerializeField, Tooltip("Deuxieme Animator")] private RuntimeAnimatorController m_secondAnimator;
 
     private int m_triggerAnim = Animator.StringToHash("trigger");
     private Animator m_anim;
@@ -23,8 +23,9 @@ public class ChildCorridor : MonoBehaviour
     private void OnEnable()
     {
         m_anim = GetComponent<Animator>();
-        transform.position = m_firstPos.position;
-        transform.rotation = m_firstPos.rotation;
+        transform.parent = m_firstPos;
+        transform.localPosition = Vector3.zero;
+        transform.rotation = quaternion.identity;
         m_EventToListen.m_event += Trigger;
         m_EventToRepop.m_event += Repop;
     }
@@ -44,9 +45,9 @@ public class ChildCorridor : MonoBehaviour
     private void Repop()
     {
         m_repop = true;
-        m_anim.runtimeAnimatorController = m_secondAnimator;
-        transform.position = m_secondPos.position;
-        transform.rotation = m_secondPos.rotation;
+        transform.parent = m_secondPos;
+        transform.localPosition = Vector3.zero;
+        transform.rotation = quaternion.identity;
         m_anim.ResetTrigger(m_triggerAnim);
     }
 
