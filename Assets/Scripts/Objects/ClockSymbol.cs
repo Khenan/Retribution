@@ -8,7 +8,7 @@ public class ClockSymbol : MonoBehaviour
     [SerializeField, Tooltip("Sprite du dessin")]
     private SpriteRenderer m_SpriteRenderer;
 
-    private float m_timeLookTarget = 3f;
+    private float m_timeLookTarget = 2f;
     private float m_currentTimeLook = 0f;
     private float m_stepDecreaseTime = 0.01f;
     
