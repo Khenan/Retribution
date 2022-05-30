@@ -241,15 +241,15 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator EndCoroutine()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0);
+        UIManager.Instance.FadeOutFast();
         StartCoroutine(CreditsCoroutine());
     }
     IEnumerator CreditsCoroutine()
     {
         yield return new WaitForSeconds(m_timeToGoCredit);
-        // /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\ Faire l'animation du fadeOut Fast /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
         GameManager.Instance.LockCursor(false);
-        SceneManager.Instance.ChangeScene(2);
+        SceneManager.Instance.ChangeSceneDirect(2);
     }
     
     IEnumerator StartChairSoundCoroutine(float p_second)

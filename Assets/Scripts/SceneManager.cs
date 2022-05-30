@@ -15,11 +15,14 @@ public class SceneManager : Singleton<SceneManager>
     public void ChangeScene(int p_sceneId)
     {
         m_sceneToLoad = p_sceneId;
-        // met en pause la scene courante
-        // Time.timeScale = 0;
         
         // Lance la scene de load
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Loader");
+    }
+    public void ChangeSceneDirect(int p_sceneId)
+    {
+        // Lance la scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene(p_sceneId);
     }
 
     public void LoadScene()
@@ -41,7 +44,6 @@ public class SceneManager : Singleton<SceneManager>
             }
             yield return null;
         }
-        Time.timeScale = 1;
     }
 
     protected override string GetSingletonName()
