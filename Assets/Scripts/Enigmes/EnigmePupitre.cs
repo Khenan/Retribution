@@ -94,7 +94,8 @@ public class EnigmePupitre : Singleton<EnigmePupitre>, IEnigme
         foreach (Door door in m_myDoors)
         {
             door.Close();
-            door.m_isLock = false;
+            if(GameManager.Instance.m_totemsBroken[0] == 1)
+                door.m_isLock = false;
         }
 
         // On recherche les pupitres dans les enfants de l'énigme

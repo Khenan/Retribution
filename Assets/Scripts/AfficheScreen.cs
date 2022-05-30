@@ -9,18 +9,15 @@ public class AfficheScreen : MonoBehaviour
 
     [SerializeField] [Range(1, 5)] private int size = 1;
 
-// Update is called once per frame
-void Update()
-{
-    if (Input.GetKeyDown(KeyCode.K))
+    // Update is called once per frame
+    void Update()
     {
-        print("ok");
-        path += "screenshot";
-        print("ok2");
-        path += System.Guid.NewGuid().ToString() + ".png";
-        print("ok3");
-        ScreenCapture.CaptureScreenshot(path, size);
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            path += "screenshot";
+            path += System.Guid.NewGuid().ToString() + ".png";
+            //ScreenCapture.CaptureScreenshot(path, size);
+        }
     }
-}
 }
 
