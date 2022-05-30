@@ -1,6 +1,5 @@
 using System.Collections;
 using Unity.Mathematics;
-using UnityEditor.Animations;
 using UnityEngine;
 public class ChildCorridor : MonoBehaviour
 {
