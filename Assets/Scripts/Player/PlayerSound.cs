@@ -23,6 +23,10 @@ public class PlayerSound : MonoBehaviour
     {
         SoundManager.Instance.Play(SoundManager.Instance.m_playerDeathSound);
     }
+    public void DeadFire()
+    {
+        SoundManager.Instance.Play(SoundManager.Instance.m_playerDeathFireSound);
+    }
 
     IEnumerator IsWalkCoroutine()
     {

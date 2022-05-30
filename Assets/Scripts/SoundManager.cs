@@ -13,6 +13,8 @@ public class SoundManager : Singleton<SoundManager>
     public SoundEvent m_PlayerWalkBottom;
     [SerializeField, Tooltip("Son de mort")]
     public SoundEvent m_playerDeathSound;
+    [SerializeField, Tooltip("Son de mort dans le feu")]
+    public SoundEvent m_playerDeathFireSound;
     [SerializeField, Tooltip("Son de toux")]
     public SoundEvent m_playerCoughSound;
     
