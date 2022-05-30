@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private int m_animHash_start = Animator.StringToHash("start");
     private int m_animHash_dead = Animator.StringToHash("dead");
     private int m_animHash_deadCrouch = Animator.StringToHash("deadCrouch");
+    private int m_animHash_deadFire = Animator.StringToHash("deadFire");
+    private int m_animHash_deadFireCrouch = Animator.StringToHash("deadFireCrouch");
     private int m_animHash_end = Animator.StringToHash("end");
     private int m_animHash_reset = Animator.StringToHash("reset");
 
@@ -135,9 +137,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Le joueur est mort");
         m_playerSound.Dead();
         if(m_charaController.m_isCrouching) 
-            AnimDeadCrouchCamera();
+            AnimDeadFireCrouchCamera();
         else
-            AnimDeadCamera();
+            AnimDeadFireCamera();
         m_stopAmbiantMusicEvent.Raise();
         StartCoroutine(GameOver());
     }
@@ -218,6 +220,14 @@ public class PlayerController : MonoBehaviour
     {
         m_cameraAnimator.SetTrigger(m_animHash_deadCrouch);
     }
+    private void AnimDeadFireCamera()
+    {
+        m_cameraAnimator.SetTrigger(m_animHash_deadFire);
+    }
+    private void AnimDeadFireCrouchCamera()
+    {
+        m_cameraAnimator.SetTrigger(m_animHash_deadFireCrouch);
+    }
     private void AnimResetCamera()
     {
         m_cameraAnimator.SetTrigger(m_animHash_reset);
@@ -231,15 +241,15 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator EndCoroutine()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0);
+        UIManager.Instance.FadeOutFast();
         StartCoroutine(CreditsCoroutine());
     }
     IEnumerator CreditsCoroutine()
     {
         yield return new WaitForSeconds(m_timeToGoCredit);
-        // /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\ Faire l'animation du fadeOut Fast /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
         GameManager.Instance.LockCursor(false);
-        SceneManager.Instance.ChangeScene(2);
+        SceneManager.Instance.ChangeSceneDirect(2);
     }
     
     IEnumerator StartChairSoundCoroutine(float p_second)

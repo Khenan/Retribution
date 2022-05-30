@@ -17,6 +17,7 @@ public class UIManager : Singleton<UIManager>
     private Animator m_blackFadeAnimator;
     private int m_animFadeIn = Animator.StringToHash("fadeIn");
     private int m_animFadeOut = Animator.StringToHash("fadeOut");
+    private int m_animFadeOutFast = Animator.StringToHash("fadeOutFast");
     
     [SerializeField, Tooltip("Slider Sensibilité X")]
     private Slider m_sliderX;
@@ -63,6 +64,11 @@ public class UIManager : Singleton<UIManager>
         m_blackFadeAnimator.ResetTrigger(m_animFadeOut);
         m_blackFadeAnimator.SetTrigger(m_animFadeOut);
     }
+    public void FadeOutFast()
+    {
+        m_blackFadeAnimator.ResetTrigger(m_animFadeOutFast);
+        m_blackFadeAnimator.SetTrigger(m_animFadeOutFast);
+    }
 
     public void ChangeSensitivity()
     {
@@ -86,8 +92,8 @@ public class UIManager : Singleton<UIManager>
 
     public void OpenMenuInGame()
     {
-        m_menuSettings.gameObject.SetActive(false);
-        
+        if(m_menuSettings != null) m_menuSettings.gameObject.SetActive(false);
+        if (m_menuInGame == null) return;
         // Toggle le menu
         bool isOpen = m_menuInGame.gameObject.activeSelf;
         m_menuInGame.gameObject.SetActive(!isOpen);
