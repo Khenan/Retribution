@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void DecreaseSpeed()
     {
-        m_charaController.m_speed /= 2;
+        //m_charaController.m_speed /= 2;
     }
 
     IEnumerator StartCameraAnim()
@@ -236,20 +236,6 @@ public class PlayerController : MonoBehaviour
     {
         m_end = true;
         SoundManager.Instance.m_PlayerWalkBottom.m_event.SetParameter("Progression", 1);
-        StartCoroutine(EndCoroutine());
-    }
-
-    IEnumerator EndCoroutine()
-    {
-        yield return new WaitForSeconds(0);
-        UIManager.Instance.FadeOutFast();
-        StartCoroutine(CreditsCoroutine());
-    }
-    IEnumerator CreditsCoroutine()
-    {
-        yield return new WaitForSeconds(m_timeToGoCredit);
-        GameManager.Instance.LockCursor(false);
-        SceneManager.Instance.ChangeSceneDirect(2);
     }
     
     IEnumerator StartChairSoundCoroutine(float p_second)

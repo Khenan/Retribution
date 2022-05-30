@@ -31,8 +31,21 @@ public class StopSounds : MonoBehaviour
         {
             if(s != null) s.Stop();
         }
+        StartCoroutine(EndCoroutine());
     }
 
+    IEnumerator EndCoroutine()
+    {
+        yield return new WaitForSeconds(0);
+        UIManager.Instance.FadeOutFast();
+        StartCoroutine(CreditsCoroutine());
+    }
+    IEnumerator CreditsCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        GameManager.Instance.LockCursor(false);
+        SceneManager.Instance.ChangeSceneDirect(2);
+    }
     IEnumerator SoundCoroutine()
     {
         yield return new WaitForSeconds(1);
