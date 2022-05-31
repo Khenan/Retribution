@@ -16,6 +16,8 @@ public class GameManager : Singleton<GameManager>
 
     public int[] m_totemsBroken = new[] {0, 0, 0};
 
+    public Door m_doorCoridor;
+
     private int m_nbLanguages = 2;
     public enum Languages
     {
@@ -69,6 +71,12 @@ public class GameManager : Singleton<GameManager>
         int id = p_id - 1;
         if (id >= 0 && id < m_totemsBroken.Length)
             m_totemsBroken[id] = 1;
+
+        if (p_id == 3)
+        {
+            m_doorCoridor.ClearCollider();
+            m_doorCoridor.OpenLeft();
+        }
         foreach (int value in m_totemsBroken)
         {
             if (value == 0)  return;
