@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class LockSymbol : MonoBehaviour
 {
-    private SoundEvent m_sound;
+    public SoundEvent m_sound;
     [SerializeField, Tooltip("Event à écouter pour disparaitre")] private Event m_eventToListen;
-    private Animator m_animator;
-    private int m_disappearAnim = Animator.StringToHash("disappear");
+    public Animator m_animator;
+    public int m_disappearAnim = Animator.StringToHash("disappear");
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class LockSymbol : MonoBehaviour
         if (m_eventToListen != null) m_eventToListen.m_event -= Handle;
     }
 
-    private void Handle()
+    public void Handle()
     {
         if(m_sound != null) m_sound.Play();
         if(m_animator != null) m_animator.SetTrigger(m_disappearAnim);

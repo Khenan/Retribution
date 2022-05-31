@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -17,6 +19,8 @@ public class GameManager : Singleton<GameManager>
     public int[] m_totemsBroken = new[] {0, 0, 0};
 
     public Door m_doorCoridor;
+    public List<TriggerBoxEvent> m_triggerBoxes;
+    public List<GameObject> m_lockSymbols;
 
     private int m_nbLanguages = 2;
     public enum Languages
@@ -39,6 +43,10 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             UIManager.Instance.OpenMenuInGame();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            //BreakTotem(3);
         }
     }
     /// <summary>
@@ -74,20 +82,11 @@ public class GameManager : Singleton<GameManager>
 
         if (p_id == 3)
         {
+            m_lockSymbols.ForEach(e => e.SetActive(false));
             m_doorCoridor.ClearCollider();
             m_doorCoridor.OpenLeft();
+            m_triggerBoxes.ForEach(e => e.Pop());
         }
-        foreach (int value in m_totemsBroken)
-        {
-            if (value == 0)  return;
-        }
-
-        WinGame();
-    }
-
-    private void WinGame()
-    {
-        Debug.Log("La partie est gagnée");
     }
 
     protected override string GetSingletonName()

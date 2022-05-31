@@ -41,7 +41,7 @@ public class TriggerBoxEvent : MonoBehaviour
         m_eventsToPop.m_event -= Pop;
     }
 
-    private void Pop()
+    public void Pop()
     {
         m_col.enabled = true;
     }

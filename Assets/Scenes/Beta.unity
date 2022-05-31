@@ -1389,7 +1389,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 316379233, guid: 55b6c55c428abf44097a281d2de5cb53, type: 3}
   m_PrefabInstance: {fileID: 1262418480957587288}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 992920923}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
@@ -1452,7 +1452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d87f14d7032cc84c82de785c5f245d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sound: {fileID: 0}
   m_eventToListen: {fileID: 11400000, guid: f99956f7353d2994ab1bd891afe532e3, type: 2}
+  m_animator: {fileID: 0}
+  m_disappearAnim: 672557745
 --- !u!4 &547945377
 Transform:
   m_ObjectHideFlags: 0
@@ -1811,7 +1814,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d87f14d7032cc84c82de785c5f245d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sound: {fileID: 0}
   m_eventToListen: {fileID: 11400000, guid: f99956f7353d2994ab1bd891afe532e3, type: 2}
+  m_animator: {fileID: 0}
+  m_disappearAnim: 672557745
 --- !u!1 &620768824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,6 +1988,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5687338350643623748, guid: 6d2d8f7ff8c7f294c9b4cab8b4f6c24c, type: 3}
   m_PrefabInstance: {fileID: 623945991}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &623945995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5687338350643623750, guid: 6d2d8f7ff8c7f294c9b4cab8b4f6c24c, type: 3}
+  m_PrefabInstance: {fileID: 623945991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623945992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48306df8a9af81c42872562468ee6e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &682417144 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3900583842572645308, guid: aefe3a2d5f98485409ef77d3feabba55, type: 3}
@@ -3106,6 +3123,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &779847665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5687338350643623750, guid: 6d2d8f7ff8c7f294c9b4cab8b4f6c24c, type: 3}
+  m_PrefabInstance: {fileID: 573880922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48306df8a9af81c42872562468ee6e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &794054938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3319,6 +3347,17 @@ MonoBehaviour:
   m_closeFinalDoorSound: {fileID: 1606780742}
   m_leftAnimator: {fileID: 1439971135}
   m_rightAnimator: {fileID: 1280087050}
+--- !u!114 &806327516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5687338350643623750, guid: 6d2d8f7ff8c7f294c9b4cab8b4f6c24c, type: 3}
+  m_PrefabInstance: {fileID: 386522328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806327514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48306df8a9af81c42872562468ee6e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &832424366 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1104617096467684009, guid: 55b6c55c428abf44097a281d2de5cb53, type: 3}
@@ -16315,7 +16354,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-301406
+  m_Name: pb_Mesh-243524
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16484,6 +16523,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461437c32857b8a4a872b2d04eb41553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &992920923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 316379231, guid: 55b6c55c428abf44097a281d2de5cb53, type: 3}
+  m_PrefabInstance: {fileID: 1262418480957587288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1000668765
 GameObject:
   m_ObjectHideFlags: 0
@@ -16586,7 +16630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d87f14d7032cc84c82de785c5f245d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sound: {fileID: 0}
   m_eventToListen: {fileID: 11400000, guid: 10f55516ede7f7e41bcaab0f23952507, type: 2}
+  m_animator: {fileID: 0}
+  m_disappearAnim: 672557745
 --- !u!4 &1096082591
 Transform:
   m_ObjectHideFlags: 0
@@ -18164,7 +18211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d87f14d7032cc84c82de785c5f245d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sound: {fileID: 0}
   m_eventToListen: {fileID: 11400000, guid: 3e45b1d191e9f4e4ab09a72d14c273df, type: 2}
+  m_animator: {fileID: 0}
+  m_disappearAnim: 672557745
 --- !u!4 &1609382409
 Transform:
   m_ObjectHideFlags: 0
@@ -20866,6 +20916,34 @@ PrefabInstance:
       propertyPath: m_doorCoridor
       value: 
       objectReference: {fileID: 512769116}
+    - target: {fileID: 7062292001512897326, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
+      propertyPath: m_lockSymbols.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062292001512897326, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
+      propertyPath: m_triggerBoxes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062292001512897326, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
+      propertyPath: m_lockSymbols.Array.data[0]
+      value: 
+      objectReference: {fileID: 992920923}
+    - target: {fileID: 7062292001512897326, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
+      propertyPath: m_lockSymbols.Array.data[1]
+      value: 
+      objectReference: {fileID: 1096082588}
+    - target: {fileID: 7062292001512897326, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
+      propertyPath: m_triggerBoxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 779847665}
+    - target: {fileID: 7062292001512897326, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
+      propertyPath: m_triggerBoxes.Array.data[1]
+      value: 
+      objectReference: {fileID: 806327516}
+    - target: {fileID: 7062292001512897326, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
+      propertyPath: m_triggerBoxes.Array.data[2]
+      value: 
+      objectReference: {fileID: 623945995}
     - target: {fileID: 7062292001512897327, guid: 3938fb5534ea01c45b8b63a29592395e, type: 3}
       propertyPath: m_Name
       value: GameManager
