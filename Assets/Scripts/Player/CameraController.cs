@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
         {
             while (!Mathf.Approximately(m_cameraTransform.position.y, m_crouchPos.position.y))
             {
-                m_cameraTransform.position = Vector3.MoveTowards(m_cameraTransform.position, m_crouchPos.position, m_speedCrouch);
+                m_cameraTransform.position = Vector3.MoveTowards(m_cameraTransform.position, m_crouchPos.position, m_speedCrouch * Time.deltaTime);
                 yield return new WaitForSeconds(0.001f);
             } 
         }
@@ -58,7 +58,7 @@ public class CameraController : MonoBehaviour
         {
             while (!Mathf.Approximately(m_cameraTransform.position.y, m_standPos.position.y))
             {
-                m_cameraTransform.position = Vector3.MoveTowards(m_cameraTransform.position, m_standPos.position, m_speedCrouch);
+                m_cameraTransform.position = Vector3.MoveTowards(m_cameraTransform.position, m_standPos.position, m_speedCrouch * Time.deltaTime);
                 yield return new WaitForSeconds(0.001f);
             } 
         }

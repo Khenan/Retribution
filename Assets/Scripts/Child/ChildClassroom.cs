@@ -48,9 +48,10 @@ public class ChildClassroom : MonoBehaviour
         m_currentTimeLook += p_timeValue;
         if (m_currentTimeLook >= m_timeLookTarget)
         {
+            GameManager.Instance.m_playerCtrl.AnimJumpscare();
+            m_isLock = true;
             m_screamSound.Play();
             m_eventToRead.Raise();
-            m_isLock = true;
             StartCoroutine(PopCoroutine());
             m_currentTimeLook = m_timeLookTarget;
         }
@@ -69,7 +70,7 @@ public class ChildClassroom : MonoBehaviour
 
     IEnumerator PopCoroutine()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         Pop();
     }
     IEnumerator CooldownResetTimeCoroutine()
