@@ -44,17 +44,14 @@ public class ChildClassroom : MonoBehaviour
 
     public void LookContinue(float p_timeValue)
     {
-        Debug.Log("Je recois le trigger d'enfant");
         if (m_isLock) return;
-        Debug.Log("Is look !");
         m_currentTimeLook += p_timeValue;
         if (m_currentTimeLook >= m_timeLookTarget)
         {
-            Debug.Log("Terminé !");
             m_screamSound.Play();
             m_eventToRead.Raise();
             m_isLock = true;
-            Pop();
+            StartCoroutine(PopCoroutine());
             m_currentTimeLook = m_timeLookTarget;
         }
         
@@ -70,11 +67,15 @@ public class ChildClassroom : MonoBehaviour
         StartCoroutine(Depop());
     }
 
+    IEnumerator PopCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Pop();
+    }
     IEnumerator CooldownResetTimeCoroutine()
     {
         yield return m_cooldownWait;
         if (m_isLock) yield break;
-        Debug.Log("Reset Loop Start");
         m_loopResetCoroutine = StartCoroutine(LoopResetTimeCoroutine());
     }
     IEnumerator LoopResetTimeCoroutine()
