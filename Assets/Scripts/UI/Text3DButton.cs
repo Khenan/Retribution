@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Text3DButton : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Text3DButton : MonoBehaviour
     private void OnMouseEnter()
     {
         m_tmpro.color = m_hoverColor;
+        SoundManager.Instance.Stop(SoundManager.Instance.m_hoverUISound);
+        SoundManager.Instance.Play(SoundManager.Instance.m_hoverUISound);
     }
     private void OnMouseExit()
     {
@@ -25,6 +28,8 @@ public class Text3DButton : MonoBehaviour
     }
     private void OnMouseUp()
     {
+        SoundManager.Instance.Stop(SoundManager.Instance.m_clickUISound);
+        SoundManager.Instance.Play(SoundManager.Instance.m_clickUISound);
         if (m_quitButton)
         {
             Application.Quit();

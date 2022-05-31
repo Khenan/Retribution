@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SceneButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class SceneButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField, Tooltip("Icone gauche")] private Transform m_leftIcon; 
     [SerializeField, Tooltip("Icone droite")] private Transform m_rightIcon; 
@@ -20,11 +20,19 @@ public class SceneButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (m_leftIcon != null) m_leftIcon.gameObject.SetActive(true);
         if (m_rightIcon != null) m_rightIcon.gameObject.SetActive(true);
+        SoundManager.Instance.Stop(SoundManager.Instance.m_hoverUISound);
+        SoundManager.Instance.Play(SoundManager.Instance.m_hoverUISound);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (m_leftIcon != null) m_leftIcon.gameObject.SetActive(false);
         if (m_rightIcon != null) m_rightIcon.gameObject.SetActive(false);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        SoundManager.Instance.Stop(SoundManager.Instance.m_clickUISound);
+        SoundManager.Instance.Play(SoundManager.Instance.m_clickUISound);
     }
 }

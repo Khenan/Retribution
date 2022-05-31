@@ -46,7 +46,9 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField, Tooltip("Event pour lancer la music finale")] private Event m_playDeadMusicEvent;
     [SerializeField, Tooltip("Event pour stoper la music finale")] private Event m_stopDeadMusicEvent;
     [SerializeField, Tooltip("Music Finale")] private SoundEvent m_deadMusic;
-    
+    public SoundEvent m_hoverUISound;
+    public SoundEvent m_clickUISound;
+
     private void OnEnable()
     {
         m_playAmbiantMusicEvent.m_event += PlayAmbiantMusic;

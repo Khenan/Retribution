@@ -11,7 +11,7 @@ public class SoundEvent : MonoBehaviour
 
     private void Awake()
     {
-        m_event = GetComponent<StudioEventEmitter>();
+        if(m_event == null) m_event = GetComponent<StudioEventEmitter>();
     }
 
     public void Play()
