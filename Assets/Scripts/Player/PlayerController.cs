@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void DecreaseSpeed()
     {
-        //m_charaController.m_speed /= 2;
+        m_charaController.m_speed /= 1.5f;
     }
 
     IEnumerator StartCameraAnim()

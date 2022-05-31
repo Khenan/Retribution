@@ -26,7 +26,8 @@ public class TriggerBoxEvent : MonoBehaviour
     {
         m_col = GetComponent<Collider>();
         m_col.isTrigger = true;
-        if (m_eventsToPop) m_col.enabled = false;
+        if (!m_eventsToPop) return;
+        m_col.enabled = false;
     }
 
     private void OnEnable()
@@ -55,7 +56,6 @@ public class TriggerBoxEvent : MonoBehaviour
         }
 
         if (!m_once) return;
-        
         m_col.enabled = false;
         if (m_colliderSupplementaire.Count > 0) m_colliderSupplementaire.ForEach(c => c.enabled = false);
     }

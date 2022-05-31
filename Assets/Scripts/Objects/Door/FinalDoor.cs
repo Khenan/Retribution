@@ -36,14 +36,14 @@ public class FinalDoor : MonoBehaviour
         m_soundEventSlowly.m_event.Stop();
         m_soundEventSlowly.m_event.Play();
     }
-    private void Close()
+    public void Close()
     {
         m_leftAnimator.ResetTrigger("close");
         m_rightAnimator.ResetTrigger("close");
         m_leftAnimator.SetTrigger("close");
         m_rightAnimator.SetTrigger("close");
-        if(m_soundEventFast != null )m_soundEventFast.m_event.Stop();
-        if(m_soundEventFast != null )m_soundEventFast.m_event.Play();
+        //if(m_soundEventFast != null )m_soundEventFast.m_event.Stop();
+        //if(m_soundEventFast != null )m_soundEventFast.m_event.Play();
     }
     private void SlowClose()
     {

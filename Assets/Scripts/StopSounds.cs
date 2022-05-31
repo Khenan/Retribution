@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,15 @@ public class StopSounds : MonoBehaviour
     
     [SerializeField, Tooltip("Son du rire")] private SoundEvent m_laughSound;
     [SerializeField, Tooltip("Claquement de la porte finale")] private SoundEvent m_closeFinalDoorSound;
-    
+    public Animator m_leftAnimator;
+    public Animator m_rightAnimator;
+
+    private WaitForSeconds m_wait1;
+
+    private void Awake()
+    {
+        m_wait1 = new WaitForSeconds(1);
+    }
 
     private void OnEnable()
     {
@@ -25,30 +34,29 @@ public class StopSounds : MonoBehaviour
     private void Stop()
     {
         StartCoroutine(SoundCoroutine());
+        UIManager.Instance.FadeOutFast();
+        StartCoroutine(CreditsCoroutine());
         m_closeFinalDoorSound.Stop();
         m_closeFinalDoorSound.Play();
+        m_leftAnimator.ResetTrigger("close");
+        m_rightAnimator.ResetTrigger("close");
+        m_leftAnimator.SetTrigger("close");
+        m_rightAnimator.SetTrigger("close");
         foreach (SoundEvent s in m_Sounds)
         {
             if(s != null) s.Stop();
         }
-        StartCoroutine(EndCoroutine());
     }
 
-    IEnumerator EndCoroutine()
-    {
-        yield return new WaitForSeconds(0);
-        UIManager.Instance.FadeOutFast();
-        StartCoroutine(CreditsCoroutine());
-    }
     IEnumerator CreditsCoroutine()
     {
-        yield return new WaitForSeconds(1);
+        yield return m_wait1;
         GameManager.Instance.LockCursor(false);
         SceneManager.Instance.ChangeSceneDirect(2);
     }
     IEnumerator SoundCoroutine()
     {
-        yield return new WaitForSeconds(1);
+        yield return m_wait1;
         m_laughSound.Stop();
         m_laughSound.Play();
     }
