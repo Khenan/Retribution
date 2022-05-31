@@ -42,6 +42,7 @@ public class StopSounds : MonoBehaviour
         m_rightAnimator.ResetTrigger("close");
         m_leftAnimator.SetTrigger("close");
         m_rightAnimator.SetTrigger("close");
+        SoundManager.Instance.m_PlayerWalkBottom.m_event.SetParameter("Progression", 1);
         foreach (SoundEvent s in m_Sounds)
         {
             if(s != null) s.Stop();
