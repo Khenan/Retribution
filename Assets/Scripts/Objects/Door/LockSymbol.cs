@@ -7,7 +7,9 @@ public class LockSymbol : MonoBehaviour
 {
     public SoundEvent m_sound;
     [SerializeField, Tooltip("Event à écouter pour disparaitre")] private Event m_eventToListen;
+    [HideInInspector]
     public Animator m_animator;
+    [HideInInspector]
     public int m_disappearAnim = Animator.StringToHash("disappear");
 
     private void Awake()
