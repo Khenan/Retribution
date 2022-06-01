@@ -65,7 +65,6 @@ public class ChildClassroom : MonoBehaviour
     private void Pop()
     {
         m_child.GetComponent<Animator>().SetTrigger("pop");
-        StartCoroutine(Depop());
     }
 
     IEnumerator PopCoroutine()
