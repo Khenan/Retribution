@@ -48,8 +48,8 @@ public class Pupitre : InteractibleObject
     public override void Interact()
     {
         Debug.Log(m_isOpen);
-        GameManager.Instance.m_playerCtrl.AnimOpen();
         if (m_isOpen) return;
+        GameManager.Instance.m_playerCtrl.AnimOpen();
         if (m_enigmePupitre.CheckPupitre(m_numPupitre))
         {
             Open();
