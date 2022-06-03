@@ -11,8 +11,8 @@ public class FinalDoor : MonoBehaviour
     [SerializeField, Tooltip("Event à écouter pour se fermer lentement")] private Event m_EventToListen_slowClose;
     [SerializeField, Tooltip("Animator Porte Gauche")] private Animator m_leftAnimator;
     [SerializeField, Tooltip("Animator Porte Droite")] private Animator m_rightAnimator;
-    [SerializeField, Tooltip("Son Porte Final Slow")] private SoundEvent m_soundEventSlowly;
-    [SerializeField, Tooltip("Son Porte Final Close Fast !")] private SoundEvent m_soundEventFast;
+    [SerializeField, Tooltip("Son Porte Final Open Slow")] private SoundEvent m_soundEventOpen;
+    [SerializeField, Tooltip("Son Porte Final Close Slow")] private SoundEvent m_soundEventClose;
 
     private void OnEnable()
     {
@@ -33,8 +33,8 @@ public class FinalDoor : MonoBehaviour
         m_rightAnimator.ResetTrigger("open");
         m_leftAnimator.SetTrigger("open");
         m_rightAnimator.SetTrigger("open");
-        m_soundEventSlowly.m_event.Stop();
-        m_soundEventSlowly.m_event.Play();
+        m_soundEventOpen.m_event.Stop();
+        m_soundEventOpen.m_event.Play();
     }
     public void Close()
     {
@@ -52,7 +52,7 @@ public class FinalDoor : MonoBehaviour
         m_leftAnimator.SetTrigger("slowClose");
         m_rightAnimator.SetTrigger("slowClose");
         Debug.Log("Sounds PLAY !!!");
-        m_soundEventSlowly.m_event.Stop();
-        m_soundEventSlowly.m_event.Play();
+        m_soundEventClose.m_event.Stop();
+        m_soundEventClose.m_event.Play();
     }
 }
