@@ -24,7 +24,7 @@ public class ChildCorridor : MonoBehaviour
         m_anim = GetComponent<Animator>();
         transform.parent = m_firstPos;
         transform.localPosition = Vector3.zero;
-        transform.rotation = quaternion.identity;
+        transform.rotation = new Quaternion(0, 0, 0, 0);
         m_EventToListen.m_event += Trigger;
         m_EventToRepop.m_event += Repop;
     }
@@ -46,7 +46,7 @@ public class ChildCorridor : MonoBehaviour
         m_repop = true;
         transform.parent = m_secondPos;
         transform.localPosition = Vector3.zero;
-        transform.rotation = quaternion.identity;
+        transform.rotation = new Quaternion(0, 0, 0, 0);
         m_anim.ResetTrigger(m_triggerAnim);
     }
 
