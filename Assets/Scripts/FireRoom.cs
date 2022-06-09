@@ -46,9 +46,9 @@ public class FireRoom : MonoBehaviour
 
     public void Up()
     {
-        m_firstFires.position = new Vector3(m_firstFires.position.x, 0, m_firstFires.position.z);
-        m_secondFires.position = new Vector3(m_secondFires.position.x, 0, m_secondFires.position.z);
-        m_lastFires.position = new Vector3(m_lastFires.position.x, 0, m_lastFires.position.z);
+        m_firstFires.localPosition = Vector3.zero;
+        m_secondFires.localPosition = Vector3.zero;
+        m_lastFires.localPosition = Vector3.zero;
     }
 
     private void FirstHandle()

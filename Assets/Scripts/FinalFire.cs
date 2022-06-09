@@ -27,7 +27,12 @@ public class FinalFire : MonoBehaviour
         m_fireRoomHorloge.gameObject.SetActive(true);
         m_fireRoomPupitres.Up();
         m_fireRoomHorloge.Up();
-        m_fireRoomHorloge.gameObject.SetActive(false);
         m_transformFinalFire.gameObject.SetActive(true);
+    }
+
+    IEnumerator DisapearFire()
+    {
+        yield return new WaitForSeconds(5);
+        m_fireRoomHorloge.gameObject.SetActive(false);
     }
 }
